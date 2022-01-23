@@ -208,7 +208,7 @@ namespace IDA.App.ViewModels
 
             else
             {
-                custmer.UserNameNavigation = user;
+                custmer = new Customers() { UserNameNavigation = user };
 
                 custmer = await IDAproxy.CustomerRegister(custmer);
                 if (custmer != null)

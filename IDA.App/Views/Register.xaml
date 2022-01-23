@@ -40,10 +40,9 @@
             <Entry Text="{Binding EntryAdress}"></Entry>
 
             <Label Text="Date of birth: "></Label>
-            <DatePicker BackgroundColor="#ffb7c5" TextColor="#aa4069" Date="{Binding Date}" HorizontalOptions="Start"></DatePicker>
-            <Entry Text="{Binding EntryBirthDate}"></Entry>
-            
-            <Label Text=""></Label>
+                <DatePicker BackgroundColor="#ffb7c5" TextColor="#aa4069" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
+
+                <Label Text=""></Label>
 
 
                 <Label Text="Do you want to be a worker?"></Label>
