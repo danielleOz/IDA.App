@@ -8,7 +8,7 @@ namespace IDA.App.Models
     {
         public Location()
         {
-            Customers = new List<Customers>();
+
             Workers = new List<Workers>();
         }
 
@@ -16,7 +16,7 @@ namespace IDA.App.Models
         public string City { get; set; }
         public string Adress { get; set; }
 
-        public virtual List<Customers> Customers { get; set; }
+
         public virtual List<Workers> Workers { get; set; }
     }
 }
