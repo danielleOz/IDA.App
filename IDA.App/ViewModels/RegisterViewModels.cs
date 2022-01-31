@@ -202,6 +202,7 @@ namespace IDA.App.ViewModels
                 {
                     this.current.Worker = worker;
                     this.current.User = worker.UserNameNavigation;
+                    isRegister = true;
                 }
 
             }
@@ -215,6 +216,7 @@ namespace IDA.App.ViewModels
                 {
                     this.current.Customer = custmer;
                     this.current.User = custmer.UserNameNavigation;
+                    isRegister = true;
                 }
 
             }
