@@ -253,6 +253,7 @@ namespace IDA.App.ViewModels
 
         private async void PerformGetServices()
         {
+
             if (Services == null)
             {
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();

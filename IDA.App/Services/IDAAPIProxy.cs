@@ -200,9 +200,6 @@ namespace IDA.App.Services
                
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetServices");
 
-              
-                
-              
 
                 if (response.IsSuccessStatusCode)
                 {

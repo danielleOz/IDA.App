@@ -16,9 +16,7 @@
             </Image>
             
             -->
-            
-            
-            
+
             <Label Text=""></Label>
             
             <Label Text="First Name: "></Label>
@@ -53,8 +51,7 @@
 
                 <Frame BackgroundColor="#fddde6" CornerRadius="10" HasShadow="True"  HeightRequest="100" >
                 
-     
-
+   
 
                     <StackLayout   IsVisible="{Binding IsWorker}" >
                
@@ -62,12 +59,12 @@
                     <Label Text="location: "></Label>
 
                     <StackLayout Orientation="Horizontal">
-
-                        <Grid >
+                            <ScrollView>
+                                <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="50"></RowDefinition>
                                 <RowDefinition Height="2*" ></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
+                               <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="500" ></ColumnDefinition>
@@ -76,8 +73,8 @@
 
                             <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}"  BackgroundColor="#fddde6"  BorderWidth="0" HorizontalOptions="Start" >
                         </Button>
- 
-                        <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}" ItemsSource="{Binding Services}"  >
+                                    
+                                        <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}" ItemsSource="{Binding Services}"  >
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
@@ -92,10 +89,10 @@
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
 
-
-                        </Grid>
-
-                    </StackLayout>
+                           
+                            </Grid>
+                      </ScrollView>
+                        </StackLayout>
                  
 
             </StackLayout>
