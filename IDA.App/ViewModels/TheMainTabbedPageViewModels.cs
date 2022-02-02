@@ -25,6 +25,7 @@ namespace IDA.App.ViewModels
                     theMainTabbedPage.RemoveTab(theMainTabbedPage.home);
                     theMainTabbedPage.AddTab(theMainTabbedPage.logIn);
                     theMainTabbedPage.AddTab(theMainTabbedPage.register);
+                    theMainTabbedPage.RemoveTab(theMainTabbedPage.LogOut);
 
 
                 }

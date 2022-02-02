@@ -42,13 +42,13 @@ namespace IDA.App.Views
             register = new Register();
             register.Title = "register";
             //register.IconImageSource = "signup.png";
-
-
             this.Children.Add(register);
+
+
             LogOut = new LogOut();
             LogOut.Title = "LogOut";
             //LogOut.IconImageSource = "LogOut.png";
-            this.Children.Add(LogOut);
+            //this.Children.Add(LogOut);
 
         }
 
