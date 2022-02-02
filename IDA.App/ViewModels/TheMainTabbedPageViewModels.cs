@@ -25,8 +25,7 @@ namespace IDA.App.ViewModels
                     theMainTabbedPage.RemoveTab(theMainTabbedPage.home);
                     theMainTabbedPage.AddTab(theMainTabbedPage.logIn);
                     theMainTabbedPage.AddTab(theMainTabbedPage.register);
-                    theMainTabbedPage.RemoveTab(theMainTabbedPage.LogOut);
-
+                    theMainTabbedPage.RemoveTab(theMainTabbedPage.profile);
 
                 }
                 else // Login
@@ -34,8 +33,7 @@ namespace IDA.App.ViewModels
                     theMainTabbedPage.RemoveTab(theMainTabbedPage.logIn);
                     theMainTabbedPage.RemoveTab(theMainTabbedPage.register);
                     theMainTabbedPage.AddTab(theMainTabbedPage.home);
-                    theMainTabbedPage.AddTab(theMainTabbedPage.LogOut);
-
+                    theMainTabbedPage.AddTab(theMainTabbedPage.profile);
 
                 }
             }

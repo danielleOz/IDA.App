@@ -18,7 +18,7 @@ namespace IDA.App.Views
         public Register register;
         public LogIn logIn;
         public HomePage home;
-        public LogOut LogOut;
+        public Profile profile;
 
         public TheMainTabbedPage()
         {
@@ -45,10 +45,10 @@ namespace IDA.App.Views
             this.Children.Add(register);
 
 
-            LogOut = new LogOut();
-            LogOut.Title = "LogOut";
-            //LogOut.IconImageSource = "LogOut.png";
-            //this.Children.Add(LogOut);
+            profile = new Profile();
+            profile.Title = "profile";
+            //profile.IconImageSource = "profile.png";
+            //this.Children.Add(profile);
 
         }
 

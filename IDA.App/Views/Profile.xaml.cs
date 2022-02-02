@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace IDA.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LogOut : ContentPage
+    public partial class Profile : ContentPage
     {
-        public LogOut()
+        public Profile()
         {
             InitializeComponent();
         }

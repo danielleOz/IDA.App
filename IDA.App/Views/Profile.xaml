@@ -2,14 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
-             x:Class="IDA.App.Views.LogOut">
+             x:Class="IDA.App.Views.Profile">
     <ContentPage.BindingContext>
-        <local:LogOutViewModels></local:LogOutViewModels>
+        <local:ProfileViewModels></local:ProfileViewModels>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="do you want to log out?" VerticalOptions="CenterAndExpand"    HorizontalOptions="CenterAndExpand" />
-            <Button Text="log Out" Command="{Binding Path=LogOutCommand}" > </Button>
+            <Label Text="profile page"> </Label>
+            <Button Text="update your personal details" ></Button>
+            <Button Text="moreee" ></Button>
+            <Button Text="log out" Command="{Binding LogOutCommand}" ></Button>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
