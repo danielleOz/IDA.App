@@ -30,6 +30,7 @@ namespace IDA.App.Services
         private string basePhotosUri;
         private static IDAAPIProxy proxy = null;
 
+        # region CreateProxy
         public static IDAAPIProxy CreateProxy()
         {
             string baseUri;
@@ -66,6 +67,7 @@ namespace IDA.App.Services
             return proxy;
         }
 
+        #endregion
 
         private IDAAPIProxy(string baseUri, string basePhotosUri)
         {
@@ -81,7 +83,7 @@ namespace IDA.App.Services
 
         public string GetBasePhotoUri() { return this.basePhotosUri; }
 
-
+        #region login
         //Login - if user name and password are correct User object is returned. otherwise a null will be returned
         public async Task<User> LoginAsync(string userName, string pass)
         {
@@ -110,8 +112,9 @@ namespace IDA.App.Services
                 return null;
             }
         }
+        #endregion
 
-
+        #region CustomerRegister
         //This method register a new user into the server database. A previous login is NOT required! The nick name and email must be uniqe!
         //it returns true is succeeded or false otherwise
         //questions are ignored upon registering a user and shoul dbe added seperatly.
@@ -157,7 +160,9 @@ namespace IDA.App.Services
                 return null;
             }
         }
+        #endregion
 
+        #region WorkerRegister
         public async Task<Workers> WorkerRegister(Workers w)
         {
              try
@@ -192,7 +197,9 @@ namespace IDA.App.Services
                 return null;
             }
         }
+        #endregion
 
+        #region GetServices
         public async Task<List<Service>> GetServices()
         {
             try
@@ -226,15 +233,32 @@ namespace IDA.App.Services
         }
 
 
-       
+        #endregion
+
+        #region UserNameExist
+        public async Task<bool> UserNameExistAsync(string userName)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"{this.baseUri}/IsUserNameExist?userName={userName}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return true;
+            }
+        }
 
 
+        #endregion
 
-       
-
-
-
-
+        #region upload image
         ////Upload file to server (only images!)
         //public async Task<bool> UploadImage(Models.FileInfo fileInfo, string targetFileName)
         //{
@@ -257,6 +281,8 @@ namespace IDA.App.Services
         //        return false;
         //    }
         //}
+
+        #endregion
     }
 }
    
