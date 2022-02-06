@@ -30,9 +30,17 @@ namespace IDA.App.ViewModels
 
         private async void LogOut()
         {
-            User == null;
-            // איפוס המשתמש שמחובר והפניה לדף של התחברות
+            bool answer = await App.Current.MainPage.DisplayAlert("logout", "are you sure you want to logout?", "logout", "cancel", FlowDirection.LeftToRight);
+            if(answer)
+            {
+                App theApp = (App)App.Current;
+                theApp.User = null;
 
+                Page p = new TheMainTabbedPage();
+                p.Title = "login";
+                App.Current.MainPage =p;
+
+            }
         }
     }
 }
