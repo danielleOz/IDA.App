@@ -393,7 +393,9 @@ namespace IDA.App.ViewModels
             }
         }
 
-        #endregion 
+        #endregion
+
+     
 
 
         #region is worker
@@ -429,17 +431,10 @@ namespace IDA.App.ViewModels
      
         #region register
         public ICommand RegisterCommand { get; set; }
+
         private async void Register()
         {
             bool isRegister = false;
-            //add validation - (לעשות פעולה לכל אחד (איפה
-
-            //if ((EntryUserName == "") || (EntryEmail == "") || (EntryPass == ""))
-            // צריך לשים את כל השדות ככה? או שיש דרך אחרת? מבחינת הרשמה כעובד איך להבדיל בפעולה הזאת יש עוד שדות שקר עובדים ממלאים ומשתמשים לא
-            //{
-            //    await App.Current.MainPage.DisplayAlert("IDA", "Please fill all the fields", "Ok");
-            //    return;
-            //}
             User user = new User();
             user.UserName = EntryUserName;
             user.Email = EntryEmail;
@@ -450,166 +445,59 @@ namespace IDA.App.ViewModels
             user.Birthday = entryBirthDate;
             IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
 
-            if (isWorker)
+            bool isUserNameExist = await IDAproxy.UserNameExistAsync(user.UserName);
+            if (!isUserNameExist)
             {
-                worker.Location = entryLocation;
-                worker.UserNameNavigation = user;
-                //add worker details
-
-                worker = await IDAproxy.WorkerRegister(worker);
-                if (worker != null)
+                if (isWorker)
                 {
-                    this.current.Worker = worker;
-                    this.current.User = worker.UserNameNavigation;
-                    isRegister = true;
+                    worker.Location = entryLocation;
+                    worker.UserNameNavigation = user;
+                    //add worker details
+
+                    worker = await IDAproxy.WorkerRegister(worker);
+                    if (worker != null)
+                    {
+                        this.current.Worker = worker;
+                        this.current.User = worker.UserNameNavigation;
+                        isRegister = true;
+                    }
+
                 }
 
-                Adult theAdult = new Adult()
-                {
-                    IdNavigation = user
-                };
-
-                ServerStatus = "מתחבר לשרת...";
-                await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
-                CarpoolAPIProxy proxy = CarpoolAPIProxy.CreateProxy();
-
-                bool isEmailExist = await proxy.EmailExistAsync(theAdult.IdNavigation.Email);
-                bool isUserNameExist = await proxy.UserNameExistAsync(theAdult.IdNavigation.UserName);
-
-                if (!isEmailExist && !isUserNameExist)
-                {
-                    Adult newAdult = await proxy.AddAdultAsync(theAdult);
-                    if (newAdult == null)
-                    {
-                        await App.Current.MainPage.Navigation.PopModalAsync();
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "ההרשמה נכשלה", "אישור", FlowDirection.RightToLeft);
-                    }
-                    else
-                    {
-                        if (this.imageFileResult != null)
-                        {
-                            ServerStatus = "מעלה תמונה...";
-
-                            bool success = await proxy.UploadImage(new FileInfo()
-                            {
-                                Name = this.imageFileResult.FullPath
-                            }, $"{newAdult.Id}.jpg");
-                        }
-                        ServerStatus = "שומר נתונים...";
-
-                        await App.Current.MainPage.Navigation.PopModalAsync();
-                        await App.Current.MainPage.Navigation.PopToRootAsync();
-                        await App.Current.MainPage.DisplayAlert("הרשמה", "ההרשמה בוצעה בהצלחה", "אישור", FlowDirection.RightToLeft);
-                    }
-                }
                 else
                 {
-                    if (isEmailExist && isUserNameExist)
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל ושם המשתמש שהקלדת כבר קיימים במערכת, בבקשה תבחר אימייל ושם משתמש חדשים ונסה שוב", "אישור", FlowDirection.RightToLeft);
+                    custmer = new Customers() { UserNameNavigation = user };
 
-                    else if (isEmailExist)
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל שהקלדת כבר קיים במערכת, בבקשה תבחר אימייל חדש ונסה שוב", "אישור", FlowDirection.RightToLeft);
-
-                    else
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "שם המשתמש שהקלדת כבר קיים במערכת, בבקשה תבחר שם משתמש חדש ונסה שוב", "אישור", FlowDirection.RightToLeft);
-
-                    await App.Current.MainPage.Navigation.PopModalAsync();
-                }
-            }
-            else
-                await App.Current.MainPage.DisplayAlert("שמירת נתונים", " יש בעיה עם הנתונים בדוק ונסה שוב", "אישור", FlowDirection.RightToLeft);
-        }
-
-    }
-
-            else
-            {
-                custmer = new Customers() { UserNameNavigation = user };
-
-                custmer = await IDAproxy.CustomerRegister(custmer);
-                if (custmer != null)
-                {
-                    this.current.Customer = custmer;
-                    this.current.User = custmer.UserNameNavigation;
-                    isRegister = true;
-                }
-
-
-                Adult theAdult = new Adult()
-                {
-                    IdNavigation = user
-                };
-
-                ServerStatus = "מתחבר לשרת...";
-                await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
-                CarpoolAPIProxy proxy = CarpoolAPIProxy.CreateProxy();
-
-                bool isEmailExist = await proxy.EmailExistAsync(theAdult.IdNavigation.Email);
-                bool isUserNameExist = await proxy.UserNameExistAsync(theAdult.IdNavigation.UserName);
-
-                if (!isEmailExist && !isUserNameExist)
-                {
-                    Adult newAdult = await proxy.AddAdultAsync(theAdult);
-                    if (newAdult == null)
+                    custmer = await IDAproxy.CustomerRegister(custmer);
+                    if (custmer != null)
                     {
-                        await App.Current.MainPage.Navigation.PopModalAsync();
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "ההרשמה נכשלה", "אישור", FlowDirection.RightToLeft);
+                        this.current.Customer = custmer;
+                        this.current.User = custmer.UserNameNavigation;
+                        isRegister = true;
                     }
-                    else
-                    {
-                        if (this.imageFileResult != null)
-                        {
-                            ServerStatus = "מעלה תמונה...";
 
-                            bool success = await proxy.UploadImage(new FileInfo()
-                            {
-                                Name = this.imageFileResult.FullPath
-                            }, $"{newAdult.Id}.jpg");
-                        }
-                        ServerStatus = "שומר נתונים...";
-
-                        await App.Current.MainPage.Navigation.PopModalAsync();
-                        await App.Current.MainPage.Navigation.PopToRootAsync();
-                        await App.Current.MainPage.DisplayAlert("הרשמה", "ההרשמה בוצעה בהצלחה", "אישור", FlowDirection.RightToLeft);
-                    }
                 }
+
+                if (isRegister)
+                {
+                    TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
+                    ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
+                    await App.Current.MainPage.DisplayAlert("IDA", "You are logged in now!", "Ok");
+                }
+
                 else
                 {
-                    if (isEmailExist && isUserNameExist)
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל ושם המשתמש שהקלדת כבר קיימים במערכת, בבקשה תבחר אימייל ושם משתמש חדשים ונסה שוב", "אישור", FlowDirection.RightToLeft);
-
-                    else if (isEmailExist)
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל שהקלדת כבר קיים במערכת, בבקשה תבחר אימייל חדש ונסה שוב", "אישור", FlowDirection.RightToLeft);
-
-                    else
-                        await App.Current.MainPage.DisplayAlert("שגיאה", "שם המשתמש שהקלדת כבר קיים במערכת, בבקשה תבחר שם משתמש חדש ונסה שוב", "אישור", FlowDirection.RightToLeft);
-
-                    await App.Current.MainPage.Navigation.PopModalAsync();
+                    await App.Current.MainPage.DisplayAlert("IDA", "Register failed, please try enter another fields", "Ok");
                 }
-            }
-            else
-                await App.Current.MainPage.DisplayAlert("שמירת נתונים", " יש בעיה עם הנתונים בדוק ונסה שוב", "אישור", FlowDirection.RightToLeft);
-        }
-    }
 
+            }
 
-            if (isRegister)
-            {
-                TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
-                ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
-                await App.Current.MainPage.DisplayAlert("IDA", "You are logged in now!", "Ok");
-            }
-            else
-            {
-                await App.Current.MainPage.DisplayAlert("IDA", "Register failed, please try enter another fields", "Ok");
-            }
-            EntryEmail = "";
-            EntryUserName = "";
-            EntryPass = "";
+            else if (isUserNameExist)
+
+                await App.Current.MainPage.DisplayAlert("error", "user name already exsits please try another one", "ok", FlowDirection.RightToLeft);
         }
 
         #endregion
-
 
 
         #region services
@@ -676,3 +564,4 @@ namespace IDA.App.ViewModels
     }
 
 }
+
