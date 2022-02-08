@@ -10,11 +10,49 @@ using System.Collections.Generic;
 
 namespace IDA.App.ViewModels
 {
-    class ProfileViewModels
+    class ProfileViewModels:ViewModelBase
     {
 
-        private Command logOutCommand;
+        #region is worker
+        private bool isWorker;
+        public bool IsWorker
+        {
+            get => this.isWorker;
+            set
+            {
+                if (this.current.User.IsWorker)
+                {
+                    this.isWorker = value;
+                    OnPropertyChanged("IsWorker");
+                }
 
+            }
+        }
+        #endregion
+
+        private Command availbleCommand;
+        public ICommand AvailbleCommand
+        {
+            get
+            {
+                if (availbleCommand == null)
+                {
+                    availbleCommand = new Command(AvailbleWorker);
+                }
+
+                return availbleCommand;
+            }
+
+        }
+
+        private async void AvailbleWorker()
+        {
+            bool Availble = 
+        }
+
+
+
+        private Command logOutCommand;
         public ICommand LogOutCommand
         {
             get

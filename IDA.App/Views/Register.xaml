@@ -59,10 +59,7 @@
 
                 <Frame BackgroundColor="#fddde6" CornerRadius="10" HasShadow="True"  HeightRequest="100" >
 
-
-
                     <StackLayout   IsVisible="{Binding IsWorker}" >
-
 
                         <Label Text="location: "></Label>
 

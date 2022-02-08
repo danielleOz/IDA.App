@@ -284,6 +284,44 @@ namespace IDA.App.Services
         //}
 
         #endregion
+
+        #region worker availbilty
+
+        public async Task<Workers> WorkerAvailbilty(Workers w)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+
+                string jsonObject = JsonSerializer.Serialize<Workers>(w, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/WorkerAvailbilty", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    Workers ret = JsonSerializer.Deserialize<Workers>(jsonContent, options);
+
+                    return ret;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        #endregion
     }
 }
    
