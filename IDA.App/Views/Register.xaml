@@ -8,100 +8,108 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout>
-            <!--
-            
-             <Image Source="logo.png" HeightRequest="400" WidthRequest="1000"  >
+            <StackLayout>
 
-            </Image>
+                <!--
             
-            -->
+                     <Image Source="logo.png" HeightRequest="400" WidthRequest="1000"  >
 
-            <Label Text=""></Label>
+                    </Image>
             
-            <Label Text="First Name: "></Label>
-            <Entry Text="{Binding EntryFname}"></Entry>
-            
-            <Label Text="Last Name: "></Label>
-            <Entry Text="{Binding EntryLname}"></Entry>
-            
-            <Label Text="User Name: "></Label>
-            <Entry Text="{Binding EntryUserName}"></Entry>
-            
-            <Label Text="Email: "></Label>
-            <Entry Text="{Binding EntryEmail}"></Entry>
-            
-            <Label Text="Password: "></Label>
-            <Entry Text="{Binding EntryPass}" IsPassword="True"></Entry>
-            
-            <Label Text="Adress: "></Label>
-            <Entry Text="{Binding EntryAdress}"></Entry>
+                -->
 
-            <Label Text="Date of birth: "></Label>
+                <Label Text=""></Label>
+
+                <Label Text="First Name: "></Label>
+                <Entry Text="{Binding EntryFname}"></Entry>
+                <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}"/>
+
+                <Label Text="Last Name: "></Label>
+                <Entry Text="{Binding EntryLname}"></Entry>
+                <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowPasswordError}"/>
+
+                <Label Text="User Name: "></Label>
+                <Entry Text="{Binding EntryUserName}"></Entry>
+                <Label Text="{Binding UserNameError}" IsVisible="{Binding ShowUserNameError}"/>
+
+                <Label Text="Email: "></Label>
+                <Entry Text="{Binding EntryEmail}"></Entry>
+                <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}"/>
+
+                <Label Text="Password: "></Label>
+                <Entry Text="{Binding EntryPass}" IsPassword="True"></Entry>
+                <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}"/>
+
+                <Label Text="Adress: "></Label>
+                <Entry Text="{Binding EntryAdress}"></Entry>
+
+                <Label Text="Date of birth: "></Label>
                 <DatePicker BackgroundColor="#ffb7c5" TextColor="#aa4069" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
+                <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}"/>
+
 
                 <Label Text=""></Label>
 
 
                 <Label Text="Do you want to be a worker?"></Label>
-      
-            <Switch OnColor="#efbbcc" ThumbColor="#fc8eac" IsToggled="{Binding IsWorker}" />
+
+                <Switch OnColor="#efbbcc" ThumbColor="#fc8eac" IsToggled="{Binding IsWorker}" />
 
 
 
                 <Frame BackgroundColor="#fddde6" CornerRadius="10" HasShadow="True"  HeightRequest="100" >
-                
-   
+
+
 
                     <StackLayout   IsVisible="{Binding IsWorker}" >
-               
-               
-                    <Label Text="location: "></Label>
 
-                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="location: "></Label>
+
+                        <StackLayout Orientation="Horizontal">
                             <ScrollView>
                                 <Grid >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"></RowDefinition>
-                                <RowDefinition Height="2*" ></RowDefinition>
-                               <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="500" ></ColumnDefinition>
-                                <ColumnDefinition Width="*" ></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="2*" ></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="500" ></ColumnDefinition>
+                                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
 
-                            <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}"  BackgroundColor="#fddde6"  BorderWidth="0" HorizontalOptions="Start" >
-                        </Button>
-                                    
-                                        <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}" ItemsSource="{Binding Services}"  >
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text=" " />
-                                                <Span Text="{Binding Name} " />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
+                                    <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}"  BackgroundColor="#fddde6"  BorderWidth="0" HorizontalOptions="Start" >
+                                    </Button>
 
-                           
-                            </Grid>
-                      </ScrollView>
+                                    <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}" ItemsSource="{Binding Services}"  >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text=" " />
+                                                            <Span Text="{Binding Name} " />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+
+                                </Grid>
+                            </ScrollView>
                         </StackLayout>
-                 
+
+
+                    </StackLayout>
+
+
+                </Frame>
+                <Button Text="Register" BackgroundColor="#fddde6" TextColor="#db7093" Command="{Binding Path=RegisterCommand}"></Button>
 
             </StackLayout>
-
-
-            </Frame>
-            <Button Text="Register" BackgroundColor="#fddde6" TextColor="#db7093" Command="{Binding Path=RegisterCommand}"></Button>
-            
-        </StackLayout>
         </ScrollView>
 
 

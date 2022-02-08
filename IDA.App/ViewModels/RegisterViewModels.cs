@@ -12,7 +12,6 @@ using System.Text.RegularExpressions;
 namespace IDA.App.ViewModels
 {
 
-
     class RegisterViewModel : ViewModelBase
     {
         private Workers worker;
@@ -41,6 +40,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryUserName)
                 {
                     this.entryUserName = value;
+                    ValidateUserName();
                     OnPropertyChanged("EntryUserName");
                 }
             }
@@ -56,7 +56,6 @@ namespace IDA.App.ViewModels
                 OnPropertyChanged("ShowUserNameError");
             }
         }
-
 
         private string userNameError;
         public string UserNameError
@@ -87,6 +86,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryEmail)
                 {
                     this.entryEmail = value;
+                    ValidateEmail();
                     OnPropertyChanged("EntryEmail");
                 }
             }
@@ -103,17 +103,6 @@ namespace IDA.App.ViewModels
             }
         }
 
-        private string email;
-        public string Email
-        {
-            get => email;
-            set
-            {
-                email = value;
-                ValidateEmail();
-                OnPropertyChanged("Email");
-            }
-        }
 
         private string emailError;
         public string EmailError
@@ -128,10 +117,10 @@ namespace IDA.App.ViewModels
 
         private void ValidateEmail()
         {
-            this.ShowEmailError = string.IsNullOrEmpty(Email);
+            this.ShowEmailError = string.IsNullOrEmpty(entryEmail);
             if (!this.ShowEmailError)
             {
-                if (!Regex.IsMatch(this.Email, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+                if (!Regex.IsMatch(this.entryEmail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
                 {
                     this.ShowEmailError = true;
                     this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
@@ -153,6 +142,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryPass)
                 {
                     this.entryPass = value;
+                    ValidatePassword();
                     OnPropertyChanged("EntryPass");
                 }
             }
@@ -208,6 +198,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryFname)
                 {
                     this.entryFname = value;
+                    ValidateLastName();
                     OnPropertyChanged("EntryFname");
                 }
             }
@@ -255,6 +246,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryLname)
                 {
                     this.entryLname = value;
+                    ValidateLastName();
                     OnPropertyChanged("EntryLname");
                 }
             }
@@ -300,6 +292,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
         // need to vaidate
         #region adress
         private string entryAdress;
@@ -330,6 +323,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryBirthDate)
                 {
                     this.entryBirthDate = value;
+                    ValidateBirthDate();
                     OnPropertyChanged("EntryBirthDate");
                 }
             }
@@ -377,6 +371,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
         // need to add!!
         #region location
         private double entryLocation;
@@ -395,8 +390,7 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-     
-
+    
 
         #region is worker
         private bool isWorker;
@@ -487,7 +481,7 @@ namespace IDA.App.ViewModels
 
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("IDA", "Register failed, please try enter another fields", "Ok");
+                    await App.Current.MainPage.DisplayAlert("IDA", "Register failed, please try again", "Ok");
                 }
 
             }
