@@ -13,6 +13,19 @@
             <Button Text="moreee" ></Button>
             <Button Text="log out" Command="{Binding LogOutCommand}" ></Button>
 
+
+            <StackLayout IsVisible="{Binding IsWorker}">
+
+                <Button Text="set as avilable" Command="{Binding AvailbleWorkerCommand}"></Button>
+                <Label Text="avilable until"></Label>
+                <TimePicker></TimePicker>
+                <Button Text="set as unavailble"></Button>
+                <Label Text="your status is:"></Label> <Label Text="{Binding }"></Label>
+            </StackLayout>
+
         </StackLayout>
+
+    
+        
     </ContentPage.Content>
 </ContentPage>
