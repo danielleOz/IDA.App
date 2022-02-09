@@ -287,7 +287,7 @@ namespace IDA.App.Services
 
         #region worker availbilty
 
-        public async Task<Workers> WorkerAvailbilty(Workers w)
+        public async Task<bool> WorkerAvailbilty(Workers w)
         {
             try
             {
@@ -305,19 +305,19 @@ namespace IDA.App.Services
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonContent = await response.Content.ReadAsStringAsync();
-                    Workers ret = JsonSerializer.Deserialize<Workers>(jsonContent, options);
+                    bool ret = JsonSerializer.Deserialize<bool>(jsonContent, options);
 
                     return ret;
                 }
                 else
                 {
-                    return null;
+                    return false;
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return null;
+                return false;
             }
         }
 

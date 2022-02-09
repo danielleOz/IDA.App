@@ -30,28 +30,42 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        private Command availbleCommand;
-        public ICommand AvailbleCommand
-        {
-            get
-            {
-                if (availbleCommand == null)
-                {
-                    availbleCommand = new Command(AvailbleWorker);
-                }
 
-                return availbleCommand;
+        #region AvailbleWorker 
+
+        public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
+
+
+        private async void AvailbleWorker()
+        {
+            if(current.User.IsWorker)
+            {
+                current.Worker.Availble = true;
+               //update worker work until
+                
+                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+              bool success= await IDAAPIProxy.WorkerAvailbilty(current.Worker);
+                if(!success)
+                    Console.WriteLine();// alert 
+
+
             }
 
         }
 
-        private async void AvailbleWorker()
-        {
-            bool Availble = 
-        }
+        #endregion
 
+        //#region UpdateCommand
+        //public ICommand UpdateCommand => new Command(OnUpdate);
+        //public async void OnUpdate()
+        //{
+        //    Page page = new UpdateUser();
+        //    page.Title = "Update";
+        //    await App.Current.MainPage.Navigation.PushAsync(page);
+        //}
+        //#endregion
 
-
+        #region LogOut
         private Command logOutCommand;
         public ICommand LogOutCommand
         {
@@ -66,6 +80,7 @@ namespace IDA.App.ViewModels
             }
         }
 
+   
         private async void LogOut()
         {
             bool answer = await App.Current.MainPage.DisplayAlert("logout", "are you sure you want to logout?", "logout", "cancel", FlowDirection.LeftToRight);
@@ -80,5 +95,6 @@ namespace IDA.App.ViewModels
 
             }
         }
+        #endregion
     }
 }

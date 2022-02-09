@@ -503,14 +503,14 @@ namespace IDA.App.ViewModels
             {
                 if (getServices == null)
                 {
-                    getServices = new Command(PerformGetServices);
+                    getServices = new Command(ShowGetServices);
                 }
 
                 return getServices;
             }
         }
 
-        private async void PerformGetServices()
+        private async void ShowGetServices()
         {
 
             if (Services == null)
