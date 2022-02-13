@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:local ="clr-namespace:IDA.App.ViewModels"
+             x:Class="IDA.App.Views.Reviews">
+    
+    <ContentPage.BindingContext>
+        <local:ProfileViewModels></local:ProfileViewModels>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout IsVisible="{Binding IsWorker}">
+                
+                <!--show reviews customer wrote-->
+                
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsntWorker}">
+                
+                <!--show reviews was written on-->
+
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

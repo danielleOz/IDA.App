@@ -10,7 +10,7 @@
         <StackLayout BackgroundColor="#fff7f7">
             <Label Text="profile page"> </Label>
             <Button Text="update your personal details" ></Button>
-            <Button Text="moreee" ></Button>
+            <Button Text="my reviews" ></Button> <!--customer can see the reviews he wrote worker will be able to see what was wreeten on himcustomer can see the reviews he wrote worker will be able to see what was wreeten on him-->
             <Button Text="log out" Command="{Binding LogOutCommand}" ></Button>
 
 
