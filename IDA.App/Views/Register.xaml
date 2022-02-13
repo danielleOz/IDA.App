@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout BackgroundColor="#fff7f7">
 
                 <!--
             

@@ -5,7 +5,8 @@
              windows:Application.ImageDirectory="Photos"
              x:Class="IDA.App.App">
     <Application.Resources>
-        
+
+
     </Application.Resources>
     
 </Application>

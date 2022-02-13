@@ -7,7 +7,7 @@
         <local:ProfileViewModels></local:ProfileViewModels>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#fff7f7">
             <Label Text="profile page"> </Label>
             <Button Text="update your personal details" ></Button>
             <Button Text="moreee" ></Button>

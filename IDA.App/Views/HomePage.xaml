@@ -7,7 +7,7 @@
         <local:HomePageViewModels></local:HomePageViewModels>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#fff7f7">
             
             <Label Text="user pageeeeeeeeee"></Label>
 
