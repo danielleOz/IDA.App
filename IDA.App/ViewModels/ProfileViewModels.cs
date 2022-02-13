@@ -30,6 +30,25 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+        #region is Available
+
+        private bool isAvailable;
+        public bool IsAvailable
+        {
+            get => this.isAvailable;
+            set
+            {
+                if (this.current.Worker.Availble)
+                {
+                    this.isAvailable = value;
+                    OnPropertyChanged("IsAvailabler");
+                }
+
+            }
+        }
+        #endregion
+
+
 
         #region AvailbleWorker 
 

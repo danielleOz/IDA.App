@@ -20,7 +20,7 @@
                 <Label Text="avilable until"></Label>
                 <TimePicker></TimePicker>
                 <Button Text="set as unavailble"></Button>
-                <Label Text="your status is:"></Label> <Label Text="{Binding }"></Label>
+                <Label Text="your status is:"></Label> <Label Text="{Binding IsAvailable }"></Label>
             </StackLayout>
 
         </StackLayout>

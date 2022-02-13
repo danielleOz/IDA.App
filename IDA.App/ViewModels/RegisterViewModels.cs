@@ -446,6 +446,7 @@ namespace IDA.App.ViewModels
                 {
                     worker.Location = entryLocation;
                     worker.UserNameNavigation = user;
+                    worker.Availble = false;
                     //add worker details
 
                     worker = await IDAproxy.WorkerRegister(worker);
