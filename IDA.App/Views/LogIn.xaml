@@ -8,13 +8,23 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
+            <Label></Label>
+            <!--<Label Text="User Name: "></Label>-->
             
-            <Label Text="User Name: "></Label>
-            <Entry Text="{Binding EntryUser}"></Entry>
-            <Label Text="Password: "></Label>
-            <Entry Text="{Binding EntryPass}" IsPassword="True"></Entry>
-            <Button Text="Login" BackgroundColor="DarkTurquoise" Command="{Binding Path=LogInCommand}"></Button>
-            <Button Text="Go to register" BackgroundColor="DarkTurquoise" Command="{Binding Path=RegisterCommand}"></Button>
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
+            <Entry Text="{Binding EntryUser}" Placeholder="User Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
+            <!--<Label Text="Password: "></Label>-->
+            </Frame>
+            
+            <Label></Label>
+            
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
+                <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+            </Frame>
+            
+            <Label></Label>
+            <Button Text="Login" BackgroundColor="#f0d9d7" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"></Button>
+            <Button Text="Go to register" BackgroundColor="#f0d9d7" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
 
 
         </StackLayout>
