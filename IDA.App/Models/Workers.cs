@@ -16,7 +16,7 @@ namespace IDA.App.Models
         public int Wid { get; set; }
         public string UserName { get; set; }
         public int Lid { get; set; }
-        public string Services { get; set; }
+        public string Service { get; set; }
         public double Location { get; set; }
         public bool Availble { get; set; }
 

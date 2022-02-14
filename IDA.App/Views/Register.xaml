@@ -26,7 +26,7 @@
 
                 <Label Text="Last Name: "></Label>
                 <Entry Text="{Binding EntryLname}"></Entry>
-                <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowPasswordError}"/>
+                <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}"/>
 
                 <Label Text="User Name: "></Label>
                 <Entry Text="{Binding EntryUserName}"></Entry>
@@ -38,7 +38,7 @@
 
                 <Label Text="Password: "></Label>
                 <Entry Text="{Binding EntryPass}" IsPassword="True"></Entry>
-                <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}"/>
+                <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}"/>
 
                 <Label Text="Adress: "></Label>
                 <Entry Text="{Binding EntryAdress}"></Entry>

@@ -14,18 +14,13 @@ namespace IDA.App.ViewModels
     {
 
         #region is worker
-        private bool isWorker;
         public bool IsWorker
         {
-            get => this.isWorker;
-            set
+            get
             {
-                if (this.current.User.IsWorker)
-                {
-                    this.isWorker = value;
-                    OnPropertyChanged("IsWorker");
-                }
-
+                if (this.current != null && this.current.User != null)
+                    return this.current.User.IsWorker;
+                return false;
             }
         }
         #endregion

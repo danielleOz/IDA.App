@@ -45,8 +45,8 @@ namespace IDA.App.Views
             this.Children.Add(register);
 
 
-            profile = new Profile();
-            profile.Title = "profile";
+            //profile = new Profile();
+            //profile.Title = "profile";
             //profile.IconImageSource = "profile.png";
             //this.Children.Add(profile);
 

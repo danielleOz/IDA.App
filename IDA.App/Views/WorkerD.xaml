@@ -11,7 +11,7 @@
         <StackLayout>
             
             <!--workers profile pic-->
-            <Label Text="{ }"> </Label> <!--worker name - first + last-->
+           <!-- <Label Text="{ }"> </Label> worker name - first + last --> 
             <Label Text="worker recommadation"> </Label>
             <!--present all workers recommadation-->
             <Button Text="send request"></Button> <!--when pressing sends a text to the worker-->

@@ -52,8 +52,11 @@ namespace IDA.App.ViewModels
             get => showUserNameError;
             set
             {
-                showUserNameError = value;
-                OnPropertyChanged("ShowUserNameError");
+                if (value != this.ShowUserNameError)
+                {
+                    showUserNameError = value;
+                    OnPropertyChanged("ShowUserNameError");
+                }
             }
         }
 
@@ -71,6 +74,10 @@ namespace IDA.App.ViewModels
         private void ValidateUserName()
         {
             this.ShowUserNameError = string.IsNullOrEmpty(EntryUserName);
+            if (ShowUserNameError)
+               UserNameError = ERROR_MESSAGES.REQUIRED_FIELD;
+            else
+                UserNameError = string.Empty;
         }
 
         #endregion
@@ -198,7 +205,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryFname)
                 {
                     this.entryFname = value;
-                    ValidateLastName();
+                    ValidateName();
                     OnPropertyChanged("EntryFname");
                 }
             }
@@ -230,6 +237,11 @@ namespace IDA.App.ViewModels
         private void ValidateName()
         {
             this.ShowNameError = string.IsNullOrEmpty(EntryFname);
+            if (ShowNameError)
+                NameError = ERROR_MESSAGES.REQUIRED_FIELD;
+            else
+                NameError = string.Empty;
+
         }
 
         #endregion
@@ -289,6 +301,10 @@ namespace IDA.App.ViewModels
         private void ValidateLastName()
         {
             this.ShowLastNameError = string.IsNullOrEmpty(EntryLname);
+            if (ShowLastNameError)
+                LastNameError = ERROR_MESSAGES.REQUIRED_FIELD;
+            else
+                LastNameError = string.Empty;
         }
         #endregion
 
@@ -368,6 +384,11 @@ namespace IDA.App.ViewModels
         {
             TimeSpan ts = DateTime.Now - this.EntryBirthDate;
             this.ShowBirthDateError = ts.TotalDays < (MIN_AGE * 365);
+
+            if (ShowBirthDateError)
+                BirthDateError = ERROR_MESSAGES.BAD_DATE;
+            else
+                BirthDateError = string.Empty;
         }
         #endregion
 
@@ -418,6 +439,7 @@ namespace IDA.App.ViewModels
             SelectedServices = new List<object>();
             RegisterCommand = new Command(Register);
             SelectServicesCommand = new Command(SelectServices);
+            //this.EntryFname = string.Empty;
 
 
         }
@@ -444,7 +466,10 @@ namespace IDA.App.ViewModels
             {
                 if (isWorker)
                 {
+                    user.IsWorker = true;
+                    worker.Lid = 1; //TO BE CHANGED!!!!
                     worker.Location = entryLocation;
+                    worker.UserName = user.UserName;
                     worker.UserNameNavigation = user;
                     worker.Availble = false;
                     //add worker details
@@ -540,16 +565,22 @@ namespace IDA.App.ViewModels
                 worker = new Workers();
 
             worker.WorkerServices.Clear();
-            worker.Services = string.Empty;
+            worker.Service = string.Empty;
+            
             foreach (object a in SelectedServices)
             {
                 Service service = (Service)a;
-                WorkerService s = new WorkerService() { SidNavigation = service };
+                WorkerService s = new WorkerService() 
+                {
+                    Sid = service.Sid,
+
+                    SidNavigation = service 
+                };
                 worker.WorkerServices.Add(s);
-                if (worker.Services != string.Empty)
-                    worker.Services += "," + service.Name;
+                if (worker.Service != string.Empty)
+                    worker.Service += "," + service.Name;
                 else
-                    worker.Services += service.Name;
+                    worker.Service += service.Name;
 
             }
 
