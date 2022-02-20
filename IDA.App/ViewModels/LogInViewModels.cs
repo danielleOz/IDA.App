@@ -54,7 +54,15 @@ namespace IDA.App.ViewModels
             if (user != null)
             {
                 TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
-                ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
+                TheMainTabbedPageViewModels mainPageVM = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
+                mainPageVM.LoginUser = user;
+                this.current.User = user;
+                //TO DO: Assign worker and customer as needed
+                //if (user.IsWorker)
+                //{
+                    
+                //    this.current.Worker = 
+                //}
               
                 await App.Current.MainPage.DisplayAlert("IDA", "You are logged in now!", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
