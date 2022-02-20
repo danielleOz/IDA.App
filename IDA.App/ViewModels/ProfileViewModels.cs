@@ -12,6 +12,11 @@ namespace IDA.App.ViewModels
 {
     class ProfileViewModels:ViewModelBase
     {
+        public ProfileViewModels()
+        {
+            IsAvailable = false;
+        }
+            
 
         #region is worker
         public bool IsWorker

@@ -30,6 +30,15 @@ namespace IDA.App.ViewModels
             public const string BAD_DATE = "you must be above 18";
         }
 
+        public RegisterViewModel()
+        {
+            App current = ((App)Application.Current);
+            IsWorker = false;
+            SelectedServices = new List<object>();
+            RegisterCommand = new Command(Register);
+            SelectServicesCommand = new Command(SelectServices);
+        }
+
         #region user name 
         private string entryUserName;
         public string EntryUserName
@@ -432,17 +441,7 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-        public RegisterViewModel()
-        {
-            App current = ((App)Application.Current);
-            IsWorker = false;
-            SelectedServices = new List<object>();
-            RegisterCommand = new Command(Register);
-            SelectServicesCommand = new Command(SelectServices);
-            //this.EntryFname = string.Empty;
-
-
-        }
+   
 
      
         #region register

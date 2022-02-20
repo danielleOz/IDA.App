@@ -7,25 +7,51 @@
         <local:ProfileViewModels></local:ProfileViewModels>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#fff7f7">
-            <Label Text="profile page"> </Label>
-            <Button Text="update your personal details" ></Button>
-            <Button Text="my reviews" ></Button> <!--customer can see the reviews he wrote worker will be able to see what was wreeten on himcustomer can see the reviews he wrote worker will be able to see what was wreeten on him-->
-            <Button Text="log out" Command="{Binding LogOutCommand}" ></Button>
+        
+        <ScrollView>
+            <StackLayout BackgroundColor="#fff7f7">
+            <Label Text=" "></Label>
+            <Label Text="profile page" TextColor="#aaaaaa"> </Label>
+            <Label Text=" "></Label>
+
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="230">
+
+                <StackLayout>
+                    
+                    <Button Text="update your personal details" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
+                    <Label Text=" "></Label>
+                    <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
+                        <Label Text=" "></Label>
+
+                        <!--customer can see the reviews he wrote worker will be able to see what was wreeten on himcustomer can see the reviews he wrote worker will be able to see what was wreeten on him-->
+                        <Button Text="log out" Command="{Binding LogOutCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
+
+                    </StackLayout>
+                
+            </Frame>
+            
+            <Label Text=" "></Label>
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="300">
+
+                <StackLayout IsVisible="{Binding IsWorker}">
+
+                    <Button Text="set as avilable" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+                    <Label Text="avilable until" TextColor="#aaaaaa"></Label>
+                    <TimePicker TextColor="#aaaaaa" ></TimePicker>
+                    <Button Text="set as unavailble" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+                    <Label Text="your status is:" TextColor="#aaaaaa"></Label>
+                    <Label Text="{Binding IsAvailable}" TextColor="#aaaaaa"></Label>
+                </StackLayout>
+            </Frame>
 
 
-            <StackLayout IsVisible="{Binding IsWorker}">
 
-                <Button Text="set as avilable" Command="{Binding AvailbleWorkerCommand}"></Button>
-                <Label Text="avilable until"></Label>
-                <TimePicker></TimePicker>
-                <Button Text="set as unavailble"></Button>
-                <Label Text="your status is:"></Label> <Label Text="{Binding IsAvailable }"></Label>
-            </StackLayout>
 
         </StackLayout>
+        </ScrollView>
 
-    
-        
+
+
+
     </ContentPage.Content>
 </ContentPage>
