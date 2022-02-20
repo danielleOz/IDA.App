@@ -41,7 +41,7 @@ namespace IDA.App.ViewModels
                 if (this.current.Worker.Availble)
                 {
                     this.isAvailable = value;
-                    OnPropertyChanged("IsAvailabler");
+                    OnPropertyChanged("IsAvailable");
                 }
 
             }
