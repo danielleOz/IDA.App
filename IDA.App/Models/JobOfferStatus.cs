@@ -4,18 +4,16 @@ using System.Text;
 
 namespace IDA.App.Models
 {
-    public partial class Service
+    public partial class JobOfferStatus
     {
-        public Service()
+        public JobOfferStatus()
         {
             JobOffers = new List<JobOffer>();
-            WorkerServices = new List<WorkerService>();
         }
 
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Description { get; set; }
 
         public virtual List<JobOffer> JobOffers { get; set; }
-        public virtual List<WorkerService> WorkerServices { get; set; }
     }
 }

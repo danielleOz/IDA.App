@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IDA.App.Models
 {
-    public partial class JobOffer
+    public partial class ChatMessage
     {
         public int Id { get; set; }
         public int ServiceId { get; set; }
@@ -21,5 +21,13 @@ namespace IDA.App.Models
         public virtual Service Service { get; set; }
         public virtual JobOfferStatus Status { get; set; }
         public virtual User User { get; set; }
+        public int Id { get; set; }
+        public string MessageText { get; set; }
+        public DateTime MessageDate { get; set; }
+        public int SenderId { get; set; }
+        public int RecieverId { get; set; }
+
+        public virtual User Reciever { get; set; }
+        public virtual User Sender { get; set; }
     }
 }

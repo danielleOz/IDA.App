@@ -14,6 +14,6 @@ namespace IDA.App.Models
         public int StatusId { get; set; }
         public string Description { get; set; }
 
-        public virtual List<JobOffer> JobOffers { get; set; }
+        public virtual List<JobOffer> JobOffers { get; set; } 
     }
 }
