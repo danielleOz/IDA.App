@@ -14,8 +14,7 @@ namespace IDA.App.ViewModels
 
     class RegisterViewModel : ViewModelBase
     {
-        private Workers worker;
-        private Customers custmer;
+
         public List<object> SelectedServices { get; set; }
 
         private ObservableCollection<Service> services;
@@ -38,58 +37,6 @@ namespace IDA.App.ViewModels
             RegisterCommand = new Command(Register);
             SelectServicesCommand = new Command(SelectServices);
         }
-
-        #region user name 
-        private string entryUserName;
-        public string EntryUserName
-        {
-            get => this.entryUserName;
-            set
-            {
-                if (value != this.entryUserName)
-                {
-                    this.entryUserName = value;
-                    ValidateUserName();
-                    OnPropertyChanged("EntryUserName");
-                }
-            }
-        }
-
-        private bool showUserNameError;
-        public bool ShowUserNameError
-        {
-            get => showUserNameError;
-            set
-            {
-                if (value != this.ShowUserNameError)
-                {
-                    showUserNameError = value;
-                    OnPropertyChanged("ShowUserNameError");
-                }
-            }
-        }
-
-        private string userNameError;
-        public string UserNameError
-        {
-            get => userNameError;
-            set
-            {
-                userNameError = value;
-                OnPropertyChanged("UserNameError");
-            }
-        }
-
-        private void ValidateUserName()
-        {
-            this.ShowUserNameError = string.IsNullOrEmpty(EntryUserName);
-            if (ShowUserNameError)
-               UserNameError = ERROR_MESSAGES.REQUIRED_FIELD;
-            else
-                UserNameError = string.Empty;
-        }
-
-        #endregion
 
 
         #region email
@@ -147,6 +94,167 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+        #region city
+        private string entryCity;
+        public string EntryCity
+        {
+            get => this.entryCity;
+            set
+            {
+                if (value != this.entryCity)
+                {
+                    this.entryCity = value;
+                    //ValidateCity();
+                    OnPropertyChanged("EntryCity");
+                }
+            }
+        }
+
+        private bool showCityError;
+        public bool ShowCityError
+        {
+            get => showCityError;
+            set
+            {
+                showCityError = value;
+                OnPropertyChanged("ShowCityError");
+            }
+        }
+
+
+        private string cityError;
+        public string CityError
+        {
+            get => cityError;
+            set
+            {
+                cityError = value;
+                OnPropertyChanged("EmailError");
+            }
+        }
+
+        private void ValidateCity()
+        {
+            this.ShowCityError = string.IsNullOrEmpty(entryCity);
+            if (!this.ShowCityError)
+            {
+                this.ShowCityError = string.IsNullOrEmpty(entryCity);
+            }
+            else
+                this.CityError = ERROR_MESSAGES.REQUIRED_FIELD;
+        }
+        #endregion
+
+        #region email
+        //private string entryEmail;
+        //public string EntryEmail
+        //{
+        //    get => this.entryEmail;
+        //    set
+        //    {
+        //        if (value != this.entryEmail)
+        //        {
+        //            this.entryEmail = value;
+        //            ValidateEmail();
+        //            OnPropertyChanged("EntryEmail");
+        //        }
+        //    }
+        //}
+
+        //private bool showEmailError;
+        //public bool ShowEmailError
+        //{
+        //    get => showEmailError;
+        //    set
+        //    {
+        //        showEmailError = value;
+        //        OnPropertyChanged("ShowEmailError");
+        //    }
+        //}
+
+
+        //private string emailError;
+        //public string EmailError
+        //{
+        //    get => emailError;
+        //    set
+        //    {
+        //        emailError = value;
+        //        OnPropertyChanged("EmailError");
+        //    }
+        //}
+
+        //private void ValidateEmail()
+        //{
+        //    this.ShowEmailError = string.IsNullOrEmpty(entryEmail);
+        //    if (!this.ShowEmailError)
+        //    {
+        //        if (!Regex.IsMatch(this.entryEmail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+        //        {
+        //            this.ShowEmailError = true;
+        //            this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
+        //        }
+        //    }
+        //    else
+        //        this.EmailError = ERROR_MESSAGES.REQUIRED_FIELD;
+        //}
+        //#endregion
+
+        //#region email
+        //private string entryEmail;
+        //public string EntryEmail
+        //{
+        //    get => this.entryEmail;
+        //    set
+        //    {
+        //        if (value != this.entryEmail)
+        //        {
+        //            this.entryEmail = value;
+        //            ValidateEmail();
+        //            OnPropertyChanged("EntryEmail");
+        //        }
+        //    }
+        //}
+
+        //private bool showEmailError;
+        //public bool ShowEmailError
+        //{
+        //    get => showEmailError;
+        //    set
+        //    {
+        //        showEmailError = value;
+        //        OnPropertyChanged("ShowEmailError");
+        //    }
+        //}
+
+
+        //private string emailError;
+        //public string EmailError
+        //{
+        //    get => emailError;
+        //    set
+        //    {
+        //        emailError = value;
+        //        OnPropertyChanged("EmailError");
+        //    }
+        //}
+
+        //private void ValidateEmail()
+        //{
+        //    this.ShowEmailError = string.IsNullOrEmpty(entryEmail);
+        //    if (!this.ShowEmailError)
+        //    {
+        //        if (!Regex.IsMatch(this.entryEmail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
+        //        {
+        //            this.ShowEmailError = true;
+        //            this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
+        //        }
+        //    }
+        //    else
+        //        this.EmailError = ERROR_MESSAGES.REQUIRED_FIELD;
+        //}
+        #endregion
+
 
         #region password
         private string entryPass;
@@ -182,14 +290,14 @@ namespace IDA.App.ViewModels
             get => passError;
             set
             {
-               passError = value;
+                passError = value;
                 OnPropertyChanged("PassError");
             }
         }
 
         private void ValidatePassword()
         {
-            this.ShowPassErorr= string.IsNullOrEmpty(EntryPass);
+            this.ShowPassErorr = string.IsNullOrEmpty(EntryPass);
             if (!this.ShowPassErorr)
             {
                 if (this.EntryPass.Length < 6)
@@ -420,7 +528,7 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-    
+
 
         #region is worker
         private bool isWorker;
@@ -441,57 +549,65 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-   
 
-     
+
+
         #region register
         public ICommand RegisterCommand { get; set; }
 
         private async void Register()
         {
-            bool isRegister = false;
-            User user = new User();
-            user.UserName = EntryUserName;
-            user.Email = EntryEmail;
-            user.UserPswd = EntryPass;
-            user.FirstName = EntryFname;
-            user.LastName = EntryLname;
-            user.Adress = EntryAdress;
-            user.Birthday = entryBirthDate;
             IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
 
-            bool isUserNameExist = await IDAproxy.UserNameExistAsync(user.UserName);
-            if (!isUserNameExist)
+            bool isEmailExist = await IDAproxy.EmailExistAsync(EntryEmail);
+            if (!isEmailExist)
             {
-                if (isWorker)
+                bool isRegister = false;
+                if (IsWorker)
                 {
-                    user.IsWorker = true;
-                    worker.Lid = 1; //TO BE CHANGED!!!!
-                    worker.Location = entryLocation;
-                    worker.UserName = user.UserName;
-                    worker.UserNameNavigation = user;
-                    worker.Availble = false;
-                    //add worker details
+                    Worker w = new Worker();
+                    w.Email = EntryEmail;
+                    w.UserPswd = EntryPass;
+                    w.FirstName = EntryFname;
+                    w.LastName = EntryLname;
+                    w.City = EntryCity;
+                    w.Birthday = entryBirthDate;
+                    //w.Street = EntryStreet;
+                    //w.Apartment = EntryAp;
+                    //w.HouseNumber = EntryHN;
+                    w.IsWorker = true;
+                    //w.RadiusKm = EntryRadius;
+                    /*w.IsAvailbleUntil =*/   // NEED TO SET AS UNAVILABLE
+                                              //worker.UserNameNavigation = user;
 
-                    worker = await IDAproxy.WorkerRegister(worker);
-                    if (worker != null)
+                    w = await IDAproxy.WorkerRegister(w);
+                    if (w != null)
                     {
-                        this.current.Worker = worker;
-                        this.current.User = worker.UserNameNavigation;
+                        this.current.Worker = w;
+                        //this.current.User = w.UserNameNavigation;
                         isRegister = true;
                     }
 
                 }
-
                 else
                 {
-                    custmer = new Customers() { UserNameNavigation = user };
+                    User user = new User();
+                    user.Email = EntryEmail;
+                    user.UserPswd = EntryPass;
+                    user.FirstName = EntryFname;
+                    user.LastName = EntryLname;
+                    user.City = EntryCity;
+                    user.Birthday = entryBirthDate;
+                    //user.Street = EntryStreet;
+                    //user.Apartment = EntryAp;
+                    //user.HouseNumber = EntryHN;
 
-                    custmer = await IDAproxy.CustomerRegister(custmer);
-                    if (custmer != null)
+
+                    user = await IDAproxy.UserRegister(user);
+                    if (user != null)
                     {
-                        this.current.Customer = custmer;
-                        this.current.User = custmer.UserNameNavigation;
+                        this.current.User = user;
+                        //this.current.User = user.UserNameNavigation;
                         isRegister = true;
                     }
 
@@ -500,7 +616,7 @@ namespace IDA.App.ViewModels
                 if (isRegister)
                 {
                     TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
-                    ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
+                    //((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = ;
                     await App.Current.MainPage.DisplayAlert("IDA", "You are logged in now!", "Ok");
                 }
 
@@ -509,82 +625,84 @@ namespace IDA.App.ViewModels
                     await App.Current.MainPage.DisplayAlert("IDA", "Register failed, please try again", "Ok");
                 }
 
+
             }
 
-            else if (isUserNameExist)
-
-                await App.Current.MainPage.DisplayAlert("error", "user name already exsits please try another one", "ok", FlowDirection.RightToLeft);
+            else if (isEmailExist)
+                await App.Current.MainPage.DisplayAlert("error", "mail already exsits please try another one", "ok", FlowDirection.RightToLeft);
         }
+
+
 
         #endregion
 
 
-        #region services
-        private Command getServices;
+        //#region services
+        //private Command getServices;
 
-        public ICommand GetServices
-        {
-            get
-            {
-                if (getServices == null)
-                {
-                    getServices = new Command(ShowGetServices);
-                }
+        //public ICommand GetServices
+        //{
+        //    get
+        //    {
+        //        if (getServices == null)
+        //        {
+        //            getServices = new Command(ShowGetServices);
+        //        }
 
-                return getServices;
-            }
-        }
+        //        return getServices;
+        //    }
+        //}
 
-        private async void ShowGetServices()
-        {
+        //private async void ShowGetServices()
+        //{
 
-            if (Services == null)
-            {
-                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-                ((App)Application.Current).services = await IDAAPIProxy.GetServices();
-                Services = new ObservableCollection<Service>();
-                for (int i = 0; i < ((App)Application.Current).services.Count; i++)
-                {
-                    this.Services.Add(((App)Application.Current).services[i]);
-                }
-            }
-            else
-            {
-                Services = null;
-            }
+        //    if (Services == null)
+        //    {
+        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+        //        ((App)Application.Current).services = await IDAAPIProxy.GetServices();
+        //        Services = new ObservableCollection<Service>();
+        //        for (int i = 0; i < ((App)Application.Current).services.Count; i++)
+        //        {
+        //            this.Services.Add(((App)Application.Current).services[i]);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Services = null;
+        //    }
 
-        }
+        //}
 
-        private Command selectServicesCommand;
-        public ICommand SelectServicesCommand { get; set; }
+        //private Command selectServicesCommand;
+        //public ICommand SelectServicesCommand { get; set; }
 
-        private void SelectServices()
-        {
-            if (worker == null)
-                worker = new Workers();
+        //private void SelectServices()
+        //{
+        //    if (worker == null)
+        //        worker = new Workers();
 
-            worker.WorkerServices.Clear();
-            worker.Service = string.Empty;
-            
-            foreach (object a in SelectedServices)
-            {
-                Service service = (Service)a;
-                WorkerService s = new WorkerService() 
-                {
-                    Sid = service.Sid,
+        //    worker.WorkerServices.Clear();
+        //    worker.Service = string.Empty;
 
-                    SidNavigation = service 
-                };
-                worker.WorkerServices.Add(s);
-                if (worker.Service != string.Empty)
-                    worker.Service += "," + service.Name;
-                else
-                    worker.Service += service.Name;
+        //    foreach (object a in SelectedServices)
+        //    {
+        //        Service service = (Service)a;
+        //        WorkerService s = new WorkerService()
+        //        {
+        //            Sid = service.Sid,
 
-            }
+        //            SidNavigation = service
+        //        };
+        //        worker.WorkerServices.Add(s);
+        //        if (worker.Service != string.Empty)
+        //            worker.Service += "," + service.Name;
+        //        else
+        //            worker.Service += service.Name;
 
-        }
-        #endregion
+        //    }
+
+        //}
+        //#endregion
 
     }
 

@@ -14,10 +14,9 @@ namespace IDA.App
         public User User
         { get;set; }
 
-        public Customers Customer
-        { get; set; }
 
-        public Workers Worker
+
+        public Worker Worker
         { get; set; }
 
         public List<Service> services { get; set; }

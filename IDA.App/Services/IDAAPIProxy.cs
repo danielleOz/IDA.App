@@ -99,6 +99,8 @@ namespace IDA.App.Services
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     User u = JsonSerializer.Deserialize<User>(content, options);
+                    if (u.IsWorker)
+                        u = JsonSerializer.Deserialize<Worker>(content, options);
                     return u;
                 }
                 else
@@ -121,10 +123,12 @@ namespace IDA.App.Services
         //if succeeded - the user is automatically logged in on the server
 
 
-        public async Task<Customers> CustomerRegister(Customers c)
+        public async Task<User> UserRegister(User c)
         { 
             try
             {
+                //Set thge user to be user and not worker
+                c.IsWorker = false;
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
 
@@ -132,19 +136,19 @@ namespace IDA.App.Services
                     Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
                     PropertyNameCaseInsensitive = true
                 };
-                string jsonObject = JsonSerializer.Serialize<Customers>(c, options);
+                string jsonObject = JsonSerializer.Serialize<User>(c, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
                
 
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/CustomerRegister", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UserRegister", content);
                 if (response.IsSuccessStatusCode)
                 {
 
 
                     string str = await response.Content.ReadAsStringAsync();
 
-                    Customers customer = JsonSerializer.Deserialize<Customers>(str, options);
-                    return customer;
+                    User u = JsonSerializer.Deserialize<User>(str, options);
+                    return u;
                 }
                 else
                 {
@@ -163,10 +167,13 @@ namespace IDA.App.Services
         #endregion
 
         #region WorkerRegister
-        public async Task<Workers> WorkerRegister(Workers w)
+        public async Task<Worker> WorkerRegister(Worker w)
         {
              try
             {
+                //set worker as worker in user part of the object
+                w.IsWorker = true;
+
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve,
@@ -174,7 +181,7 @@ namespace IDA.App.Services
                     PropertyNameCaseInsensitive = true
                 };
 
-                string jsonObject = JsonSerializer.Serialize<Workers>(w, options);
+                string jsonObject = JsonSerializer.Serialize<Worker>(w, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/WorkerRegister", content);
@@ -183,7 +190,7 @@ namespace IDA.App.Services
 
                     string str = await response.Content.ReadAsStringAsync();
 
-                    Workers worker = JsonSerializer.Deserialize<Workers>(str, options);
+                    Worker worker = JsonSerializer.Deserialize<Worker>(str, options);
                     return worker;
                 }
                 else
@@ -235,12 +242,12 @@ namespace IDA.App.Services
 
         #endregion
 
-        #region UserNameExist
-        public async Task<bool> UserNameExistAsync(string userName)
+        #region EmailExist
+        public async Task<bool> EmailExistAsync(string email)
         {
             try
             {
-                HttpResponseMessage response = await client.GetAsync($"{this.baseUri}/IsUserNameExist?userName={userName}");
+                HttpResponseMessage response = await client.GetAsync($"{this.baseUri}/IsEmailExist?email={email}");
                 if (response.IsSuccessStatusCode)
                 {
                     return true;
@@ -287,7 +294,7 @@ namespace IDA.App.Services
 
         #region worker availbilty
 
-        public async Task<bool> WorkerAvailbilty(Workers w)
+        public async Task<bool> UpdateWorkerAvailbilty(Worker w)
         {
             try
             {
@@ -298,10 +305,10 @@ namespace IDA.App.Services
                     PropertyNameCaseInsensitive = true
                 };
 
-                string jsonObject = JsonSerializer.Serialize<Workers>(w, options);
+                string jsonObject = JsonSerializer.Serialize<DateTime>(w.IsAvailbleUntil, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/WorkerAvailbilty", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateWorkerAvailbilty", content);
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonContent = await response.Content.ReadAsStringAsync();

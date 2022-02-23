@@ -25,7 +25,6 @@ namespace IDA.App.Models
         public DateTime Birthday { get; set; }
         public bool IsWorker { get; set; }
 
-        public virtual Worker Worker { get; set; }
         public virtual List<ChatMessage> ChatMessageRecievers { get; set; }
         public virtual List<ChatMessage> ChatMessageSenders { get; set; }
         public virtual List<JobOffer> JobOffers { get; set; }
