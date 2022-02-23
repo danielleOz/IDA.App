@@ -10,13 +10,15 @@
         <ScrollView>
             <StackLayout BackgroundColor="#fff7f7">
 
-                <!--
+                <!-- TO ADD APP LOGO
             
                      <Image Source="logo.png" HeightRequest="400" WidthRequest="1000"  >
 
                     </Image>
             
                 -->
+
+                <!-- USER DETAILS PART -->
 
                 <Label Text=""></Label>
 
@@ -38,14 +40,6 @@
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryUserName}" Placeholder="User Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                        <Label Text="{Binding UserNameError}" IsVisible="{Binding ShowUserNameError}" TextColor="#aaaaaa"/>
-                    </StackLayout>
-                </Frame>
-
-
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
-                    <StackLayout>
                         <Entry Text="{Binding EntryEmail}" Placeholder="Email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" TextColor="#aaaaaa"/>
                     </StackLayout>
@@ -61,12 +55,42 @@
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryAdress}" Placeholder="Adress" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryCity}" Placeholder="city" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" TextColor="#aaaaaa"/>
 
                     </StackLayout>
                 </Frame>
 
+                
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                    <StackLayout>
+                        <Entry Text="{Binding EntryStreet}" Placeholder="Adress" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
 
+                    </StackLayout>
+                </Frame>
+                
+                
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                    <StackLayout>
+                        <Entry Text="{Binding EntryAp}" Placeholder="Adress" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" TextColor="#aaaaaa"/>
+
+                    </StackLayout>
+                </Frame>
+                
+                
+                
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                    <StackLayout>
+                        <Entry Text="{Binding EntryHN}" Placeholder="Adress" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" TextColor="#aaaaaa"/>
+
+                    </StackLayout>
+                </Frame>
+
+                
+                
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <DatePicker TextColor="#aaaaaa" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
@@ -75,7 +99,7 @@
                 </Frame>
                 
 
-                <!--worker detailes part-->
+                <!--WORKER DETAILS PART-->
                 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
 
@@ -88,12 +112,15 @@
                         <Switch OnColor="#f0d9d7" ThumbColor="#deeded"  IsToggled="{Binding IsWorker}" />
 
                         <StackLayout   IsVisible="{Binding IsWorker}" >
-                        
+
                             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                                 <StackLayout>
-                                    <Label Text="location: " TextColor="#aaaaaa"></Label>
+                                    <Entry Text="{Binding }" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                                    <Label Text="{Binding }" IsVisible="{Binding }" TextColor="#aaaaaa"/>
+
                                 </StackLayout>
                             </Frame>
+                            
                             <Label Text=" "></Label>
                         
                         <StackLayout Orientation="Horizontal">

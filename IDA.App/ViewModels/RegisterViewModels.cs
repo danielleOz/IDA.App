@@ -94,6 +94,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
         #region city
         private string entryCity;
         public string EntryCity
@@ -145,6 +146,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
         #region Street
         private string entryStreet;
         public string EntryStreet
@@ -173,17 +175,16 @@ namespace IDA.App.ViewModels
         }
 
 
-        private string StreetError;
-        public string streetError
+        private string streetError;
+        public string StreetError
         {
             get => streetError;
             set
             {
-                StreetError = value;
+                streetError = value;
                 OnPropertyChanged("StreetError");
             }
         }
-
         private void ValidateStreet()
         {
             this.ShowStreetError = string.IsNullOrEmpty(entryStreet);
@@ -195,6 +196,7 @@ namespace IDA.App.ViewModels
                 this.StreetError = ERROR_MESSAGES.REQUIRED_FIELD;
         }
         #endregion
+
 
         #region ap
         private string entryAp;
@@ -224,13 +226,13 @@ namespace IDA.App.ViewModels
         }
 
 
-        private string ApError;
-        public string apError
+        private string apError;
+        public string ApError
         {
             get => apError;
             set
             {
-               apError = value;
+                apError = value;
                 OnPropertyChanged("ApError");
             }
         }
@@ -246,6 +248,7 @@ namespace IDA.App.ViewModels
                 this.ApError = ERROR_MESSAGES.REQUIRED_FIELD;
         }
         #endregion
+
 
         #region house num
         private string entryHN;
@@ -275,8 +278,8 @@ namespace IDA.App.ViewModels
         }
 
 
-        private string HNError;
-        public string hNError
+        private string hNError;
+        public string HNError
         {
             get => hNError;
             set
@@ -590,8 +593,6 @@ namespace IDA.App.ViewModels
             }
         }
         #endregion
-
-
 
 
 
