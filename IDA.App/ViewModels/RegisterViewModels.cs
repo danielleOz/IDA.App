@@ -129,7 +129,7 @@ namespace IDA.App.ViewModels
             set
             {
                 cityError = value;
-                OnPropertyChanged("EmailError");
+                OnPropertyChanged("CityError");
             }
         }
 
@@ -145,114 +145,157 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        #region email
-        //private string entryEmail;
-        //public string EntryEmail
-        //{
-        //    get => this.entryEmail;
-        //    set
-        //    {
-        //        if (value != this.entryEmail)
-        //        {
-        //            this.entryEmail = value;
-        //            ValidateEmail();
-        //            OnPropertyChanged("EntryEmail");
-        //        }
-        //    }
-        //}
+        #region Street
+        private string entryStreet;
+        public string EntryStreet
+        {
+            get => this.entryStreet;
+            set
+            {
+                if (value != this.entryStreet)
+                {
+                    this.entryStreet = value;
+                    //ValidateStreet();
+                    OnPropertyChanged("EntryStreet");
+                }
+            }
+        }
 
-        //private bool showEmailError;
-        //public bool ShowEmailError
-        //{
-        //    get => showEmailError;
-        //    set
-        //    {
-        //        showEmailError = value;
-        //        OnPropertyChanged("ShowEmailError");
-        //    }
-        //}
-
-
-        //private string emailError;
-        //public string EmailError
-        //{
-        //    get => emailError;
-        //    set
-        //    {
-        //        emailError = value;
-        //        OnPropertyChanged("EmailError");
-        //    }
-        //}
-
-        //private void ValidateEmail()
-        //{
-        //    this.ShowEmailError = string.IsNullOrEmpty(entryEmail);
-        //    if (!this.ShowEmailError)
-        //    {
-        //        if (!Regex.IsMatch(this.entryEmail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
-        //        {
-        //            this.ShowEmailError = true;
-        //            this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
-        //        }
-        //    }
-        //    else
-        //        this.EmailError = ERROR_MESSAGES.REQUIRED_FIELD;
-        //}
-        //#endregion
-
-        //#region email
-        //private string entryEmail;
-        //public string EntryEmail
-        //{
-        //    get => this.entryEmail;
-        //    set
-        //    {
-        //        if (value != this.entryEmail)
-        //        {
-        //            this.entryEmail = value;
-        //            ValidateEmail();
-        //            OnPropertyChanged("EntryEmail");
-        //        }
-        //    }
-        //}
-
-        //private bool showEmailError;
-        //public bool ShowEmailError
-        //{
-        //    get => showEmailError;
-        //    set
-        //    {
-        //        showEmailError = value;
-        //        OnPropertyChanged("ShowEmailError");
-        //    }
-        //}
+        private bool showStreetError;
+        public bool ShowStreetError
+        {
+            get => showStreetError;
+            set
+            {
+                showStreetError = value;
+                OnPropertyChanged("ShowStreetError");
+            }
+        }
 
 
-        //private string emailError;
-        //public string EmailError
-        //{
-        //    get => emailError;
-        //    set
-        //    {
-        //        emailError = value;
-        //        OnPropertyChanged("EmailError");
-        //    }
-        //}
+        private string StreetError;
+        public string streetError
+        {
+            get => streetError;
+            set
+            {
+                StreetError = value;
+                OnPropertyChanged("StreetError");
+            }
+        }
 
-        //private void ValidateEmail()
-        //{
-        //    this.ShowEmailError = string.IsNullOrEmpty(entryEmail);
-        //    if (!this.ShowEmailError)
-        //    {
-        //        if (!Regex.IsMatch(this.entryEmail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
-        //        {
-        //            this.ShowEmailError = true;
-        //            this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
-        //        }
-        //    }
-        //    else
-        //        this.EmailError = ERROR_MESSAGES.REQUIRED_FIELD;
-        //}
+        private void ValidateStreet()
+        {
+            this.ShowStreetError = string.IsNullOrEmpty(entryStreet);
+            if (!this.ShowStreetError)
+            {
+                this.ShowStreetError = string.IsNullOrEmpty(entryStreet);
+            }
+            else
+                this.StreetError = ERROR_MESSAGES.REQUIRED_FIELD;
+        }
+        #endregion
+
+        #region ap
+        private string entryAp;
+        public string EntryAp
+        {
+            get => this.entryAp;
+            set
+            {
+                if (value != this.entryAp)
+                {
+                    this.entryAp = value;
+                    //ValidateAp();
+                    OnPropertyChanged("EntryAp");
+                }
+            }
+        }
+
+        private bool showApError;
+        public bool ShowApError
+        {
+            get => showApError;
+            set
+            {
+                showApError = value;
+                OnPropertyChanged("ShowApError");
+            }
+        }
+
+
+        private string ApError;
+        public string apError
+        {
+            get => apError;
+            set
+            {
+               apError = value;
+                OnPropertyChanged("ApError");
+            }
+        }
+
+        private void ValidateAp()
+        {
+            this.ShowApError = string.IsNullOrEmpty(entryAp);
+            if (!this.ShowApError)
+            {
+                this.ShowApError = string.IsNullOrEmpty(entryAp);
+            }
+            else
+                this.ApError = ERROR_MESSAGES.REQUIRED_FIELD;
+        }
+        #endregion
+
+        #region house num
+        private string entryHN;
+        public string EntryHN
+        {
+            get => this.entryHN;
+            set
+            {
+                if (value != this.entryHN)
+                {
+                    this.entryHN = value;
+                    //ValidateHN();
+                    OnPropertyChanged("EntryHN");
+                }
+            }
+        }
+
+        private bool showHNError;
+        public bool ShowHNError
+        {
+            get => showHNError;
+            set
+            {
+                showHNError = value;
+                OnPropertyChanged("ShowHNError");
+            }
+        }
+
+
+        private string HNError;
+        public string hNError
+        {
+            get => hNError;
+            set
+            {
+                hNError = value;
+                OnPropertyChanged("HNError");
+            }
+        }
+
+        private void ValidateHN()
+        {
+            this.ShowHNError = string.IsNullOrEmpty(entryHN);
+            if (!this.ShowStreetError)
+            {
+                this.ShowHNError = string.IsNullOrEmpty(entryHN);
+            }
+            else
+                this.hNError = ERROR_MESSAGES.REQUIRED_FIELD;
+        }
         #endregion
 
 
