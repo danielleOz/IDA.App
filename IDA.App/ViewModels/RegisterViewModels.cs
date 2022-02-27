@@ -15,7 +15,9 @@ namespace IDA.App.ViewModels
     class RegisterViewModel : ViewModelBase
     {
 
-        public List<object> SelectedServices { get; set; }
+        public List<Service> SelectedServices { get; set; }
+
+        private List<Service> workerServices;
 
         private ObservableCollection<Service> services;
         public ObservableCollection<Service> Services { get => services; set { services = value; OnPropertyChanged("Services"); } }
@@ -33,7 +35,7 @@ namespace IDA.App.ViewModels
         {
             App current = ((App)Application.Current);
             IsWorker = false;
-            SelectedServices = new List<object>();
+            SelectedServices = new List<Service>();
             RegisterCommand = new Command(Register);
             SelectServicesCommand = new Command(SelectServices);
         }
@@ -472,24 +474,6 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-        // need to vaidate
-        #region adress
-        private string entryAdress;
-        public string EntryAdress
-        {
-            get => this.entryAdress;
-            set
-            {
-                if (value != this.entryAdress)
-                {
-                    this.entryAdress = value;
-                    OnPropertyChanged("EntryAdress");
-                }
-            }
-        }
-
-
-        #endregion
 
 
         #region birthdate
@@ -556,24 +540,56 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-        // need to add!!
-        #region location
-        private double entryLocation;
-        public double EntryLocation
+        #region Radius
+        private string entryRadius;
+        public string EntryRadius
         {
-            get => this.entryLocation;
+            get => this.entryRadius;
             set
             {
-                if (value != this.entryLocation)
+                if (value != this.entryRadius)
                 {
-                    this.entryLocation = value;
-                    OnPropertyChanged("EntryLocation");
+                    this.entryRadius = value;
+                    ValidateRadius();
+                    OnPropertyChanged("EntryRadius");
                 }
             }
         }
 
-        #endregion
+        private bool showRadiusError;
+        public bool ShowRadiusError
+        {
+            get => showRadiusError;
+            set
+            {
+                showRadiusError = value;
+                OnPropertyChanged("ShowRadiusError");
+            }
+        }
 
+
+        private string radiusError;
+        public string RadiusError
+        {
+            get => radiusError;
+            set
+            {
+                radiusError = value;
+                OnPropertyChanged("RadiusError");
+            }
+        }
+
+        private void ValidateRadius()
+        {
+            this.ShowRadiusError = string.IsNullOrEmpty(EntryRadius);
+            if (ShowRadiusError)
+                NameError = ERROR_MESSAGES.REQUIRED_FIELD;
+            else
+                NameError = string.Empty;
+
+        }
+
+        #endregion
 
 
         #region is worker
@@ -623,6 +639,13 @@ namespace IDA.App.ViewModels
                     //w.Apartment = EntryAp;
                     //w.HouseNumber = EntryHN;
                     w.IsWorker = true;
+                    w.WorkerServices = new List<WorkerService>();
+                    foreach(Service s in workerServices)
+                    {
+                        w.WorkerServices.Add(new WorkerService() { Service = s, Worker = w });
+                    }
+
+
                     //w.RadiusKm = EntryRadius;
                     /*w.IsAvailbleUntil =*/   // NEED TO SET AS UNAVILABLE
                                               //worker.UserNameNavigation = user;
@@ -720,32 +743,19 @@ namespace IDA.App.ViewModels
 
         }
 
-        private Command selectServicesCommand;
+        //private Command selectServicesCommand;
         public ICommand SelectServicesCommand { get; set; }
 
         private void SelectServices()
         {
-            if(worker == null)
-                worker = new Workers();
+            if (workerServices == null)
+                workerServices = new List<Service>();
+            else
+                workerServices.Clear();
 
-            worker.WorkerServices.Clear();
-            worker.Service = string.Empty;
-
-            foreach (object a in SelectedServices)
+            foreach (Service a in SelectedServices)
             {
-                Service service = (Service)a;
-                WorkerService s = new WorkerService()
-                {
-                    Sid = service.Sid,
-
-                    SidNavigation = service
-                };
-                worker.WorkerServices.Add(s);
-                if (worker.Service != string.Empty)
-                    worker.Service += "," + service.Name;
-                else
-                    worker.Service += service.Name;
-
+                workerServices.Add(a);
             }
 
         }

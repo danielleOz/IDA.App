@@ -111,12 +111,12 @@
                         <Label Text="Do you want to be a worker?" TextColor="#aaaaaa"></Label>
                         <Switch OnColor="#f0d9d7" ThumbColor="#deeded"  IsToggled="{Binding IsWorker}" />
 
-                        <StackLayout   IsVisible="{Binding IsWorker}" >
+                        <StackLayout IsVisible="{Binding IsWorker}" >
 
                             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                                 <StackLayout>
-                                    <Entry Text="{Binding }" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                                    <Label Text="{Binding }" IsVisible="{Binding }" TextColor="#aaaaaa"/>
+                                    <Entry Text="{Binding EntryRadius}" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                                    <Label Text="{Binding RadiusError }" IsVisible="{Binding ShowRadiusError }" TextColor="#aaaaaa"/>
 
                                 </StackLayout>
                             </Frame>
