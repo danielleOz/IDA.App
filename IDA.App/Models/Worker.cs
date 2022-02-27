@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IDA.App.Models
 {
-    public partial class Worker:User
+    public partial class Worker : User
     {
         public Worker()
         {

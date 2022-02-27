@@ -24,7 +24,7 @@
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryFname}"  Placeholder="First Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryFname}"  Placeholder="first Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
 
                         <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError} " TextColor="#aaaaaa"/>
                     </StackLayout>
@@ -32,7 +32,7 @@
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryLname}" Placeholder="Last Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryLname}" Placeholder="last Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
@@ -40,14 +40,14 @@
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryEmail}" Placeholder="Email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="Password" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
@@ -64,7 +64,7 @@
                 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryStreet}" Placeholder="Adress" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryStreet}" Placeholder="street" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
 
                     </StackLayout>
@@ -73,7 +73,7 @@
                 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryAp}" Placeholder="Adress" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryAp}" Placeholder="aprment" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" TextColor="#aaaaaa"/>
 
                     </StackLayout>
@@ -83,7 +83,7 @@
                 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryHN}" Placeholder="Adress" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryHN}" Placeholder="house number" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" TextColor="#aaaaaa"/>
 
                     </StackLayout>
@@ -93,7 +93,7 @@
                 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <DatePicker TextColor="#aaaaaa" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
+                        <DatePicker  TextColor="#aaaaaa" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
                         <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>

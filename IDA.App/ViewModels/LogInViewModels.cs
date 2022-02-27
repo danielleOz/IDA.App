@@ -13,16 +13,16 @@ namespace IDA.App.ViewModels
 {
     class LogInViewModels : ViewModelBase
     {
-        private string entryUser;
-        public string EntryUser
+        private string entryEmail;
+        public string EntryEmail
         {
-            get => this.entryUser;
+            get => this.entryEmail;
             set
             {
-                if (value != this.entryUser)
+                if (value != this.entryEmail)
                 {
-                    this.entryUser = value;
-                    OnPropertyChanged("EntryUser");
+                    this.entryEmail = value;
+                    OnPropertyChanged("EntryEmail");
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace IDA.App.ViewModels
         private async void LogIn()
         {
             IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-            User user = await IDAAPIProxy.LoginAsync(EntryUser, EntryPass);
+            User user = await IDAAPIProxy.LoginAsync(EntryEmail, EntryPass);
             if (user != null)
             {
                 TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
@@ -80,7 +80,7 @@ namespace IDA.App.ViewModels
                 await App.Current.MainPage.DisplayAlert("IDA", "Log In failed, please try again", "Ok");
             }
             EntryPass = "";
-            EntryUser = "";
+            EntryEmail = "";
         }
 
         public ICommand RegisterCommand => new Command(GoToRegister);

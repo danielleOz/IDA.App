@@ -85,12 +85,12 @@ namespace IDA.App.Services
 
         #region login
         //Login - if user name and password are correct User object is returned. otherwise a null will be returned
-        public async Task<User> LoginAsync(string userName, string pass)
+        public async Task<User> LoginAsync(string email, string pass)
         {
-            Worker w=null;
+            Worker w = null;
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Login?userName={userName}&pass={pass}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Login?email={email}&pass={pass}");
                 if (response.IsSuccessStatusCode)
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions

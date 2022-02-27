@@ -24,11 +24,12 @@ namespace IDA.App.ViewModels
 
         public static class ERROR_MESSAGES
         {
-            public const string REQUIRED_FIELD = "This is a required field";
+            public const string REQUIRED_FIELD = "this is a required field";
             public const string BAD_EMAIL = "invalid email";
             public const string SHORT_PASS = "password must contain at least 6 characters";
             public const string BAD_PHONE = "invalid phone";
             public const string BAD_DATE = "you must be above 18";
+            public const string BAD_RADIUS = "must be a number";
         }
 
         public RegisterViewModel()
@@ -107,7 +108,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryCity)
                 {
                     this.entryCity = value;
-                    //ValidateCity();
+                    ValidateCity();
                     OnPropertyChanged("EntryCity");
                 }
             }
@@ -159,7 +160,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryStreet)
                 {
                     this.entryStreet = value;
-                    //ValidateStreet();
+                    ValidateStreet();
                     OnPropertyChanged("EntryStreet");
                 }
             }
@@ -210,7 +211,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryAp)
                 {
                     this.entryAp = value;
-                    //ValidateAp();
+                    ValidateAp();
                     OnPropertyChanged("EntryAp");
                 }
             }
@@ -244,7 +245,12 @@ namespace IDA.App.ViewModels
             this.ShowApError = string.IsNullOrEmpty(entryAp);
             if (!this.ShowApError)
             {
-                this.ShowApError = string.IsNullOrEmpty(entryAp);
+                bool isOK = int.TryParse(entryAp, out _);
+                if (!isOK)
+                {
+                    this.ShowApError = true;
+                    this.ApError = ERROR_MESSAGES.BAD_RADIUS;
+                }
             }
             else
                 this.ApError = ERROR_MESSAGES.REQUIRED_FIELD;
@@ -262,7 +268,7 @@ namespace IDA.App.ViewModels
                 if (value != this.entryHN)
                 {
                     this.entryHN = value;
-                    //ValidateHN();
+                    ValidateHN();
                     OnPropertyChanged("EntryHN");
                 }
             }
@@ -294,12 +300,17 @@ namespace IDA.App.ViewModels
         private void ValidateHN()
         {
             this.ShowHNError = string.IsNullOrEmpty(entryHN);
-            if (!this.ShowStreetError)
+            if (!this.ShowHNError)
             {
-                this.ShowHNError = string.IsNullOrEmpty(entryHN);
+                bool isOK = int.TryParse(entryHN, out _);
+                if (!isOK)
+                {
+                    this.ShowHNError = true;
+                    this.HNError = ERROR_MESSAGES.BAD_RADIUS;
+                }
             }
             else
-                this.hNError = ERROR_MESSAGES.REQUIRED_FIELD;
+                this.HNError = ERROR_MESSAGES.REQUIRED_FIELD;
         }
         #endregion
 
@@ -474,10 +485,8 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-
-
         #region birthdate
-        private DateTime entryBirthDate;
+        private DateTime entryBirthDate = DateTime.Now;
         public DateTime EntryBirthDate
         {
             get => this.entryBirthDate;
@@ -579,13 +588,21 @@ namespace IDA.App.ViewModels
             }
         }
 
+
         private void ValidateRadius()
         {
-            this.ShowRadiusError = string.IsNullOrEmpty(EntryRadius);
-            if (ShowRadiusError)
-                NameError = ERROR_MESSAGES.REQUIRED_FIELD;
+            this.ShowRadiusError = string.IsNullOrEmpty(entryRadius);
+            if (!this.ShowRadiusError)
+            {
+                bool isOK = double.TryParse(entryRadius, out _);
+                if (!isOK)
+                {
+                    this.ShowRadiusError = true;
+                    this.RadiusError = ERROR_MESSAGES.BAD_RADIUS;
+                }
+            }
             else
-                NameError = string.Empty;
+                this.RadiusError = ERROR_MESSAGES.REQUIRED_FIELD;
 
         }
 
@@ -611,7 +628,6 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-
         #region register
         public ICommand RegisterCommand { get; set; }
 
@@ -628,33 +644,32 @@ namespace IDA.App.ViewModels
                     Worker w = new Worker
                     {
 
-                    }; 
+                    };
                     w.Email = EntryEmail;
                     w.UserPswd = EntryPass;
                     w.FirstName = EntryFname;
                     w.LastName = EntryLname;
                     w.City = EntryCity;
-                    w.Birthday = entryBirthDate;
-                    //w.Street = EntryStreet;
-                    //w.Apartment = EntryAp;
-                    //w.HouseNumber = EntryHN;
+                    w.Birthday = EntryBirthDate;
+                    w.Street = EntryStreet;
+                    w.Apartment = EntryAp;
+                    w.HouseNumber = EntryHN;
                     w.IsWorker = true;
                     w.WorkerServices = new List<WorkerService>();
-                    foreach(Service s in workerServices)
+                    foreach (Service s in workerServices)
                     {
                         w.WorkerServices.Add(new WorkerService() { Service = s, Worker = w });
                     }
 
+                    w.RadiusKm = double.Parse(EntryRadius);
+                    w.IsAvailble = false;
 
-                    //w.RadiusKm = EntryRadius;
-                    /*w.IsAvailbleUntil =*/   // NEED TO SET AS UNAVILABLE
-                                              //worker.UserNameNavigation = user;
 
                     w = await IDAproxy.WorkerRegister(w);
                     if (w != null)
                     {
                         this.current.Worker = w;
-                        //this.current.User = w.UserNameNavigation;
+                        this.current.User = w.IdNavigation;
                         isRegister = true;
                     }
 
@@ -668,9 +683,9 @@ namespace IDA.App.ViewModels
                     user.LastName = EntryLname;
                     user.City = EntryCity;
                     user.Birthday = entryBirthDate;
-                    //user.Street = EntryStreet;
-                    //user.Apartment = EntryAp;
-                    //user.HouseNumber = EntryHN;
+                    user.Street = EntryStreet;
+                    user.Apartment = EntryAp;
+                    user.HouseNumber = EntryHN;
 
 
                     user = await IDAproxy.UserRegister(user);
@@ -699,7 +714,7 @@ namespace IDA.App.ViewModels
             }
 
             else if (isEmailExist)
-                await App.Current.MainPage.DisplayAlert("error", "mail already exsits please try another one", "ok", FlowDirection.RightToLeft);
+                await App.Current.MainPage.DisplayAlert("error", "email already exsits please try another one", "ok", FlowDirection.RightToLeft);
         }
 
 

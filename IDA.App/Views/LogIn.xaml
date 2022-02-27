@@ -13,7 +13,7 @@
             <!--<Label Text="User Name: "></Label>-->
             
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
-            <Entry Text="{Binding EntryUser}" Placeholder="User Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
+                <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
             <!--<Label Text="Password: "></Label>-->
             </Frame>
             
