@@ -32,6 +32,17 @@ namespace IDA.App.ViewModels
         #endregion
 
 
+        #region is Availble
+        public bool IsAvailble
+        {
+            get
+            {
+                if (this.current != null && this.current.Worker != null)
+                    return this.current.Worker.IsAvailble;
+                return false;
+            }
+        }
+        #endregion
 
 
 
@@ -44,18 +55,23 @@ namespace IDA.App.ViewModels
         {
             if (current.User.IsWorker)
             {
-                //// Create a custom DateTime for 7/28/1979 at 10:35:05 PM using a
-                //// calendar based on the "en-US" culture, and ticks.
-                //long ticks = new DateTime(1979, 07, 28, 22, 35, 5,
-                //new CultureInfo("en-US", false).Calendar).Ticks;
-                //DateTime dt3 = new DateTime(ticks);
+                ////// Create a custom DateTime for 7/28/1979 at 10:35:05 PM using a
+                ////// calendar based on the "en-US" culture, and ticks.
+                ////long ticks = new DateTime(1979, 07, 28, 22, 35, 5,
+                ////new CultureInfo("en-US", false).Calendar).Ticks;
+                ////DateTime dt3 = new DateTime(ticks);
 
-                // Create a DateTime for the maximum date and time using ticks.
-                DateTime dt1 = new DateTime(DateTime.MaxValue.Ticks);
-                current.Worker.IsAvailbleUntil = dt1;
+                //// Create a DateTime for the maximum date and time using ticks.
+                //DateTime dt1 = new DateTime(DateTime.MaxValue.Ticks);
+
+                //check if worker is availble or not and change it
+                if(current.Worker.IsAvailble)
+                    current.Worker.IsAvailble = false;
+                else
+                    current.Worker.IsAvailble = true;
+
 
                 //update worker work until
-
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
                 bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
                 if (!success)

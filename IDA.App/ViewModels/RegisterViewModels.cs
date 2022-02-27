@@ -609,7 +609,10 @@ namespace IDA.App.ViewModels
                 bool isRegister = false;
                 if (IsWorker)
                 {
-                    Worker w = new Worker();
+                    Worker w = new Worker
+                    {
+
+                    }; 
                     w.Email = EntryEmail;
                     w.UserPswd = EntryPass;
                     w.FirstName = EntryFname;
@@ -681,72 +684,72 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-        //#region services
-        //private Command getServices;
+        #region services
+        private Command getServices;
 
-        //public ICommand GetServices
-        //{
-        //    get
-        //    {
-        //        if (getServices == null)
-        //        {
-        //            getServices = new Command(ShowGetServices);
-        //        }
+        public ICommand GetServices
+        {
+            get
+            {
+                if (getServices == null)
+                {
+                    getServices = new Command(ShowGetServices);
+                }
 
-        //        return getServices;
-        //    }
-        //}
+                return getServices;
+            }
+        }
 
-        //private async void ShowGetServices()
-        //{
+        private async void ShowGetServices()
+        {
 
-        //    if (Services == null)
-        //    {
-        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-        //        ((App)Application.Current).services = await IDAAPIProxy.GetServices();
-        //        Services = new ObservableCollection<Service>();
-        //        for (int i = 0; i < ((App)Application.Current).services.Count; i++)
-        //        {
-        //            this.Services.Add(((App)Application.Current).services[i]);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Services = null;
-        //    }
+            if (Services == null)
+            {
+                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+                ((App)Application.Current).services = await IDAAPIProxy.GetServices();
+                Services = new ObservableCollection<Service>();
+                for (int i = 0; i < ((App)Application.Current).services.Count; i++)
+                {
+                    this.Services.Add(((App)Application.Current).services[i]);
+                }
+            }
+            else
+            {
+                Services = null;
+            }
 
-        //}
+        }
 
-        //private Command selectServicesCommand;
-        //public ICommand SelectServicesCommand { get; set; }
+        private Command selectServicesCommand;
+        public ICommand SelectServicesCommand { get; set; }
 
-        //private void SelectServices()
-        //{
-        //    if (worker == null)
-        //        worker = new Workers();
+        private void SelectServices()
+        {
+            if(worker == null)
+                worker = new Workers();
 
-        //    worker.WorkerServices.Clear();
-        //    worker.Service = string.Empty;
+            worker.WorkerServices.Clear();
+            worker.Service = string.Empty;
 
-        //    foreach (object a in SelectedServices)
-        //    {
-        //        Service service = (Service)a;
-        //        WorkerService s = new WorkerService()
-        //        {
-        //            Sid = service.Sid,
+            foreach (object a in SelectedServices)
+            {
+                Service service = (Service)a;
+                WorkerService s = new WorkerService()
+                {
+                    Sid = service.Sid,
 
-        //            SidNavigation = service
-        //        };
-        //        worker.WorkerServices.Add(s);
-        //        if (worker.Service != string.Empty)
-        //            worker.Service += "," + service.Name;
-        //        else
-        //            worker.Service += service.Name;
+                    SidNavigation = service
+                };
+                worker.WorkerServices.Add(s);
+                if (worker.Service != string.Empty)
+                    worker.Service += "," + service.Name;
+                else
+                    worker.Service += service.Name;
 
-        //    }
+            }
 
-        //}
-        //#endregion
+        }
+        #endregion
 
     }
 

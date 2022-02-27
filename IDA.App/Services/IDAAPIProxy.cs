@@ -171,8 +171,8 @@ namespace IDA.App.Services
         {
              try
             {
-                //set worker as worker in user part of the object
-                w.IsWorker = true;
+                ////set worker as worker in user part of the object
+                //w.IsWorker = true;
 
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
@@ -305,7 +305,7 @@ namespace IDA.App.Services
                     PropertyNameCaseInsensitive = true
                 };
 
-                string jsonObject = JsonSerializer.Serialize<DateTime>(w.IsAvailbleUntil, options);
+                string jsonObject = JsonSerializer.Serialize<bool>(w.IsAvailble, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
                 HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateWorkerAvailbilty", content);
