@@ -69,8 +69,18 @@
 
                     </StackLayout>
                 </Frame>
-                
-                
+
+
+
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                    <StackLayout>
+                        <Entry Text="{Binding EntryHN}" Placeholder="house number" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" TextColor="#aaaaaa"/>
+
+                    </StackLayout>
+                </Frame>
+
+
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryAp}" Placeholder="aprment" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
@@ -79,15 +89,7 @@
                     </StackLayout>
                 </Frame>
                 
-                
-                
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
-                    <StackLayout>
-                        <Entry Text="{Binding EntryHN}" Placeholder="house number" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                        <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" TextColor="#aaaaaa"/>
-
-                    </StackLayout>
-                </Frame>
+        
 
                 
                 
