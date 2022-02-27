@@ -7,16 +7,17 @@ using IDA.App.Views;
 using System.Collections.ObjectModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace IDA.App.ViewModels
 {
-    class ProfileViewModels:ViewModelBase
+    class ProfileViewModels : ViewModelBase
     {
         public ProfileViewModels()
         {
-            IsAvailable = false;
-        }
             
+        }
+
 
         #region is worker
         public bool IsWorker
@@ -30,23 +31,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        #region is Available
 
-        private bool isAvailable;
-        public bool IsAvailable
-        {
-            get => this.isAvailable;
-            set
-            {
-                if (this.current.Worker.Availble)
-                {
-                    this.isAvailable = value;
-                    OnPropertyChanged("IsAvailable");
-                }
-
-            }
-        }
-        #endregion
 
 
 
@@ -57,16 +42,24 @@ namespace IDA.App.ViewModels
 
         private async void AvailbleWorker()
         {
-            if(current.User.IsWorker)
+            if (current.User.IsWorker)
             {
-                current.Worker.Availble = true;
-               //update worker work until
-                
-                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-              bool success= await IDAAPIProxy.WorkerAvailbilty(current.Worker);
-                if(!success)
-                    Console.WriteLine();// alert 
+                //// Create a custom DateTime for 7/28/1979 at 10:35:05 PM using a
+                //// calendar based on the "en-US" culture, and ticks.
+                //long ticks = new DateTime(1979, 07, 28, 22, 35, 5,
+                //new CultureInfo("en-US", false).Calendar).Ticks;
+                //DateTime dt3 = new DateTime(ticks);
 
+                // Create a DateTime for the maximum date and time using ticks.
+                DateTime dt1 = new DateTime(DateTime.MaxValue.Ticks);
+                current.Worker.IsAvailbleUntil = dt1;
+
+                //update worker work until
+
+                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+                bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
+                if (!success)
+                    Console.WriteLine();// to make an alert 
 
             }
 
@@ -99,18 +92,18 @@ namespace IDA.App.ViewModels
             }
         }
 
-   
+
         private async void LogOut()
         {
             bool answer = await App.Current.MainPage.DisplayAlert("logout", "are you sure you want to logout?", "logout", "cancel", FlowDirection.LeftToRight);
-            if(answer)
+            if (answer)
             {
                 App theApp = (App)App.Current;
                 theApp.User = null;
 
                 Page p = new TheMainTabbedPage();
                 p.Title = "login";
-                App.Current.MainPage =p;
+                App.Current.MainPage = p;
 
             }
         }

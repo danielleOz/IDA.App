@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IDA.App.Models
 {
-    public partial class Worker:User
+    public partial class Worker
     {
         public Worker()
         {
@@ -12,10 +12,13 @@ namespace IDA.App.Models
             WorkerServices = new List<WorkerService>();
         }
 
+        public int Id { get; set; }
         public double RadiusKm { get; set; }
-        public DateTime IsAvailbleUntil { get; set; }
+        public DateTime? AvailbleUntil { get; set; }
+        public bool IsAvailble { get; set; }
 
-        public List<JobOffer> WorkerJobOffers { get; set; }
-        public List<WorkerService> WorkerServices { get; set; }
+        public virtual User IdNavigation { get; set; }
+        public virtual List<JobOffer> JobOffers { get; set; }
+        public virtual List<WorkerService> WorkerServices { get; set; }
     }
 }
