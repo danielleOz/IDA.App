@@ -656,7 +656,7 @@ namespace IDA.App.ViewModels
                     w.HouseNumber = EntryHN;
                     w.IsWorker = true;
                     w.WorkerServices = new List<WorkerService>();
-                    foreach (Service s in workerServices)
+                    foreach (Service s in workerServices) // WORKERSERVICES COUNT = 0
                     {
                         w.WorkerServices.Add(new WorkerService() { Service = s, Worker = w });
                     }
@@ -702,19 +702,19 @@ namespace IDA.App.ViewModels
                 {
                     TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
                     //((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = ;
-                    await App.Current.MainPage.DisplayAlert("IDA", "You are logged in now!", "Ok");
+                    await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                 }
 
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("IDA", "Register failed, please try again", "Ok");
+                    await App.Current.MainPage.DisplayAlert("", "Register failed, please try again", "Ok");
                 }
 
 
             }
 
             else if (isEmailExist)
-                await App.Current.MainPage.DisplayAlert("error", "email already exsits please try another one", "ok", FlowDirection.RightToLeft);
+                await App.Current.MainPage.DisplayAlert(" ", "email already exsits please try another one", "ok", FlowDirection.RightToLeft);
         }
 
 

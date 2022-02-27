@@ -44,9 +44,24 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+   
+        #region time
+        private string time;
+        public string Time
+        {
+            get => this.time;
+            set
+            {
+                if (value != this.time)
+                {
+                    this.time = value;
+                    OnPropertyChanged("Time");
+                }
+            }
+        }
+        #endregion
 
-
-        #region AvailbleWorker 
+        #region Change to Availble Worker 
 
         public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
 
@@ -55,27 +70,16 @@ namespace IDA.App.ViewModels
         {
             if (current.User.IsWorker)
             {
-                ////// Create a custom DateTime for 7/28/1979 at 10:35:05 PM using a
-                ////// calendar based on the "en-US" culture, and ticks.
-                ////long ticks = new DateTime(1979, 07, 28, 22, 35, 5,
-                ////new CultureInfo("en-US", false).Calendar).Ticks;
-                ////DateTime dt3 = new DateTime(ticks);
-
-                //// Create a DateTime for the maximum date and time using ticks.
-                //DateTime dt1 = new DateTime(DateTime.MaxValue.Ticks);
-
-                //check if worker is availble or not and change it
+               
                 if(current.Worker.IsAvailble)
                     current.Worker.IsAvailble = false;
                 else
                     current.Worker.IsAvailble = true;
 
-
-                //update worker work until
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
                 bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
                 if (!success)
-                    Console.WriteLine();// to make an alert 
+                    await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
 
             }
 
@@ -83,7 +87,47 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-        //#region UpdateCommand
+        #region Change to Availble Worker till a specific time
+
+        //public ICommand AvailbleUntillCommand => new Command(AvailbleUntill);
+
+
+        //private async void AvailbleUntill()
+        //{
+        //    if (current.User.IsWorker)
+        //    {
+        //        ////// Create a custom DateTime for 7/28/1979 at 10:35:05 PM using a
+        //        ////// calendar based on the "en-US" culture, and ticks.
+        //        ////long ticks = new DateTime(1979, 07, 28, 22, 35, 5,
+        //        ////new CultureInfo("en-US", false).Calendar).Ticks;
+        //        ////DateTime dt3 = new DateTime(ticks);
+
+        //        //// Create a DateTime for the maximum date and time using ticks.
+        //        //DateTime dt1 = new DateTime(DateTime.MaxValue.Ticks);
+
+        //        //check if worker is availble or not and change it
+        //        if (current.Worker.IsAvailble)
+        //            current.Worker.IsAvailble = false;
+        //        else
+        //            current.Worker.IsAvailble = true;
+        //        current.worker
+
+
+        //        //update worker work until
+        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+        //        bool success = await IDAAPIProxy.AvailbleUntill(current.Worker);
+        //        if (!success)
+        //            Console.WriteLine();// to make an alert 
+
+        //    }
+
+        //}
+
+        #endregion
+
+
+
+        #region UpdateCommand
         //public ICommand UpdateCommand => new Command(OnUpdate);
         //public async void OnUpdate()
         //{
@@ -91,7 +135,8 @@ namespace IDA.App.ViewModels
         //    page.Title = "Update";
         //    await App.Current.MainPage.Navigation.PushAsync(page);
         //}
-        //#endregion
+        #endregion
+
 
         #region LogOut
         private Command logOutCommand;

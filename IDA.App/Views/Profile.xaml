@@ -34,13 +34,11 @@
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="300">
 
                 <StackLayout IsVisible="{Binding IsWorker}">
-
-                    <Button Text="set as avilable" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+                        <Label Text="your status is:" TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding IsAvailable}" TextColor="#aaaaaa"></Label>
+                        <Button Text="change avilabilty" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
                     <Label Text="avilable until" TextColor="#aaaaaa"></Label>
-                    <TimePicker TextColor="#aaaaaa" ></TimePicker>
-                    <Button Text="set as unavailble" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
-                    <Label Text="your status is:" TextColor="#aaaaaa"></Label>
-                    <Label Text="{Binding IsAvailable}" TextColor="#aaaaaa"></Label>
+                    <TimePicker TextColor="#aaaaaa" Time="{Binding Time}" ></TimePicker>
                 </StackLayout>
             </Frame>
 
