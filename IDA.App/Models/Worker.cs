@@ -15,10 +15,10 @@ namespace IDA.App.Models
         public int Id { get; set; }
         public double RadiusKm { get; set; }
         public DateTime? AvailbleUntil { get; set; }
-        public bool IsAvailble { get; set; }
 
-        public virtual User IdNavigation { get; set; }
-        public virtual List<JobOffer> JobOffers { get; set; }
+
+      //  public virtual User IdNavigation { get; set; }
+        public virtual List<JobOffer> WorkerJobOffers { get; set; }
         public virtual List<WorkerService> WorkerServices { get; set; }
     }
 }

@@ -141,7 +141,7 @@
                                     <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" BorderWidth="0" HorizontalOptions="Start" >
                                     </Button>
 
-                                    <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}" ItemsSource="{Binding Services}"  >
+                                    <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}"   ItemsSource="{Binding Services}"  >
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
                                                 <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">

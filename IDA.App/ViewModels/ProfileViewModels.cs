@@ -33,18 +33,21 @@ namespace IDA.App.ViewModels
 
 
         #region is Availble
-        public bool IsAvailble
-        {
-            get
-            {
-                if (this.current != null && this.current.Worker != null)
-                    return this.current.Worker.IsAvailble;
-                return false;
-            }
-        }
+        //public bool IsAvailble
+        //{
+        //    get
+        //    {
+        //        TimeSpan ts = new TimeSpan();
+        //        if (this.current != null && this.current.Worker != null)
+        //            int a = ts.
+        //                int.Parse(DateTime.Now) - int.Parse(this.current.Worker.AvailbleUntil);
+        //        return;
+        //        return false;
+        //    }
+        //}
         #endregion
 
-   
+
         #region time
         private string time;
         public string Time
@@ -63,27 +66,27 @@ namespace IDA.App.ViewModels
 
         #region Change to Availble Worker 
 
-        public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
+       // public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
 
 
-        private async void AvailbleWorker()
-        {
-            if (current.User.IsWorker)
-            {
-               
-                if(current.Worker.IsAvailble)
-                    current.Worker.IsAvailble = false;
-                else
-                    current.Worker.IsAvailble = true;
+        //private async void AvailbleWorker()
+        //{
+        //    if (current.User.IsWorker)
+        //    {
 
-                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-                bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
-                if (!success)
-                    await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
+        //        if (current.Worker.IsAvailble)
+        //            current.Worker.IsAvailble = false;
+        //        else
+        //            current.Worker.IsAvailble = true;
 
-            }
+        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+        //        bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
+        //        if (!success)
+        //            await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
 
-        }
+        //    }
+
+        //}
 
         #endregion
 
