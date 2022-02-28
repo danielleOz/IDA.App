@@ -10,12 +10,14 @@
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
             <Label></Label>
-            <!--<Label Text="User Name: "></Label>-->
+
+            <Image Source="logo2.png" HeightRequest="20" WidthRequest="20"  > </Image>
             
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
                 <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
-            <!--<Label Text="Password: "></Label>-->
+
             </Frame>
+            
             
             <Label></Label>
             
