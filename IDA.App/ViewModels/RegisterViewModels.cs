@@ -15,8 +15,16 @@ namespace IDA.App.ViewModels
     class RegisterViewModel : ViewModelBase
     {
 
-        public List<Service> SelectedServices { get; set; }
-
+        public ObservableCollection<Service> selectedServices;
+        public ObservableCollection<Service> SelectedServices
+        {
+            get => selectedServices;
+            set
+            {
+                if (selectedServices != value)
+                    selectedServices = value;
+            }
+        }
         private List<Service> workerServices;
 
         private ObservableCollection<Service> services;
@@ -36,7 +44,7 @@ namespace IDA.App.ViewModels
         {
             App current = ((App)Application.Current);
             IsWorker = false;
-            SelectedServices = new List<Service>();
+            SelectedServices = new ObservableCollection<Service>();
             RegisterCommand = new Command(Register);
             SelectServicesCommand = new Command(SelectServices);
         }
@@ -662,14 +670,14 @@ namespace IDA.App.ViewModels
                     }
 
                     w.RadiusKm = double.Parse(EntryRadius);
-                    w.IsAvailble = false;
+                    w.AvailbleUntil = DateTime.MinValue;
 
 
                     w = await IDAproxy.WorkerRegister(w);
                     if (w != null)
                     {
                         this.current.Worker = w;
-                        this.current.User = w.IdNavigation;
+                     //   this.current.User = w.IdNavigation;
                         isRegister = true;
                     }
 
