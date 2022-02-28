@@ -15,8 +15,8 @@ namespace IDA.App.ViewModels
     class RegisterViewModel : ViewModelBase
     {
 
-        public ObservableCollection<Service> selectedServices;
-        public ObservableCollection<Service> SelectedServices
+        public ObservableCollection<object> selectedServices;
+        public ObservableCollection<object> SelectedServices
         {
             get => selectedServices;
             set
@@ -44,7 +44,7 @@ namespace IDA.App.ViewModels
         {
             App current = ((App)Application.Current);
             IsWorker = false;
-            SelectedServices = new ObservableCollection<Service>();
+            SelectedServices = new ObservableCollection<object>();
             RegisterCommand = new Command(Register);
             SelectServicesCommand = new Command(SelectServices);
         }
@@ -666,7 +666,7 @@ namespace IDA.App.ViewModels
                     w.WorkerServices = new List<WorkerService>();
                     foreach (Service s in workerServices) // WORKERSERVICES COUNT = 0
                     {
-                        w.WorkerServices.Add(new WorkerService() { Service = s, Worker = w });
+                        w.WorkerServices.Add(new WorkerService() { Service = s});
                     }
 
                     w.RadiusKm = double.Parse(EntryRadius);

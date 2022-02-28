@@ -310,7 +310,7 @@ namespace IDA.App.Services
         //            PropertyNameCaseInsensitive = true
         //        };
 
-        //        string jsonObject = JsonSerializer.Serialize<bool>(w.IsAvailble, options);
+        //        string jsonObject = JsonSerializer.Serialize<bool>(w.AvailbleUntil, options);
         //        StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
         //        HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateWorkerAvailbilty", content);
@@ -339,7 +339,7 @@ namespace IDA.App.Services
 
         //public async Task<bool> AvailbleUntill(Worker w)
         //{
-        
+
         //    try
         //    {
         //        JsonSerializerOptions options = new JsonSerializerOptions

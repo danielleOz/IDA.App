@@ -37,14 +37,17 @@ namespace IDA.App.ViewModels
         //{
         //    get
         //    {
+        //        TimeSpan ts = new TimeSpan();
         //        if (this.current != null && this.current.Worker != null)
-        //            return this.current.Worker.IsAvailble;
+        //            int a = ts.
+        //                int.Parse(DateTime.Now) - int.Parse(this.current.Worker.AvailbleUntil);
+        //        return;
         //        return false;
         //    }
         //}
         #endregion
 
-   
+
         #region time
         private string time;
         public string Time
@@ -63,15 +66,15 @@ namespace IDA.App.ViewModels
 
         #region Change to Availble Worker 
 
-        //public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
+       // public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
 
 
         //private async void AvailbleWorker()
         //{
         //    if (current.User.IsWorker)
         //    {
-               
-        //        if(current.Worker.IsAvailble)
+
+        //        if (current.Worker.IsAvailble)
         //            current.Worker.IsAvailble = false;
         //        else
         //            current.Worker.IsAvailble = true;
