@@ -299,80 +299,43 @@ namespace IDA.App.Services
 
         #region worker availbilty
 
-        //public async Task<bool> UpdateWorkerAvailbilty(Worker w)
-        //{
-        //    try
-        //    {
-        //        JsonSerializerOptions options = new JsonSerializerOptions
-        //        {
-        //            ReferenceHandler = ReferenceHandler.Preserve,
-        //            Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
-        //            PropertyNameCaseInsensitive = true
-        //        };
+        public async Task<bool> UpdateWorkerAvailbilty(Worker w)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
 
-        //        string jsonObject = JsonSerializer.Serialize<bool>(w.AvailbleUntil, options);
-        //        StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+                string jsonObject = JsonSerializer.Serialize<DateTime>(w.AvailbleUntil, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
-        //        HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateWorkerAvailbilty", content);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            string jsonContent = await response.Content.ReadAsStringAsync();
-        //            bool ret = JsonSerializer.Deserialize<bool>(jsonContent, options);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateWorkerAvailbilty", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool ret = JsonSerializer.Deserialize<bool>(jsonContent, options);
 
-        //            return ret;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //        return false;
-        //    }
-        //}
-
-        #endregion
-
-        #region worker availbilty
-
-        //public async Task<bool> AvailbleUntill(Worker w)
-        //{
-
-        //    try
-        //    {
-        //        JsonSerializerOptions options = new JsonSerializerOptions
-        //        {
-        //            ReferenceHandler = ReferenceHandler.Preserve,
-        //            Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
-        //            PropertyNameCaseInsensitive = true
-        //        };
-
-        //        string jsonObject = JsonSerializer.Serialize<bool>(w.IsAvailble, options);
-        //        StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
-
-        //        HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateWorkerAvailbilty", content);
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            string jsonContent = await response.Content.ReadAsStringAsync();
-        //            bool ret = JsonSerializer.Deserialize<bool>(jsonContent, options);
-
-        //            return ret;
-        //        }
-        //        else
-        //        {
-        //            return false;
-        //        }
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine(e.Message);
-        //        return false;
-        //    }
-        //}
+                    return ret;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
 
         #endregion
+
+
     }
 
 

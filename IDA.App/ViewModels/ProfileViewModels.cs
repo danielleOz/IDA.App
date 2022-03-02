@@ -33,24 +33,17 @@ namespace IDA.App.ViewModels
 
 
         #region is Availble
-        //public bool IsAvailble
-        //{
-        //    get
-        //    {
-        //        TimeSpan ts = new TimeSpan();
-        //        if (this.current != null && this.current.Worker != null)
-        //            int a = ts.
-        //                int.Parse(DateTime.Now) - int.Parse(this.current.Worker.AvailbleUntil);
-        //        return;
-        //        return false;
-        //    }
-        //}
+        public bool IsAvailble
+        {
+            get => DateTime.Now <= this.current.Worker.AvailbleUntil;
+
+        }
         #endregion
 
 
         #region time
-        private string time;
-        public string Time
+        private DateTime time;
+        public DateTime Time
         {
             get => this.time;
             set
@@ -66,65 +59,27 @@ namespace IDA.App.ViewModels
 
         #region Change to Availble Worker 
 
-       // public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
+        public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
 
 
-        //private async void AvailbleWorker()
-        //{
-        //    if (current.User.IsWorker)
-        //    {
+        private async void AvailbleWorker()
+        {
+            if (current.User.IsWorker)
+            {
 
-        //        if (current.Worker.IsAvailble)
-        //            current.Worker.IsAvailble = false;
-        //        else
-        //            current.Worker.IsAvailble = true;
+                if (IsAvailble)
+                    current.Worker.AvailbleUntil=time;
+                else
+                    current.Worker.AvailbleUntil = DateTime.MinValue;
 
-        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-        //        bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
-        //        if (!success)
-        //            await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
+                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+                bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
+                if (!success)
+                    await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
 
-        //    }
+            }
 
-        //}
-
-        #endregion
-
-        #region Change to Availble Worker till a specific time
-
-        //public ICommand AvailbleUntillCommand => new Command(AvailbleUntill);
-
-
-        //private async void AvailbleUntill()
-        //{
-        //    if (current.User.IsWorker)
-        //    {
-        //        ////// Create a custom DateTime for 7/28/1979 at 10:35:05 PM using a
-        //        ////// calendar based on the "en-US" culture, and ticks.
-        //        ////long ticks = new DateTime(1979, 07, 28, 22, 35, 5,
-        //        ////new CultureInfo("en-US", false).Calendar).Ticks;
-        //        ////DateTime dt3 = new DateTime(ticks);
-
-        //        //// Create a DateTime for the maximum date and time using ticks.
-        //        //DateTime dt1 = new DateTime(DateTime.MaxValue.Ticks);
-
-        //        //check if worker is availble or not and change it
-        //        if (current.Worker.IsAvailble)
-        //            current.Worker.IsAvailble = false;
-        //        else
-        //            current.Worker.IsAvailble = true;
-        //        current.worker
-
-
-        //        //update worker work until
-        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-        //        bool success = await IDAAPIProxy.AvailbleUntill(current.Worker);
-        //        if (!success)
-        //            Console.WriteLine();// to make an alert 
-
-        //    }
-
-        //}
+        }
 
         #endregion
 

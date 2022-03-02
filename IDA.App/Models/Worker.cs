@@ -14,7 +14,7 @@ namespace IDA.App.Models
 
         public int Id { get; set; }
         public double RadiusKm { get; set; }
-        public DateTime? AvailbleUntil { get; set; }
+        public DateTime AvailbleUntil { get; set; }
 
 
       //  public virtual User IdNavigation { get; set; }
