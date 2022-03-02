@@ -641,6 +641,7 @@ namespace IDA.App.ViewModels
 
         private async void Register()
         {
+            User user = new User();
             IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
 
             bool isEmailExist = await IDAproxy.EmailExistAsync(EntryEmail);
@@ -664,7 +665,7 @@ namespace IDA.App.ViewModels
                     w.HouseNumber = EntryHN;
                     w.IsWorker = true;
                     w.WorkerServices = new List<WorkerService>();
-                    foreach (Service s in workerServices) // WORKERSERVICES COUNT = 0
+                    foreach (Service s in workerServices) 
                     {
                         w.WorkerServices.Add(new WorkerService() { Service = s});
                     }
@@ -684,7 +685,7 @@ namespace IDA.App.ViewModels
                 }
                 else
                 {
-                    User user = new User();
+                    
                     user.Email = EntryEmail;
                     user.UserPswd = EntryPass;
                     user.FirstName = EntryFname;
@@ -709,7 +710,7 @@ namespace IDA.App.ViewModels
                 if (isRegister)
                 {
                     TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
-                    //((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = ;
+                    ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
                     await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                 }
 

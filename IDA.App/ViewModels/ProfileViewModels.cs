@@ -42,7 +42,7 @@ namespace IDA.App.ViewModels
 
 
         #region time
-        private DateTime time;
+        private DateTime time = DateTime.MinValue;
         public DateTime Time
         {
             get => this.time;
