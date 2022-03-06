@@ -63,6 +63,17 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+        #region available until
+        private DateTime d;
+        public DateTime D
+        {
+            get
+            {
+                return this.current.Worker.AvailbleUntil;
+            }
+        }
+        #endregion
+
         #region Change to Availble Worker 
 
         public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
@@ -83,6 +94,12 @@ namespace IDA.App.ViewModels
                 if (!success)
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
+
+                }
+
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
 
                 }
 

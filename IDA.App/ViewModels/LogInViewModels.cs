@@ -68,7 +68,7 @@ namespace IDA.App.ViewModels
                 
                 
 
-                await App.Current.MainPage.DisplayAlert("IDA", "You are logged in now!", "Ok");
+                await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
 
                 //Page p = new UserPage();
@@ -81,7 +81,7 @@ namespace IDA.App.ViewModels
             }
             else
             {
-                await App.Current.MainPage.DisplayAlert("IDA", "Log In failed, please try again", "Ok");
+                await App.Current.MainPage.DisplayAlert("", "Log In failed, please try again", "Ok");
             }
             EntryPass = "";
             EntryEmail = "";
