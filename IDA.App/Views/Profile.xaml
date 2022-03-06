@@ -21,7 +21,7 @@
 
                         <Button Text="update your personal details" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
                         <Label Text=" "></Label>
-                        <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
+                        <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>
 
                         <!--customer can see the reviews he wrote worker will be able to see what was wreeten on himcustomer can see the reviews he wrote worker will be able to see what was wreeten on him-->

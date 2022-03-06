@@ -115,7 +115,7 @@
 
                         <StackLayout IsVisible="{Binding IsWorker}" >
 
-                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="200"  HorizontalOptions="Center">
                                 <StackLayout>
                                     <Entry Text="{Binding EntryRadius}" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                                     <Label Text="{Binding RadiusError }" IsVisible="{Binding ShowRadiusError }" TextColor="#aaaaaa"/>

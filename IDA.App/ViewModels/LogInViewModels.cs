@@ -13,6 +13,12 @@ namespace IDA.App.ViewModels
 {
     class LogInViewModels : ViewModelBase
     {
+        public LogInViewModels()
+        {
+            EntryEmail = "www@www.com";
+            EntryPass = "123456";
+        }
+
         private string entryEmail;
         public string EntryEmail
         {
@@ -41,11 +47,9 @@ namespace IDA.App.ViewModels
             }
         }
 
-        public LogInViewModels()
-        {
-            EntryEmail = "www@www.com";
-            EntryPass = "123456";
-        }
+      
+
+        #region log in
 
         public ICommand LogInCommand => new Command(LogIn);
         private async void LogIn()
@@ -86,12 +90,16 @@ namespace IDA.App.ViewModels
             EntryPass = "";
             EntryEmail = "";
         }
+        #endregion
 
+
+        #region go to register
         public ICommand RegisterCommand => new Command(GoToRegister);
         private async void GoToRegister()
         {
            
             ((TheMainTabbedPage)Application.Current.MainPage).CurrentTab(((TheMainTabbedPage)Application.Current.MainPage).register);
         }
+        #endregion
     }
 }

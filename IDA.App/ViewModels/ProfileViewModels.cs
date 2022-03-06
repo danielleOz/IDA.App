@@ -48,7 +48,7 @@ namespace IDA.App.ViewModels
 
 
         #region time
-        private DateTime time = DateTime.MinValue;
+        private DateTime time = DateTime.Today;
         public DateTime Time
         {
             get => this.time;
@@ -109,7 +109,13 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-
+        #region go to reviews
+        public ICommand GoToReviewCommand => new Command(GoToReview);
+        private async void GoToReview()
+        {
+            //App.Current.MainPage.Navigation.PushModalAsync(new Views.Reviews(this));
+        }
+        #endregion
 
         #region UpdateCommand
         //public ICommand UpdateCommand => new Command(OnUpdate);
