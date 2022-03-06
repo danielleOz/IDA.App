@@ -11,14 +11,27 @@ using System.Text.RegularExpressions;
 
 namespace IDA.App.ViewModels
 {
-    class ReviewsViewModels:ViewModelBase
+    class ReviewsViewModels : ViewModelBase
     {
+        private ObservableCollection<JobOffer> wR;
+        public ObservableCollection<JobOffer> WR { get => WR; set { WR = value; OnPropertyChanged("WR"); } }
+
+        public ObservableCollection<JobOffer> WReviews { get; }
+        async void CreateWRCollection()
+        {
+            IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
+            List<JobOffer> Wreviews = await proxy.GetWorkerReviews();
+            foreach (JobOffer r in Wreviews)
+            {
+                this.WReviews.Add(r);
+            }
+        }
 
         #region is worker
         private bool isWorker;
         public bool IsWorker
         {
-            get => this.isWorker;
+            get => this.current.User.IsWorker;
             set
             {
                 if (this.current.User.IsWorker)
@@ -36,7 +49,7 @@ namespace IDA.App.ViewModels
         private bool isntWorker;
         public bool IsntWorker
         {
-            get => this.isntWorker;
+            get => this.current.User.IsWorker;
             set
             {
                 if (!this.current.User.IsWorker)

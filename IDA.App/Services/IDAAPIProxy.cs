@@ -297,6 +297,41 @@ namespace IDA.App.Services
 
         #endregion
 
+        #region workers reviews
+
+        
+        public async Task<List<JobOffer>> GetWorkerReviews()
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetAllWR");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<JobOffer> lst = JsonSerializer.Deserialize<List<JobOffer>>(content, options);
+                    return lst;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+
+
+        #endregion
+
         #region worker availbilty
 
         public async Task<bool> UpdateWorkerAvailbilty(Worker w)

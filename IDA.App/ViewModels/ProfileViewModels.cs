@@ -35,7 +35,13 @@ namespace IDA.App.ViewModels
         #region is Availble
         public bool IsAvailble
         {
-            get => DateTime.Now <= this.current.Worker.AvailbleUntil;
+            get
+            {
+                if (this.current.Worker != null)
+                    return DateTime.Now <= this.current.Worker.AvailbleUntil;
+                else
+                    return false;
+            }
 
         }
         #endregion
@@ -75,7 +81,10 @@ namespace IDA.App.ViewModels
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
                 bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
                 if (!success)
+                {
                     await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
+
+                }
 
             }
 

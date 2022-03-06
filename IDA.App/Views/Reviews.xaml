@@ -5,7 +5,7 @@
              x:Class="IDA.App.Views.Reviews">
     
     <ContentPage.BindingContext>
-        <local:ProfileViewModels></local:ProfileViewModels>
+        <local:ReviewsViewModels></local:ReviewsViewModels>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
@@ -14,7 +14,39 @@
             <StackLayout IsVisible="{Binding IsWorker}">
                 
                 <!--show reviews customer wrote-->
-                
+
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition Height="2*" ></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500" ></ColumnDefinition>
+                        <ColumnDefinition Width="*" ></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" BorderWidth="0" HorizontalOptions="Start" >
+                    </Button>
+
+                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding WR}"  >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text=" " />
+                                            <Span Text="{Binding } " />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+
+
             </StackLayout>
 
             <StackLayout IsVisible="{Binding IsntWorker}">

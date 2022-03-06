@@ -43,7 +43,8 @@ namespace IDA.App.ViewModels
 
         public LogInViewModels()
         {
-
+            EntryEmail = "www@www.com";
+            EntryPass = "123456";
         }
 
         public ICommand LogInCommand => new Command(LogIn);
@@ -55,15 +56,18 @@ namespace IDA.App.ViewModels
             {
                 TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
                 TheMainTabbedPageViewModels mainPageVM = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
-                mainPageVM.LoginUser = user;
                 this.current.User = user;
                 //TO DO: Assign worker and customer as needed
-                //if (user.IsWorker)
-                //{
-                    
-                //    this.current.Worker = 
-                //}
-              
+                if (user is Worker)
+                {
+
+                    this.current.Worker = (Worker)user;
+                }
+
+                mainPageVM.LoginUser = user;
+                
+                
+
                 await App.Current.MainPage.DisplayAlert("IDA", "You are logged in now!", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
 
