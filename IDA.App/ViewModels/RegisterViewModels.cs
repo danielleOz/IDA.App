@@ -637,95 +637,128 @@ namespace IDA.App.ViewModels
 
 
         #region register
+        private bool ValidateForm()
+        {
+            ValidateName();
+            ValidateLastName();
+            ValidateEmail();
+            ValidateAp();
+            ValidateBirthDate();
+            ValidateCity();
+            ValidateHN();
+            ValidateRadius();
+            ValidateStreet();
+            ValidatePassword();
+
+            //check if any validation failed
+            if (ShowNameError || ShowLastNameError || ShowApError || ShowEmailError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowRadiusError || ShowStreetError)
+                return false;
+            return true;
+        }
+
         public ICommand RegisterCommand { get; set; }
 
         private async void Register()
         {
-            User user = new User();
-            IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
+            this.ShowNameError = false;
+            this.ShowLastNameError = false;
+            this.ShowEmailError = false;
+            this.ShowApError = false;
+            this.ShowBirthDateError = false;
+            this.ShowCityError = false;
+            this.ShowHNError = false;
+            this.ShowRadiusError = false;
+            this.ShowStreetError = false;
+            this.showPassErorr = false;
 
-            bool isEmailExist = await IDAproxy.EmailExistAsync(EntryEmail);
-            if (!isEmailExist)
+
+            if (ValidateForm())
             {
-                bool isRegister = false;
-                if (IsWorker)
+                User user = new User();
+                IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
+
+                bool isEmailExist = await IDAproxy.EmailExistAsync(EntryEmail);
+                if (!isEmailExist)
                 {
-                    Worker w = new Worker
+                    bool isRegister = false;
+                    if (IsWorker)
+                    {
+                        Worker w = new Worker
+                        {
+
+                        };
+                        w.Email = EntryEmail;
+                        w.UserPswd = EntryPass;
+                        w.FirstName = EntryFname;
+                        w.LastName = EntryLname;
+                        w.City = EntryCity;
+                        w.Birthday = EntryBirthDate;
+                        w.Street = EntryStreet;
+                        w.Apartment = EntryAp;
+                        w.HouseNumber = EntryHN;
+                        w.IsWorker = true;
+                        w.WorkerServices = new List<WorkerService>();
+                        foreach (Service s in workerServices)
+                        {
+                            w.WorkerServices.Add(new WorkerService() { Service = s });
+                        }
+
+                        w.RadiusKm = double.Parse(EntryRadius);
+                        w.AvailbleUntil = DateTime.MinValue;
+
+
+                        w = await IDAproxy.WorkerRegister(w);
+                        if (w != null)
+                        {
+                            this.current.Worker = w;
+                            //   this.current.User = w.IdNavigation;
+                            isRegister = true;
+                        }
+
+                    }
+                    else
                     {
 
-                    };
-                    w.Email = EntryEmail;
-                    w.UserPswd = EntryPass;
-                    w.FirstName = EntryFname;
-                    w.LastName = EntryLname;
-                    w.City = EntryCity;
-                    w.Birthday = EntryBirthDate;
-                    w.Street = EntryStreet;
-                    w.Apartment = EntryAp;
-                    w.HouseNumber = EntryHN;
-                    w.IsWorker = true;
-                    w.WorkerServices = new List<WorkerService>();
-                    foreach (Service s in workerServices) 
-                    {
-                        w.WorkerServices.Add(new WorkerService() { Service = s});
+                        user.Email = EntryEmail;
+                        user.UserPswd = EntryPass;
+                        user.FirstName = EntryFname;
+                        user.LastName = EntryLname;
+                        user.City = EntryCity;
+                        user.Birthday = entryBirthDate;
+                        user.Street = EntryStreet;
+                        user.Apartment = EntryAp;
+                        user.HouseNumber = EntryHN;
+
+
+                        user = await IDAproxy.UserRegister(user);
+                        if (user != null)
+                        {
+                            this.current.User = user;
+                            //this.current.User = user.UserNameNavigation;
+                            isRegister = true;
+                        }
+
                     }
 
-                    w.RadiusKm = double.Parse(EntryRadius);
-                    w.AvailbleUntil = DateTime.MinValue;
-
-
-                    w = await IDAproxy.WorkerRegister(w);
-                    if (w != null)
+                    if (isRegister)
                     {
-                        this.current.Worker = w;
-                     //   this.current.User = w.IdNavigation;
-                        isRegister = true;
+                        TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
+                        ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
+                        await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                     }
 
-                }
-                else
-                {
-                    
-                    user.Email = EntryEmail;
-                    user.UserPswd = EntryPass;
-                    user.FirstName = EntryFname;
-                    user.LastName = EntryLname;
-                    user.City = EntryCity;
-                    user.Birthday = entryBirthDate;
-                    user.Street = EntryStreet;
-                    user.Apartment = EntryAp;
-                    user.HouseNumber = EntryHN;
-
-
-                    user = await IDAproxy.UserRegister(user);
-                    if (user != null)
+                    else
                     {
-                        this.current.User = user;
-                        //this.current.User = user.UserNameNavigation;
-                        isRegister = true;
+                        await App.Current.MainPage.DisplayAlert("", "Register failed, please try again", "Ok");
                     }
 
+
                 }
 
-                if (isRegister)
-                {
-                    TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
-                    ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
-                    await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
-                }
-
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert("", "Register failed, please try again", "Ok");
-                }
-
-
+                else if (isEmailExist)
+                    await App.Current.MainPage.DisplayAlert(" ", "email already exsits please try another one", "ok", FlowDirection.RightToLeft);
             }
-
-            else if (isEmailExist)
-                await App.Current.MainPage.DisplayAlert(" ", "email already exsits please try another one", "ok", FlowDirection.RightToLeft);
         }
-
 
 
         #endregion
