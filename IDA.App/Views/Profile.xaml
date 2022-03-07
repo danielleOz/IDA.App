@@ -19,7 +19,7 @@
 
                     <StackLayout>
 
-                        <Button Text="update your personal details" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
+                        <Button Text="update your personal details" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateCommand}"></Button>
                         <Label Text=" "></Label>
                         <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>
@@ -41,7 +41,8 @@
                             <Label Text="avilable until" TextColor="#aaaaaa"></Label>
                             <TimePicker TextColor="#aaaaaa" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
                             <Button Text="change avilabilty" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
-                            <Label Text="{Binding D}" TextColor="#aaaaaa" ></Label>
+                            <Button Text="set as unavailable" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+
 
 
                         </StackLayout>

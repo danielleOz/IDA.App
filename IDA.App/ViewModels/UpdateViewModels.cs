@@ -12,7 +12,6 @@ using System.Text.RegularExpressions;
 namespace IDA.App.ViewModels
 {
 
-
     class UpdateViewModels : ViewModelBase
     {
 
@@ -46,65 +45,10 @@ namespace IDA.App.ViewModels
             App current = ((App)Application.Current);
             IsWorker = false;
             SelectedServices = new ObservableCollection<object>();
-            RegisterCommand = new Command(Register);
+            UpdateCommand = new Command(Update);
             SelectServicesCommand = new Command(SelectServices);
         }
 
-
-        #region email
-        private string entryEmail;
-        public string EntryEmail
-        {
-            get => this.entryEmail;
-            set
-            {
-                if (value != this.entryEmail)
-                {
-                    this.entryEmail = value;
-                    ValidateEmail();
-                    OnPropertyChanged("EntryEmail");
-                }
-            }
-        }
-
-        private bool showEmailError;
-        public bool ShowEmailError
-        {
-            get => showEmailError;
-            set
-            {
-                showEmailError = value;
-                OnPropertyChanged("ShowEmailError");
-            }
-        }
-
-
-        private string emailError;
-        public string EmailError
-        {
-            get => emailError;
-            set
-            {
-                emailError = value;
-                OnPropertyChanged("EmailError");
-            }
-        }
-
-        private void ValidateEmail()
-        {
-            this.ShowEmailError = string.IsNullOrEmpty(entryEmail);
-            if (!this.ShowEmailError)
-            {
-                if (!Regex.IsMatch(this.entryEmail, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"))
-                {
-                    this.ShowEmailError = true;
-                    this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
-                }
-            }
-            else
-                this.EmailError = ERROR_MESSAGES.REQUIRED_FIELD;
-        }
-        #endregion
 
 
         #region city
@@ -637,12 +581,11 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-        #region register
+        #region Update
         private bool ValidateForm()
         {
             ValidateName();
             ValidateLastName();
-            ValidateEmail();
             ValidateAp();
             ValidateBirthDate();
             ValidateCity();
@@ -652,18 +595,17 @@ namespace IDA.App.ViewModels
             ValidatePassword();
 
             //check if any validation failed
-            if (ShowNameError || ShowLastNameError || ShowApError || ShowEmailError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowRadiusError || ShowStreetError)
+            if (ShowNameError || ShowLastNameError || ShowApError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowRadiusError || ShowStreetError)
                 return false;
             return true;
         }
 
-        public ICommand RegisterCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
 
-        private async void Register()
+        private async void Update()
         {
             this.ShowNameError = false;
             this.ShowLastNameError = false;
-            this.ShowEmailError = false;
             this.ShowApError = false;
             this.ShowBirthDateError = false;
             this.ShowCityError = false;
@@ -672,93 +614,73 @@ namespace IDA.App.ViewModels
             this.ShowStreetError = false;
             this.showPassErorr = false;
 
-
             if (ValidateForm())
             {
-                User user = new User();
+                User user = this.current.User;
                 IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
 
-                bool isEmailExist = await IDAproxy.EmailExistAsync(EntryEmail);
-                if (!isEmailExist)
+                bool isUpdated = false;
+                if (IsWorker)
                 {
-                    bool isRegister = false;
-                    if (IsWorker)
-                    {
-                        Worker w = new Worker
-                        {
-
-                        };
-                        w.Email = EntryEmail;
-                        w.UserPswd = EntryPass;
-                        w.FirstName = EntryFname;
-                        w.LastName = EntryLname;
-                        w.City = EntryCity;
-                        w.Birthday = EntryBirthDate;
-                        w.Street = EntryStreet;
-                        w.Apartment = EntryAp;
-                        w.HouseNumber = EntryHN;
-                        w.IsWorker = true;
-                        w.WorkerServices = new List<WorkerService>();
-                        foreach (Service s in workerServices)
-                        {
-                            w.WorkerServices.Add(new WorkerService() { Service = s });
-                        }
-
-                        w.RadiusKm = double.Parse(EntryRadius);
-                        w.AvailbleUntil = DateTime.MinValue;
-
-
-                        w = await IDAproxy.WorkerRegister(w);
-                        if (w != null)
-                        {
-                            this.current.Worker = w;
-                            //   this.current.User = w.IdNavigation;
-                            isRegister = true;
-                        }
-
-                    }
-                    else
+                    Worker w = this.current.Worker;
                     {
 
-                        user.Email = EntryEmail;
-                        user.UserPswd = EntryPass;
-                        user.FirstName = EntryFname;
-                        user.LastName = EntryLname;
-                        user.City = EntryCity;
-                        user.Birthday = entryBirthDate;
-                        user.Street = EntryStreet;
-                        user.Apartment = EntryAp;
-                        user.HouseNumber = EntryHN;
+                    };
 
-
-                        user = await IDAproxy.UserRegister(user);
-                        if (user != null)
-                        {
-                            this.current.User = user;
-                            //this.current.User = user.UserNameNavigation;
-                            isRegister = true;
-                        }
-
-                    }
-
-                    if (isRegister)
+                    w.UserPswd = EntryPass;
+                    w.FirstName = EntryFname;
+                    w.LastName = EntryLname;
+                    w.City = EntryCity;
+                    w.Birthday = EntryBirthDate;
+                    w.Street = EntryStreet;
+                    w.Apartment = EntryAp;
+                    w.HouseNumber = EntryHN;
+                    w.IsWorker = true;
+                    w.WorkerServices = new List<WorkerService>();
+                    foreach (Service s in workerServices)
                     {
-                        TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
-                        ((TheMainTabbedPageViewModels)(theMainTabbedPage).BindingContext).LoginUser = user;
-                        await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
+                        w.WorkerServices.Add(new WorkerService() { Service = s });
                     }
 
-                    else
-                    {
-                        await App.Current.MainPage.DisplayAlert("", "Register failed, please try again", "Ok");
-                    }
+                    w.RadiusKm = double.Parse(EntryRadius);
+
+                    w = await IDAproxy.WorkerUpdate(w);
+                    if (w != null)
+                        isUpdated = true;
 
 
                 }
+                else
+                {
+                    user.UserPswd = EntryPass;
+                    user.FirstName = EntryFname;
+                    user.LastName = EntryLname;
+                    user.City = EntryCity;
+                    user.Birthday = entryBirthDate;
+                    user.Street = EntryStreet;
+                    user.Apartment = EntryAp;
+                    user.HouseNumber = EntryHN;
 
-                else if (isEmailExist)
-                    await App.Current.MainPage.DisplayAlert(" ", "email already exsits please try another one", "ok", FlowDirection.RightToLeft);
+                    user = await IDAproxy.UserUpdate(user);
+                    if (user != null)
+                        isUpdated = true;
+
+                }
+
+                if (isUpdated)
+                {
+                    await App.Current.MainPage.DisplayAlert("", "Your details changed succsessfuly ", "Ok");
+                }
+
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("", "Register failed, please try again", "Ok");
+                }
+
+
             }
+
+
         }
 
 

@@ -11,17 +11,7 @@
         <ScrollView>
             <StackLayout BackgroundColor="#fff7f7">
 
-                <!-- TO ADD APP LOGO
-            
-                     <Image Source="logo.png" HeightRequest="400" WidthRequest="1000"  >
-
-                    </Image>
-            
-                -->
-
-                <!-- USER DETAILS PART -->
-
-                <Label Text=""></Label>
+                <Label Text="update your personal information "></Label>
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
@@ -38,13 +28,6 @@
                     </StackLayout>
                 </Frame>
 
-
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
-                    <StackLayout>
-                        <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                        <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" TextColor="#aaaaaa"/>
-                    </StackLayout>
-                </Frame>
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
@@ -101,18 +84,12 @@
 
 
                 <!--WORKER DETAILS PART-->
-
+                <StackLayout IsVisible="{Binding IsWorker}">
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
 
                     <StackLayout>
 
                         <Label Text=""></Label>
-
-
-                        <Label Text="Do you want to be a worker?" TextColor="#aaaaaa"></Label>
-                        <Switch OnColor="#f0d9d7" ThumbColor="#deeded"  IsToggled="{Binding IsWorker}" />
-
-                        <StackLayout IsVisible="{Binding IsWorker}" >
 
                             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="200"  HorizontalOptions="Center">
                                 <StackLayout>
@@ -158,15 +135,13 @@
 
                                 </Grid>
 
-                            </StackLayout>
-
 
                         </StackLayout>
 
 
-
                     </StackLayout>
                 </Frame>
+                </StackLayout>
                 <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=RegisterCommand}"></Button>
 
             </StackLayout>

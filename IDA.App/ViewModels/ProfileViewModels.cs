@@ -15,7 +15,7 @@ namespace IDA.App.ViewModels
     {
         public ProfileViewModels()
         {
-            this.time = this.current.Worker.AvailbleUntil;
+            //this.time = this.current.Worker.AvailbleUntil;
         }
 
 
@@ -31,7 +31,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region is Availble
         public bool IsAvailble
         {
@@ -46,7 +45,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region time
         private DateTime time = DateTime.Today;
         public TimeSpan Time
@@ -60,16 +58,16 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        #region available until
-        private DateTime d;
-        public DateTime D
-        {
-            get
-            {
-                return this.current.Worker.AvailbleUntil;
-            }
-        }
-        #endregion
+        //#region available until
+        //private DateTime d;
+        //public DateTime D
+        //{
+        //    get
+        //    {
+        //        return this.current.Worker.AvailbleUntil;
+        //    }
+        //}
+        //#endregion
 
         #region Change to Availble Worker 
 
@@ -110,6 +108,42 @@ namespace IDA.App.ViewModels
 
         #endregion
 
+        //#region UnAvailble Worker Command
+        //public ICommand UnAvailbleWorkerCommand => new Command(UnAvailbleWorker);
+
+        //private async void UnAvailbleWorker()
+        //{
+        //    if (current.User.IsWorker)
+        //    {
+        //        if (!IsAvailble)
+        //            current.Worker.AvailbleUntil = time;
+        //        else
+        //        {
+        //            current.Worker.AvailbleUntil = DateTime.Today;
+        //        }
+
+        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+        //        bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
+        //        if (!success)
+        //        {
+        //            await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
+        //            current.Worker.AvailbleUntil = time;
+        //        }
+
+        //        else
+        //        {
+        //            await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
+        //            time = current.Worker.AvailbleUntil;
+        //            OnPropertyChanged("Time");
+        //            OnPropertyChanged("IsAvailable");
+
+        //        }
+
+        //    }
+
+        //}
+        //#endregion
+
         #region go to reviews
         public ICommand GoToReviewCommand => new Command(GoToReview);
         private void GoToReview()
@@ -127,7 +161,6 @@ namespace IDA.App.ViewModels
             App.Current.MainPage = NewPage;
         }
         #endregion
-
 
         #region LogOut
         private Command logOutCommand;
@@ -160,5 +193,8 @@ namespace IDA.App.ViewModels
             }
         }
         #endregion
+
+
+
     }
 }

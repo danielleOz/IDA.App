@@ -121,12 +121,8 @@ namespace IDA.App.Services
         }
         #endregion
 
-        #region CustomerRegister
-        //This method register a new user into the server database. A previous login is NOT required! The nick name and email must be uniqe!
-        //it returns true is succeeded or false otherwise
-        //questions are ignored upon registering a user and shoul dbe added seperatly.
-        //if succeeded - the user is automatically logged in on the server
-
+        #region User Register
+       
 
         public async Task<User> UserRegister(User c)
         { 
@@ -171,7 +167,7 @@ namespace IDA.App.Services
         }
         #endregion
 
-        #region WorkerRegister
+        #region Worker Register
         public async Task<Worker> WorkerRegister(Worker w)
         {
              try
@@ -211,7 +207,7 @@ namespace IDA.App.Services
         }
         #endregion
 
-        #region GetServices
+        #region Get Services
         public async Task<List<Service>> GetServices()
         {
             try
@@ -247,7 +243,7 @@ namespace IDA.App.Services
 
         #endregion
 
-        #region EmailExist
+        #region Is Email Exist
         public async Task<bool> EmailExistAsync(string email)
         {
             try
@@ -368,6 +364,89 @@ namespace IDA.App.Services
             }
         }
 
+        #endregion
+
+        #region User Update
+
+        public async Task<User> UserUpdate(User c)
+        {
+            try
+            {
+
+                c.IsWorker = false;
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<User>(c, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UserUpdate", content);
+                if (response.IsSuccessStatusCode)
+                {
+
+
+                    string str = await response.Content.ReadAsStringAsync();
+
+                    User u = JsonSerializer.Deserialize<User>(str, options);
+                    return u;
+                }
+                else
+                {
+                    return null;
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+
+                return null;
+            }
+        }
+        #endregion
+
+        #region Worker Update
+        public async Task<Worker> WorkerUpdate(Worker w)
+        {
+            try
+            {
+
+
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+
+                string jsonObject = JsonSerializer.Serialize<Worker>(w, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/WorkerUpdate", content);
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string str = await response.Content.ReadAsStringAsync();
+
+                    Worker worker = JsonSerializer.Deserialize<Worker>(str, options);
+                    return worker;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
         #endregion
 
 
