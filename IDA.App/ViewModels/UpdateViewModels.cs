@@ -81,7 +81,7 @@ namespace IDA.App.ViewModels
 
         private string cityError;
         public string CityError
-        {
+        { 
             get => cityError;
             set
             {
