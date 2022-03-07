@@ -30,6 +30,7 @@ namespace IDA.App.ViewModels
                 }
                 else // Login
                 {
+
                     theMainTabbedPage.profile = new Profile();
                     theMainTabbedPage.profile.Title = "profile";
                     theMainTabbedPage.RemoveTab(theMainTabbedPage.logIn);

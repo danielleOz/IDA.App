@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               xmlns:local ="clr-namespace:IDA.App.ViewModels"
-             x:Class="IDA.App.Views.Reviews">
+             x:Class="IDA.App.Views.Reviews"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True">
     
     <ContentPage.BindingContext>
         <local:ReviewsViewModels></local:ReviewsViewModels>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#fff7f7">
             
 
             <StackLayout IsVisible="{Binding IsWorker}">

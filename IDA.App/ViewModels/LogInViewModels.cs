@@ -95,7 +95,7 @@ namespace IDA.App.ViewModels
 
         #region go to register
         public ICommand RegisterCommand => new Command(GoToRegister);
-        private async void GoToRegister()
+        private  void GoToRegister()
         {
            
             ((TheMainTabbedPage)Application.Current.MainPage).CurrentTab(((TheMainTabbedPage)Application.Current.MainPage).register);

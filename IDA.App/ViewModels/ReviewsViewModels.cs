@@ -14,7 +14,7 @@ namespace IDA.App.ViewModels
     class ReviewsViewModels : ViewModelBase
     {
         private ObservableCollection<JobOffer> wR;
-        public ObservableCollection<JobOffer> WR { get => WR; set { WR = value; OnPropertyChanged("WR"); } }
+        public ObservableCollection<JobOffer> WR { get;  }
 
         public ObservableCollection<JobOffer> WReviews { get; }
         async void CreateWRCollection()

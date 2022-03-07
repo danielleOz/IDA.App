@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              x:Class="IDA.App.Views.TheMainTabbedPage" 
+            
              BarBackgroundColor="#f0d9d7"
              BarTextColor="White"
              SelectedTabColor="#d28b87 "
@@ -11,5 +12,6 @@
              xmlns:local="clr-namespace:IDA.App.Views"
             xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
             windows:TabbedPage.HeaderIconsEnabled="True" >
+    
 
 </TabbedPage>
