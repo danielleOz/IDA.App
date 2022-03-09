@@ -385,7 +385,7 @@ namespace IDA.App.Services
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
 
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UserUpdate", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateUser", content);
                 if (response.IsSuccessStatusCode)
                 {
 

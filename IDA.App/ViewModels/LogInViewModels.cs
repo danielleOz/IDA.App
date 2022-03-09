@@ -15,8 +15,8 @@ namespace IDA.App.ViewModels
     {
         public LogInViewModels()
         {
-            EntryEmail = "www@www.com";
-            EntryPass = "123456";
+            EntryEmail = "danielle.oz@gmail.com";
+            EntryPass = "1234";
         }
 
         private string entryEmail;

@@ -16,7 +16,212 @@ namespace IDA.App.ViewModels
         public ProfileViewModels()
         {
             //this.time = this.current.Worker.AvailbleUntil;
+            User currentUser = this.current.User;
+            entryAp = currentUser.Apartment;
+            entryCity = currentUser.City;
+            entryStreet = currentUser.Street;
+            entryHN = currentUser.HouseNumber;
+            entryBirthDate = currentUser.Birthday;
+            entryFname = currentUser.FirstName;
+            entryLname = currentUser.LastName;
+            entryPass = currentUser.UserPswd;
+            entryEmail = currentUser.Email;
+            if(currentUser.IsWorker)
+            {
+                Worker currentWorker = this.current.Worker;
+                double d = currentWorker.RadiusKm;
+                entryRadius = d.ToString();
+            }
         }
+
+        #region city
+        private string entryCity;
+        public string EntryCity
+        {
+            get => this.entryCity;
+            set
+            {
+                if (value != this.entryCity)
+                {
+                    this.entryCity = value;
+                    OnPropertyChanged("EntryCity");
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region Street
+        private string entryStreet;
+        public string EntryStreet
+        {
+            get => this.entryStreet;
+            set
+            {
+                if (value != this.entryStreet)
+                {
+                    this.entryStreet = value;
+                    OnPropertyChanged("EntryStreet");
+                }
+            }
+        }
+
+
+  
+        #endregion
+
+
+        #region ap
+        private string entryAp;
+        public string EntryAp
+        {
+            get => this.entryAp;
+            set
+            {
+                if (value != this.entryAp)
+                {
+                    this.entryAp = value;
+                    OnPropertyChanged("EntryAp");
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region email
+        private string entryEmail;
+        public string EntryEmail
+        {
+            get => this.entryEmail;
+            set
+            {
+                if (value != this.entryEmail)
+                {
+                    this.entryEmail = value;
+                    OnPropertyChanged("EntryEmail");
+                }
+            }
+        }
+
+       
+        #endregion
+
+        #region house num
+        private string entryHN;
+        public string EntryHN
+        {
+            get => this.entryHN;
+            set
+            {
+                if (value != this.entryHN)
+                {
+                    this.entryHN = value;
+                    OnPropertyChanged("EntryHN");
+                }
+            }
+        }
+
+        
+        #endregion
+
+
+        #region password
+        private string entryPass;
+        public string EntryPass
+        {
+            get => this.entryPass;
+            set
+            {
+                if (value != this.entryPass)
+                {
+                    this.entryPass = value;
+                    OnPropertyChanged("EntryPass");
+                }
+            }
+        }
+
+      
+        #endregion
+
+
+        #region first name 
+        private string entryFname;
+        public string EntryFname
+        {
+            get => this.entryFname;
+            set
+            {
+                if (value != this.entryFname)
+                {
+                    this.entryFname = value;
+                    OnPropertyChanged("EntryFname");
+                }
+            }
+        }
+
+       
+        #endregion
+
+
+        #region last name
+
+        private string entryLname;
+        public string EntryLname
+        {
+            get => this.entryLname;
+            set
+            {
+                if (value != this.entryLname)
+                {
+                    this.entryLname = value;
+                    OnPropertyChanged("EntryLname");
+                }
+            }
+        }
+
+        
+        #endregion
+
+
+        #region birthdate
+        private DateTime entryBirthDate = DateTime.Now;
+        public DateTime EntryBirthDate
+        {
+            get => this.entryBirthDate;
+            set
+            {
+                if (value != this.entryBirthDate)
+                {
+                    this.entryBirthDate = value;
+                    OnPropertyChanged("EntryBirthDate");
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        #region Radius
+        private string entryRadius;
+        public string EntryRadius
+        {
+            get => this.entryRadius;
+            set
+            {
+                if (value != this.entryRadius)
+                {
+                    this.entryRadius = value;
+                    OnPropertyChanged("EntryRadius");
+                }
+            }
+        }
+
+
+        #endregion
+
 
 
         #region is worker

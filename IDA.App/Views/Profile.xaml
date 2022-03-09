@@ -13,6 +13,37 @@
             <StackLayout BackgroundColor="#fff7f7">
                 <Label Text=" "></Label>
                 <Label Text="profile page" TextColor="#aaaaaa"></Label>
+
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="500">
+
+                    <StackLayout>
+
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryFname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryLname, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryEmail, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryPass, StringFormat='password- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryCity, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryStreet, StringFormat='street- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryAp, StringFormat='aprtmant- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryHN, StringFormat='house number- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryBirthDate, StringFormat='birth date- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text=" "></Label>
+                        <Label Text="{Binding EntryRadius, StringFormat='radius- {0:F0}'}"  TextColor="#aaaaaa" IsVisible="{Binding IsWorker}"></Label>
+                        <Label Text=" "></Label>
+
+                    </StackLayout>
+
+                </Frame>
+                
                 <Label Text=" "></Label>
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="230">

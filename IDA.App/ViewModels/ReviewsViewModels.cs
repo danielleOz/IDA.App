@@ -13,20 +13,7 @@ namespace IDA.App.ViewModels
 {
     class ReviewsViewModels : ViewModelBase
     {
-        private ObservableCollection<JobOffer> wR;
-        public ObservableCollection<JobOffer> WR { get;  }
-
-        public ObservableCollection<JobOffer> WReviews { get; }
-        async void CreateWRCollection()
-        {
-            IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
-            List<JobOffer> Wreviews = await proxy.GetWorkerReviews();
-            foreach (JobOffer r in Wreviews)
-            {
-                this.WReviews.Add(r);
-            }
-        }
-
+        
         #region is worker
         private bool isWorker;
         public bool IsWorker
