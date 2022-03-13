@@ -11,7 +11,7 @@
         <StackLayout BackgroundColor="#fff7f7">
             <Label></Label>
 
-            <Image Source="logo2.png" HeightRequest="200" WidthRequest="200"  > </Image>
+            <Image Source="newLogo1 (1).png" HeightRequest="280" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"> </Image>
             
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
                 <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
