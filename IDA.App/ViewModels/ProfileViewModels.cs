@@ -15,7 +15,6 @@ namespace IDA.App.ViewModels
     {
         public ProfileViewModels()
         {
-            //this.time = this.current.Worker.AvailbleUntil;
             User currentUser = this.current.User;
             entryAp = currentUser.Apartment;
             entryCity = currentUser.City;
@@ -223,7 +222,6 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-
         #region is worker
         public bool IsWorker
         {
@@ -232,33 +230,6 @@ namespace IDA.App.ViewModels
                 if (this.current != null && this.current.User != null)
                     return this.current.User.IsWorker;
                 return false;
-            }
-        }
-        #endregion
-
-        #region is Availble
-        public bool IsAvailble
-        {
-            get
-            {
-                if (this.current.Worker != null)
-                    return DateTime.Now <= this.time;
-                else
-                    return false;
-            }
-
-        }
-        #endregion
-
-        #region time
-        private DateTime time = DateTime.Today;
-        public TimeSpan Time
-        {
-            get => time - DateTime.Today;
-            set
-            {
-                this.time = DateTime.Today.Add(value);
-                OnPropertyChanged("Time");
             }
         }
         #endregion
@@ -274,44 +245,7 @@ namespace IDA.App.ViewModels
         //}
         //#endregion
 
-        #region Change to Availble Worker 
 
-        public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
-
-
-        private async void AvailbleWorker()
-        {
-            if (current.User.IsWorker)
-            {
-                if (!IsAvailble)
-                    current.Worker.AvailbleUntil = time;
-                else
-                {
-                    current.Worker.AvailbleUntil = DateTime.Today;
-                }
-
-                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-                bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
-                if (!success)
-                {
-                    await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
-                    current.Worker.AvailbleUntil = time;
-                }
-
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
-                    time = current.Worker.AvailbleUntil;
-                    OnPropertyChanged("Time");
-                    OnPropertyChanged("IsAvailable");
-
-                }
-
-            }
-
-        }
-
-        #endregion
 
         //#region UnAvailble Worker Command
         //public ICommand UnAvailbleWorkerCommand => new Command(UnAvailbleWorker);
@@ -353,16 +287,37 @@ namespace IDA.App.ViewModels
         public ICommand GoToReviewCommand => new Command(GoToReview);
         private void GoToReview()
         {
+            List<JobOffer> jobOffers;
+            if (IsWorker)
+            {
+                jobOffers = this.current.Worker.JobOffers;
+            }
+            else
+            {
+                jobOffers = this.current.User.JobOffers;
+            }
+
+            ReviewsViewModels vm = new ReviewsViewModels(jobOffers);
             Page NewPage = new Views.Reviews();
+            NewPage.BindingContext = vm;
             App.Current.MainPage = NewPage;
         }
         #endregion
 
-        #region UpdateCommand
+        #region go to update page
         public ICommand UpdateCommand => new Command(OnUpdate);
         public void OnUpdate()
         {
             Page NewPage = new Views.Update();
+            App.Current.MainPage = NewPage;
+        }
+        #endregion
+
+        #region go to updateAvailbilty page
+        public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
+        public void UpdateAvailbilty()
+        {
+            Page NewPage = new Views.Availbilty();
             App.Current.MainPage = NewPage;
         }
         #endregion

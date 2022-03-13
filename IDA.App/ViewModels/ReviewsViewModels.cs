@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace IDA.App.ViewModels
 {
@@ -48,5 +49,24 @@ namespace IDA.App.ViewModels
             }
         }
         #endregion
+        private ObservableCollection<JobOffer> jobOffers;
+        public ObservableCollection<JobOffer> JobOffers
+        {
+            get
+            {
+                return this.jobOffers;
+            }
+            set
+            {
+                this.jobOffers = value;
+                OnPropertyChanged("JobOffers");
+            }
+        }
+
+        public ReviewsViewModels(List<JobOffer> jobOffers)
+        {
+            List<JobOffer> filtered = jobOffers.Where(j => j.WorkerReviewDate != null).ToList();
+            this.JobOffers = new ObservableCollection<JobOffer>(filtered);
+        }
     }
 }

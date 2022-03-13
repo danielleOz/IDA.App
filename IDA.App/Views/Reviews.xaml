@@ -6,9 +6,7 @@
              NavigationPage.HasNavigationBar="True"
              NavigationPage.HasBackButton="True">
     
-    <ContentPage.BindingContext>
-        <local:ReviewsViewModels></local:ReviewsViewModels>
-    </ContentPage.BindingContext>
+   
     
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
@@ -17,6 +15,8 @@
             <StackLayout IsVisible="{Binding IsWorker}">
                 
                 <!--show reviews customer wrote-->
+
+                <Label Text="in this page you can find your reviews"></Label>
 
                 <Grid >
                     <Grid.RowDefinitions>
@@ -29,14 +29,14 @@
                         <ColumnDefinition Width="*" ></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding WR}"  >
+                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
-                                            <Span Text="{Binding } " />
+                                            <Span Text="{Binding ReviewDateString} " />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

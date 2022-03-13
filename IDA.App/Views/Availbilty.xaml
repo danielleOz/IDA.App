@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IDA.App.Views.Availbilty">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout IsVisible="{Binding IsWorker}">
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="300">
+
+                    <StackLayout >
+                        <Label Text="your status is:" TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding IsAvailble}" TextColor="#aaaaaa"></Label>
+                        <Label Text="avilable until" TextColor="#aaaaaa"></Label>
+                        <TimePicker TextColor="#aaaaaa" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
+                        <Button Text="change avilabilty" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+                        <Button Text="set as unavailable" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+
+
+
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
