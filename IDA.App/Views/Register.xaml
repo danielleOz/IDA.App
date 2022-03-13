@@ -10,7 +10,7 @@
         <ScrollView>
             <StackLayout BackgroundColor="#fff7f7">
 
-                <!-- TO ADD APP LOGO
+                <!-- TO ADD PROFILE PIC
             
                      <Image Source="logo.png" HeightRequest="400" WidthRequest="1000"  >
 

@@ -309,16 +309,17 @@ namespace IDA.App.ViewModels
         public void OnUpdate()
         {
             Page NewPage = new Views.Update();
-            App.Current.MainPage = NewPage;
+            App.Current.MainPage.Nevigation.PushAsync(NewPage);
         }
         #endregion
 
         #region go to updateAvailbilty page
+
         public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
         public void UpdateAvailbilty()
         {
             Page NewPage = new Views.Availbilty();
-            App.Current.MainPage = NewPage;
+            App.Current.MainPage.Nevigation.PushAsync(NewPage);
         }
         #endregion
 
