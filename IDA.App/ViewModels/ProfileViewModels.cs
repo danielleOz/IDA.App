@@ -15,8 +15,211 @@ namespace IDA.App.ViewModels
     {
         public ProfileViewModels()
         {
-            //this.time = this.current.Worker.AvailbleUntil;
+            User currentUser = this.current.User;
+            entryAp = currentUser.Apartment;
+            entryCity = currentUser.City;
+            entryStreet = currentUser.Street;
+            entryHN = currentUser.HouseNumber;
+            entryBirthDate = currentUser.Birthday;
+            entryFname = currentUser.FirstName;
+            entryLname = currentUser.LastName;
+            entryPass = currentUser.UserPswd;
+            entryEmail = currentUser.Email;
+            if(currentUser.IsWorker)
+            {
+                Worker currentWorker = this.current.Worker;
+                double d = currentWorker.RadiusKm;
+                entryRadius = d.ToString();
+            }
         }
+
+        #region city
+        private string entryCity;
+        public string EntryCity
+        {
+            get => this.entryCity;
+            set
+            {
+                if (value != this.entryCity)
+                {
+                    this.entryCity = value;
+                    OnPropertyChanged("EntryCity");
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region Street
+        private string entryStreet;
+        public string EntryStreet
+        {
+            get => this.entryStreet;
+            set
+            {
+                if (value != this.entryStreet)
+                {
+                    this.entryStreet = value;
+                    OnPropertyChanged("EntryStreet");
+                }
+            }
+        }
+
+
+  
+        #endregion
+
+
+        #region ap
+        private string entryAp;
+        public string EntryAp
+        {
+            get => this.entryAp;
+            set
+            {
+                if (value != this.entryAp)
+                {
+                    this.entryAp = value;
+                    OnPropertyChanged("EntryAp");
+                }
+            }
+        }
+
+
+        #endregion
+
+        #region email
+        private string entryEmail;
+        public string EntryEmail
+        {
+            get => this.entryEmail;
+            set
+            {
+                if (value != this.entryEmail)
+                {
+                    this.entryEmail = value;
+                    OnPropertyChanged("EntryEmail");
+                }
+            }
+        }
+
+       
+        #endregion
+
+        #region house num
+        private string entryHN;
+        public string EntryHN
+        {
+            get => this.entryHN;
+            set
+            {
+                if (value != this.entryHN)
+                {
+                    this.entryHN = value;
+                    OnPropertyChanged("EntryHN");
+                }
+            }
+        }
+
+        
+        #endregion
+
+
+        #region password
+        private string entryPass;
+        public string EntryPass
+        {
+            get => this.entryPass;
+            set
+            {
+                if (value != this.entryPass)
+                {
+                    this.entryPass = value;
+                    OnPropertyChanged("EntryPass");
+                }
+            }
+        }
+
+      
+        #endregion
+
+
+        #region first name 
+        private string entryFname;
+        public string EntryFname
+        {
+            get => this.entryFname;
+            set
+            {
+                if (value != this.entryFname)
+                {
+                    this.entryFname = value;
+                    OnPropertyChanged("EntryFname");
+                }
+            }
+        }
+
+       
+        #endregion
+
+
+        #region last name
+
+        private string entryLname;
+        public string EntryLname
+        {
+            get => this.entryLname;
+            set
+            {
+                if (value != this.entryLname)
+                {
+                    this.entryLname = value;
+                    OnPropertyChanged("EntryLname");
+                }
+            }
+        }
+
+        
+        #endregion
+
+
+        #region birthdate
+        private DateTime entryBirthDate = DateTime.Now;
+        public DateTime EntryBirthDate
+        {
+            get => this.entryBirthDate;
+            set
+            {
+                if (value != this.entryBirthDate)
+                {
+                    this.entryBirthDate = value;
+                    OnPropertyChanged("EntryBirthDate");
+                }
+            }
+        }
+
+
+        #endregion
+
+
+        #region Radius
+        private string entryRadius;
+        public string EntryRadius
+        {
+            get => this.entryRadius;
+            set
+            {
+                if (value != this.entryRadius)
+                {
+                    this.entryRadius = value;
+                    OnPropertyChanged("EntryRadius");
+                }
+            }
+        }
+
+
+        #endregion
 
 
         #region is worker
@@ -27,33 +230,6 @@ namespace IDA.App.ViewModels
                 if (this.current != null && this.current.User != null)
                     return this.current.User.IsWorker;
                 return false;
-            }
-        }
-        #endregion
-
-        #region is Availble
-        public bool IsAvailble
-        {
-            get
-            {
-                if (this.current.Worker != null)
-                    return DateTime.Now <= this.time;
-                else
-                    return false;
-            }
-
-        }
-        #endregion
-
-        #region time
-        private DateTime time = DateTime.Today;
-        public TimeSpan Time
-        {
-            get => time - DateTime.Today;
-            set
-            {
-                this.time = DateTime.Today.Add(value);
-                OnPropertyChanged("Time");
             }
         }
         #endregion
@@ -69,44 +245,7 @@ namespace IDA.App.ViewModels
         //}
         //#endregion
 
-        #region Change to Availble Worker 
 
-        public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
-
-
-        private async void AvailbleWorker()
-        {
-            if (current.User.IsWorker)
-            {
-                if (!IsAvailble)
-                    current.Worker.AvailbleUntil = time;
-                else
-                {
-                    current.Worker.AvailbleUntil = DateTime.Today;
-                }
-
-                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-                bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
-                if (!success)
-                {
-                    await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
-                    current.Worker.AvailbleUntil = time;
-                }
-
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
-                    time = current.Worker.AvailbleUntil;
-                    OnPropertyChanged("Time");
-                    OnPropertyChanged("IsAvailable");
-
-                }
-
-            }
-
-        }
-
-        #endregion
 
         //#region UnAvailble Worker Command
         //public ICommand UnAvailbleWorkerCommand => new Command(UnAvailbleWorker);
@@ -148,16 +287,37 @@ namespace IDA.App.ViewModels
         public ICommand GoToReviewCommand => new Command(GoToReview);
         private void GoToReview()
         {
+            List<JobOffer> jobOffers;
+            if (IsWorker)
+            {
+                jobOffers = this.current.Worker.WorkerJobOffers;
+            }
+            else
+            {
+                jobOffers = this.current.User.JobOffers;
+            }
+
+            ReviewsViewModels vm = new ReviewsViewModels(jobOffers);
             Page NewPage = new Views.Reviews();
-            App.Current.MainPage = NewPage;
+            NewPage.BindingContext = vm;
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
         }
         #endregion
 
-        #region UpdateCommand
+        #region go to update page
         public ICommand UpdateCommand => new Command(OnUpdate);
         public void OnUpdate()
         {
             Page NewPage = new Views.Update();
+            App.Current.MainPage = NewPage;
+        }
+        #endregion
+
+        #region go to updateAvailbilty page
+        public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
+        public void UpdateAvailbilty()
+        {
+            Page NewPage = new Views.Availbilty();
             App.Current.MainPage = NewPage;
         }
         #endregion

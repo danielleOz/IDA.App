@@ -45,11 +45,18 @@ namespace IDA.App.ViewModels
             App current = ((App)Application.Current);
             IsWorker = false;
             SelectedServices = new ObservableCollection<object>();
-            UpdateCommand = new Command(Update);
+            //UpdateCommand = new Command(Update);
             SelectServicesCommand = new Command(SelectServices);
+            User currentUser = this.current.User;
+            entryAp = currentUser.Apartment;
+            entryCity = currentUser.City;
+            entryStreet = currentUser.Street;
+            entryHN = currentUser.HouseNumber;
+            entryBirthDate = currentUser.Birthday;
+            entryFname = currentUser.FirstName;
+            entryLname = currentUser.LastName;
+            entryPass = currentUser.UserPswd;
         }
-
-
 
         #region city
         private string entryCity;
@@ -595,14 +602,22 @@ namespace IDA.App.ViewModels
             ValidatePassword();
 
             //check if any validation failed
-            if (ShowNameError || ShowLastNameError || ShowApError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowRadiusError || ShowStreetError)
+            if (ShowNameError || ShowLastNameError || ShowApError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowStreetError)
                 return false;
+            else
+            {
+                if (isWorker && showRadiusError)
+                    return false;
+            }
+
             return true;
         }
 
-        public ICommand UpdateCommand { get; set; }
+        //public ICommand UpdateCommand { get; set; }
+        public ICommand UpdateDetailsCommand => new Command(UpdateDetails);
 
-        private async void Update()
+
+        private async void UpdateDetails()
         {
             this.ShowNameError = false;
             this.ShowLastNameError = false;
@@ -652,11 +667,12 @@ namespace IDA.App.ViewModels
                 }
                 else
                 {
+                    user.Id = this.current.User.Id;
                     user.UserPswd = EntryPass;
                     user.FirstName = EntryFname;
                     user.LastName = EntryLname;
                     user.City = EntryCity;
-                    user.Birthday = entryBirthDate;
+                    user.Birthday = EntryBirthDate;
                     user.Street = EntryStreet;
                     user.Apartment = EntryAp;
                     user.HouseNumber = EntryHN;
@@ -674,7 +690,7 @@ namespace IDA.App.ViewModels
 
                 else
                 {
-                    await App.Current.MainPage.DisplayAlert("", "Register failed, please try again", "Ok");
+                    await App.Current.MainPage.DisplayAlert("", "failed, please try again", "Ok");
                 }
 
 

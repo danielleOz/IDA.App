@@ -8,24 +8,12 @@ using System.Collections.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace IDA.App.ViewModels
 {
     class ReviewsViewModels : ViewModelBase
     {
-        private ObservableCollection<JobOffer> wR;
-        public ObservableCollection<JobOffer> WR { get;  }
-
-        public ObservableCollection<JobOffer> WReviews { get; }
-        async void CreateWRCollection()
-        {
-            IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
-            List<JobOffer> Wreviews = await proxy.GetWorkerReviews();
-            foreach (JobOffer r in Wreviews)
-            {
-                this.WReviews.Add(r);
-            }
-        }
 
         #region is worker
         private bool isWorker;
@@ -60,6 +48,29 @@ namespace IDA.App.ViewModels
 
             }
         }
+        #endregion
+
+        #region reviews
+        private ObservableCollection<JobOffer> jobOffers;
+        public ObservableCollection<JobOffer> JobOffers
+        {
+            get
+            {
+                return this.jobOffers;
+            }
+            set
+            {
+                this.jobOffers = value;
+                OnPropertyChanged("JobOffers");
+            }
+        }
+
+        public ReviewsViewModels(List<JobOffer> jobOffers)
+        {
+            List<JobOffer> filtered = jobOffers.Where(j => j.WorkerReviewDate != null).ToList();
+            this.JobOffers = new ObservableCollection<JobOffer>(filtered);
+        }
+
         #endregion
     }
 }

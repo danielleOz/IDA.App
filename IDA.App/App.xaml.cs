@@ -32,7 +32,7 @@ namespace IDA.App
             services = new List<Service>();
             InitializeComponent();
 
-            MainPage = new TheMainTabbedPage();
+            MainPage = new NavigationPage(new TheMainTabbedPage());
             
         }
 

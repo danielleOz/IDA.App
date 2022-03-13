@@ -15,7 +15,7 @@ namespace IDA.App.ViewModels
     {
         public LogInViewModels()
         {
-            EntryEmail = "www@www.com";
+            EntryEmail = "danielle.oz@gmail.com";
             EntryPass = "123456";
         }
 
@@ -58,7 +58,7 @@ namespace IDA.App.ViewModels
             User user = await IDAAPIProxy.LoginAsync(EntryEmail, EntryPass);
             if (user != null)
             {
-                TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
+                TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0];
                 TheMainTabbedPageViewModels mainPageVM = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
                 this.current.User = user;
                 //TO DO: Assign worker and customer as needed

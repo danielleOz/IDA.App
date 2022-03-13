@@ -651,8 +651,14 @@ namespace IDA.App.ViewModels
             ValidatePassword();
 
             //check if any validation failed
-            if (ShowNameError || ShowLastNameError || ShowApError || ShowEmailError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowRadiusError || ShowStreetError)
+            if (ShowNameError || ShowLastNameError || ShowApError || ShowEmailError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowStreetError)
                 return false;
+            else
+            {
+                if (isWorker && showRadiusError)
+                    return false;
+            }
+
             return true;
         }
 

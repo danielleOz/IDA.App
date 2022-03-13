@@ -5,18 +5,16 @@
              x:Class="IDA.App.Views.Reviews"
              NavigationPage.HasNavigationBar="True"
              NavigationPage.HasBackButton="True">
-    
-    <ContentPage.BindingContext>
-        <local:ReviewsViewModels></local:ReviewsViewModels>
-    </ContentPage.BindingContext>
-    
+  
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
-            
 
-            <StackLayout IsVisible="{Binding IsWorker}">
+            <Label Text="in this page you can find your reviews"></Label>
+
+            <StackLayout>
                 
                 <!--show reviews customer wrote-->
+
 
                 <Grid >
                     <Grid.RowDefinitions>
@@ -29,17 +27,14 @@
                         <ColumnDefinition Width="*" ></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" BorderWidth="0" HorizontalOptions="Start" >
-                    </Button>
-
-                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding WR}"  >
+                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
-                                            <Span Text="{Binding } " />
+                                            <Span Text="{Binding ReviewDateString} " />
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
@@ -54,7 +49,7 @@
 
             <StackLayout IsVisible="{Binding IsntWorker}">
                 
-                <!--show reviews was written on-->
+                <!--show reviews user wrote on workers -->
 
             </StackLayout>
 
