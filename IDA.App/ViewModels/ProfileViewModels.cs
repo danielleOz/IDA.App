@@ -290,7 +290,7 @@ namespace IDA.App.ViewModels
             List<JobOffer> jobOffers;
             if (IsWorker)
             {
-                jobOffers = this.current.Worker.JobOffers;
+                jobOffers = this.current.Worker.WorkerJobOffers;
             }
             else
             {
@@ -300,7 +300,7 @@ namespace IDA.App.ViewModels
             ReviewsViewModels vm = new ReviewsViewModels(jobOffers);
             Page NewPage = new Views.Reviews();
             NewPage.BindingContext = vm;
-            App.Current.MainPage = NewPage;
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
         }
         #endregion
 
