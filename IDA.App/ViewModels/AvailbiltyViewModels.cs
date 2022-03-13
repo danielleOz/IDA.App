@@ -15,7 +15,7 @@ namespace IDA.App.ViewModels
         public AvailbiltyViewModels()
         {
 
-            this.time = this.current.Worker.AvailbleUntil;
+            //this.time = this.current.Worker.AvailbleUntil;
 
         }
 

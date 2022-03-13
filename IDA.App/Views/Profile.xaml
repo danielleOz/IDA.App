@@ -35,7 +35,7 @@
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryHN, StringFormat='house number- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryBirthDate, StringFormat='birth date- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryBirthDate.}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryRadius, StringFormat='radius- {0:F0}'}"  TextColor="#aaaaaa" IsVisible="{Binding IsWorker}"></Label>
                         <Label Text=" "></Label>

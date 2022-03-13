@@ -185,10 +185,10 @@ namespace IDA.App.ViewModels
 
 
         #region birthdate
-        private DateTime entryBirthDate = DateTime.Now;
+        private DateTime entryBirthDate = DateTime.Now ;
         public DateTime EntryBirthDate
         {
-            get => this.entryBirthDate;
+            get => this.entryBirthDate.Date;
             set
             {
                 if (value != this.entryBirthDate)
