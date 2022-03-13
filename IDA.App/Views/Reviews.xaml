@@ -5,18 +5,16 @@
              x:Class="IDA.App.Views.Reviews"
              NavigationPage.HasNavigationBar="True"
              NavigationPage.HasBackButton="True">
-    
-   
-    
+  
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
-            
 
-            <StackLayout IsVisible="{Binding IsWorker}">
+            <Label Text="in this page you can find your reviews"></Label>
+
+            <StackLayout>
                 
                 <!--show reviews customer wrote-->
 
-                <Label Text="in this page you can find your reviews"></Label>
 
                 <Grid >
                     <Grid.RowDefinitions>

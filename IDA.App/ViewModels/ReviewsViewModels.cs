@@ -14,7 +14,7 @@ namespace IDA.App.ViewModels
 {
     class ReviewsViewModels : ViewModelBase
     {
-        
+
         #region is worker
         private bool isWorker;
         public bool IsWorker
@@ -49,6 +49,8 @@ namespace IDA.App.ViewModels
             }
         }
         #endregion
+
+        #region reviews
         private ObservableCollection<JobOffer> jobOffers;
         public ObservableCollection<JobOffer> JobOffers
         {
@@ -68,5 +70,7 @@ namespace IDA.App.ViewModels
             List<JobOffer> filtered = jobOffers.Where(j => j.WorkerReviewDate != null).ToList();
             this.JobOffers = new ObservableCollection<JobOffer>(filtered);
         }
+
+        #endregion
     }
 }
