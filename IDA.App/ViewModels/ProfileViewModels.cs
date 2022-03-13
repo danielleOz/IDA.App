@@ -309,7 +309,8 @@ namespace IDA.App.ViewModels
         public void OnUpdate()
         {
             Page NewPage = new Views.Update();
-            App.Current.MainPage.Nevigation.PushAsync(NewPage);
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
+              
         }
         #endregion
 
@@ -319,7 +320,7 @@ namespace IDA.App.ViewModels
         public void UpdateAvailbilty()
         {
             Page NewPage = new Views.Availbilty();
-            App.Current.MainPage.Nevigation.PushAsync(NewPage);
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
         }
         #endregion
 

@@ -14,6 +14,10 @@ namespace IDA.App.ViewModels
 {
     class ReviewsViewModels : ViewModelBase
     {
+        public ReviewsViewModels()
+        {
+
+        }
 
         #region is worker
         private bool isWorker;
@@ -48,6 +52,59 @@ namespace IDA.App.ViewModels
 
             }
         }
+        #endregion
+
+        #region worker name
+        private string workerName;
+        public string WorkerName
+        {
+
+            get
+            {
+                if(this.current.Worker == null)
+                {
+                    JobOffer currentJob = jobOffers.FirstOrDefault(o => o.UserId == this.current.User.Id);
+                    if (currentJob != null)
+                        return currentJob.ChosenWorker.FirstName;
+                   
+                    else
+                        return " ";
+                }
+
+                else
+                {
+                    JobOffer currentJob = jobOffers.FirstOrDefault(o => o.ChosenWorker.Id == this.current.Worker.Id);
+                    if (currentJob != null)
+                        return currentJob.User.FirstName;
+
+                    else
+                        return " ";
+                }
+
+               
+
+
+            }
+
+        }
+
+
+        //            if (Services == null)
+        //            {
+        //                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+        //        ((App) Application.Current).services = await IDAAPIProxy.GetServices();
+        //        Services = new ObservableCollection<Service>();
+        //                for (int i = 0; i<((App) Application.Current).services.Count; i++)
+        //                {
+        //                    this.Services.Add(((App) Application.Current).services[i]);
+        //                }
+        //}
+        //            else
+        //{
+        //    Services = null;
+        //}
+
+
         #endregion
 
         #region reviews

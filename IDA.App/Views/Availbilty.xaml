@@ -4,7 +4,7 @@
                xmlns:local ="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.Availbilty">
     <ContentPage.BindingContext>
-        <local:AvilabiltyViewModels></local:AvilabiltyViewModels>
+        <local:AvailbiltyViewModels></local:AvailbiltyViewModels>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>

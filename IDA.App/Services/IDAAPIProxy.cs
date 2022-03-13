@@ -417,7 +417,6 @@ namespace IDA.App.Services
             try
             {
 
-
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve,
