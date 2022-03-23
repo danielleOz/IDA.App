@@ -131,14 +131,9 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Photos\FinalLogo.png" />
     <Content Include="Photos\logo1.png" />
     <Content Include="Photos\logo2.png" />
-    <Content Include="Photos\newLogo1 %281%29.png" />
-    <Content Include="Photos\newlogo1.png" />
-    <Content Include="Photos\newLogo2 %281%29.png" />
-    <Content Include="Photos\newlogo2.png" />
-    <Content Include="Photos\newLogo3 %281%29.png" />
-    <Content Include="Photos\newlogo3.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
