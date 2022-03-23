@@ -69,8 +69,6 @@ namespace IDA.App.ViewModels
                 }
 
                 mainPageVM.LoginUser = user;
-                
-                
 
                 await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
@@ -80,7 +78,7 @@ namespace IDA.App.ViewModels
 
                 HomePageViewModels homePageViewModels = (HomePageViewModels)((theMainTabbedPage).home.BindingContext);
                 //if ((homePageViewModels.CounterCorrectAnswers > 0) && (homePageViewModels.CounterCorrectAnswers % 3 == 0))
-                //    theMainTabbedPage.AddTab((theMainTabbedPage).addQTab);
+                // theMainTabbedPage.AddTab((theMainTabbedPage).addQTab);
 
             }
             else

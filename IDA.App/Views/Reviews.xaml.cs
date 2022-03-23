@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using IDA.App.ViewModels;
 
 namespace IDA.App.Views
 {
@@ -14,6 +15,7 @@ namespace IDA.App.Views
     {
         public Reviews()
         {
+            this.BindingContext = new ReviewsViewModels();
             InitializeComponent();
         }
     }

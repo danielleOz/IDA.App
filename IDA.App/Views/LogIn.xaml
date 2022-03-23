@@ -11,7 +11,7 @@
         <StackLayout BackgroundColor="#fff7f7">
             <Label></Label>
 
-            <Image Source="FinalLogo.png" HeightRequest="280" WidthRequest="200" Aspect="AspectFit" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"> </Image>
+            <Image Source="FinalLogo.png" HeightRequest="80" WidthRequest="20" Aspect="AspectFit" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"> </Image>
             
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
                 <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
@@ -26,8 +26,8 @@
             </Frame>
 
             <Label></Label>
-            <Button Text="Login" BackgroundColor="#f0d9d7" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"  ></Button>
-            <Button Text="Go to register" BackgroundColor="#f0d9d7" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
+            <Button Text="Login" BackgroundColor="#f2cfcb" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"  ></Button>
+            <Button Text="Go to register" BackgroundColor="#f2cfcb" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
 
 
         </StackLayout>
