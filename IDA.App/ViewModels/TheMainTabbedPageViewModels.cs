@@ -9,15 +9,21 @@ using Xamarin.Forms;
 
 namespace IDA.App.ViewModels
 {
-    class TheMainTabbedPageViewModels : ViewModelBase
+    public class TheMainTabbedPageViewModels : ViewModelBase
     {
+       
+        public TheMainTabbedPageViewModels()
+        {
+            
 
+        }
         private User loginUser = null;
         public User LoginUser
         {
             get { return loginUser; }
             set
             {
+                
                 loginUser = value;
                 TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0];
                 if (loginUser == null) //Logout
