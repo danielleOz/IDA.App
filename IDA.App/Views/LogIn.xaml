@@ -26,8 +26,8 @@
             </Frame>
 
             <Label></Label>
-            <Button Text="Login" BackgroundColor="#f2cfcb" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"  ></Button>
-            <Button Text="Go to register" BackgroundColor="#f2cfcb" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
+            <Button Text="Login" BackgroundColor="#f0d9d7" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"  ></Button>
+            <Button Text="Go to register" BackgroundColor="#f0d9d7" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
 
 
         </StackLayout>

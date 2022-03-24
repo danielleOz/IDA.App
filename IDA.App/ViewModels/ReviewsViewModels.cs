@@ -65,23 +65,38 @@ namespace IDA.App.ViewModels
                 {
                     JobOffer currentJob = jobOffers.FirstOrDefault(o => o.UserId == this.current.User.Id);
                     if (currentJob != null)
-                        return currentJob.ChosenWorker.FirstName;
-                   
+                    {
+                        workerName = currentJob.ChosenWorker.FirstName;
+                        return workerName;
+                    }
+
                     else
-                        return " ";
+                    {
+                        workerName = " ";
+                        return workerName;
+                    }
+
                 }
 
                 else
                 {
                     JobOffer currentJob = jobOffers.FirstOrDefault(o => o.ChosenWorker.Id == this.current.Worker.Id);
                     if (currentJob != null)
-                        return currentJob.User.FirstName;
+                    {
+                        workerName = currentJob.User.FirstName;
+                        return workerName;
+                    }
+
 
                     else
-                        return " ";
+                    {
+                        workerName = " ";
+                        return workerName;
+                    }
+
                 }
 
-               
+
 
 
             }
