@@ -31,8 +31,11 @@ namespace IDA.App
         {
             services = new List<Service>();
             InitializeComponent();
+            TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
+            TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
+            tabbedPage.BindingContext = vm;
 
-            MainPage = new NavigationPage(new TheMainTabbedPage());
+            MainPage = new NavigationPage(tabbedPage);
             
         }
 
