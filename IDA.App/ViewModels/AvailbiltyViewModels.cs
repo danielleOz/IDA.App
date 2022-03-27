@@ -15,7 +15,7 @@ namespace IDA.App.ViewModels
         public AvailbiltyViewModels()
         {
 
-            this.Time = this.current.Worker.AvailbleUntil - DateTime.Today;
+            //this.Time = this.current.Worker.AvailbleUntil - DateTime.Today;
 
         }
 
@@ -69,6 +69,39 @@ namespace IDA.App.ViewModels
                 else
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
+                    time = current.Worker.AvailbleUntil;
+                    Time = time - DateTime.Today;
+
+                }
+
+            }
+
+        }
+
+        #endregion
+
+        #region Change to UnAvailble Worker 
+
+        public ICommand UnAvailbleWorkerCommand => new Command(UnAvailbleWorker);
+
+
+        private async void UnAvailbleWorker()
+        {
+            if (current.User.IsWorker)
+            {
+                current.Worker.AvailbleUntil = DateTime.Today;
+
+                IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+                bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
+                if (!success)
+                {
+                    await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
+                    current.Worker.AvailbleUntil = time;
+                }
+
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert(" ", "your now set as Unavailable", "ok", FlowDirection.RightToLeft);
                     time = current.Worker.AvailbleUntil;
                     Time = time - DateTime.Today;
 

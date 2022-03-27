@@ -9,6 +9,7 @@
         <StackLayout BackgroundColor="#fff7f7">
 
             <Label Text="in this page you can find your reviews"></Label>
+            
 
             <StackLayout>
                 
@@ -45,11 +46,6 @@
 
             </StackLayout>
 
-            <StackLayout IsVisible="{Binding IsntWorker}">
-                
-                <!--show reviews user wrote on workers -->
-
-            </StackLayout>
 
 
         </StackLayout>

@@ -17,7 +17,7 @@
                         <Label Text="avilable until" TextColor="#aaaaaa"></Label>
                         <TimePicker TextColor="#aaaaaa" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
                         <Button Text="change avilabilty" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
-                        <Button Text="set as unavailable" Command="{Binding UpdateAvailbiltyCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+                        <Button Text="set as unavailable" Command="{Binding UnAvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
 
 
 
