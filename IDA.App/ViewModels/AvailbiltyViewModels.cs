@@ -54,7 +54,7 @@ namespace IDA.App.ViewModels
 
         private async void AvailbleWorker()
         {
-            if (current.User.IsWorker)
+            if (current.User.IsWorker) 
             {
                 current.Worker.AvailbleUntil = time;
                 
