@@ -57,8 +57,8 @@ namespace IDA.App.ViewModels
             entryLname = currentUser.LastName;
             entryPass = currentUser.UserPswd;
 
-            Worker CurruntWorker = this.current.Worker;
-            entryRadius = CurruntWorker.RadiusKm.ToString();
+            //Worker CurruntWorker = this.current.Worker;
+            //entryRadius = CurruntWorker.RadiusKm.ToString();
               
        
         }
@@ -619,10 +619,10 @@ namespace IDA.App.ViewModels
         }
 
         //public ICommand UpdateCommand { get; set; }
-        public ICommand UpdateDetailsCommand => new Command(UpdateDetails);
+        public ICommand UpdateDetailsCommand => new Command(UpdateUserDetails);
 
 
-        private async void UpdateDetails()
+        private async void UpdateUserDetails()
         {
             this.ShowNameError = false;
             this.ShowLastNameError = false;
@@ -633,6 +633,7 @@ namespace IDA.App.ViewModels
             this.ShowRadiusError = false;
             this.ShowStreetError = false;
             this.showPassErorr = false;
+            this.showRadiusError = false;
 
             if (ValidateForm())
             {
@@ -640,33 +641,28 @@ namespace IDA.App.ViewModels
                 IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
 
                 bool isUpdated = false;
-                if (IsWorker)
+                //if (double.Parse(EntryRadius) != this.current.Worker.RadiusKm || this.current.Worker.WorkerServices != selectedServices)
+                if(isWorker)
                 {
-                    Worker w = this.current.Worker;
-                    {
-
-                    };
-
-                    w.UserPswd = EntryPass;
-                    w.FirstName = EntryFname;
-                    w.LastName = EntryLname;
-                    w.City = EntryCity;
-                    w.Birthday = EntryBirthDate;
-                    w.Street = EntryStreet;
-                    w.Apartment = EntryAp;
-                    w.HouseNumber = EntryHN;
-                    w.IsWorker = true;
-                    w.WorkerServices = new List<WorkerService>();
-                    foreach (Service s in workerServices)
-                    {
-                        w.WorkerServices.Add(new WorkerService() { Service = s });
-                    }
-
-                    w.RadiusKm = double.Parse(EntryRadius);
-
-                    w = await IDAproxy.WorkerUpdate(w);
-                    if (w != null)
-                        isUpdated = true;
+                    //Worker w = this.current.Worker;
+                    //w.UserPswd = EntryPass;
+                    //w.FirstName = EntryFname;
+                    //w.LastName = EntryLname;
+                    //w.City = EntryCity;
+                    //w.Birthday = EntryBirthDate;
+                    //w.Street = EntryStreet;
+                    //w.Apartment = EntryAp;
+                    //w.HouseNumber = EntryHN;
+                    //w.IsWorker = true;
+                    //w.RadiusKm = double.Parse(EntryRadius);
+                    //w.WorkerServices = new List<WorkerService>();
+                    //foreach (Service s in workerServices)
+                    //{
+                    //    w.WorkerServices.Add(new WorkerService() { Service = s });
+                    //}
+                    //w = await IDAproxy.WorkerUpdate(w);
+                    //if (w != null)
+                    //    isUpdated = true;
 
 
                 }

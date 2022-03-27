@@ -53,13 +53,18 @@ namespace IDA.App.ViewModels
 
         #region Change to Availble Worker 
 
-        public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
+        //public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
 
 
         private async void AvailbleWorker()
         {
             if (current.User.IsWorker) 
             {
+                if(time<DateTime.Now)
+                {
+                    await App.Current.MainPage.DisplayAlert(" ", "", "ok", FlowDirection.RightToLeft);
+
+                }
                 current.Worker.AvailbleUntil = time;
                 
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();

@@ -31,7 +31,7 @@
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryStreet, StringFormat='street- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryAp, StringFormat='aprtmant- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryAp , StringFormat='aprtmant- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryHN, StringFormat='house number- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
@@ -53,7 +53,7 @@
                         <Label Text=" "></Label>
                         <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>
-                        <Button Text="aaaa" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand }"></Button>
+                        <Button Text="aaaa" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand }" IsVisible="{Binding IsWorker}"></Button>
 
 
                         <!--customer can see the reviews he wrote worker will be able to see what was wreeten on himcustomer can see the reviews he wrote worker will be able to see what was wreeten on him-->

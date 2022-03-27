@@ -411,42 +411,42 @@ namespace IDA.App.Services
         }
         #endregion
 
-        #region Worker Update
-        public async Task<Worker> WorkerUpdate(Worker w)
-        {
-            try
-            {
+        //#region Worker Update
+        //public async Task<Worker> WorkerUpdate(Worker w)
+        //{
+        //    try
+        //    {
 
-                JsonSerializerOptions options = new JsonSerializerOptions
-                {
-                    ReferenceHandler = ReferenceHandler.Preserve,
-                    PropertyNameCaseInsensitive = true
-                };
+        //        JsonSerializerOptions options = new JsonSerializerOptions
+        //        {
+        //            ReferenceHandler = ReferenceHandler.Preserve,
+        //            PropertyNameCaseInsensitive = true
+        //        };
 
-                string jsonObject = JsonSerializer.Serialize<Worker>(w, options);
-                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+        //        string jsonObject = JsonSerializer.Serialize<Worker>(w, options);
+        //        StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/WorkerUpdate", content);
-                if (response.IsSuccessStatusCode)
-                {
+        //        HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/WorkerUpdate", content);
+        //        if (response.IsSuccessStatusCode)
+        //        {
 
-                    string str = await response.Content.ReadAsStringAsync();
+        //            string str = await response.Content.ReadAsStringAsync();
 
-                    Worker worker = JsonSerializer.Deserialize<Worker>(str, options);
-                    return worker;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                return null;
-            }
-        }
-        #endregion
+        //            Worker worker = JsonSerializer.Deserialize<Worker>(str, options);
+        //            return worker;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //        return null;
+        //    }
+        //}
+        //#endregion
 
 
     }
