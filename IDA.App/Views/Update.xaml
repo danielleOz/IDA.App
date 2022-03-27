@@ -105,7 +105,7 @@
                                 <StackLayout>
                                     <Label Text="radius" TextColor="#bdbdbd"></Label>
                                     <Entry Text="{Binding EntryRadius}" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                                    <Label Text="{Binding RadiusError }" IsVisible="{Binding ShowRadiusError }" TextColor="#aaaaaa"/>
+                                    <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError }" TextColor="#aaaaaa"/>
 
                                 </StackLayout>
                             </Frame>

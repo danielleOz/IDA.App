@@ -56,6 +56,11 @@ namespace IDA.App.ViewModels
             entryFname = currentUser.FirstName;
             entryLname = currentUser.LastName;
             entryPass = currentUser.UserPswd;
+
+            Worker CurruntWorker = this.current.Worker;
+            entryRadius = CurruntWorker.RadiusKm.ToString();
+              
+       
         }
 
         #region city
@@ -573,7 +578,7 @@ namespace IDA.App.ViewModels
         private bool isWorker;
         public bool IsWorker
         {
-            get => this.isWorker;
+            get => this.current.User.IsWorker;
             set
             {
                 if (value != this.isWorker)

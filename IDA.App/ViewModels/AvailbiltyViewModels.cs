@@ -15,7 +15,7 @@ namespace IDA.App.ViewModels
         public AvailbiltyViewModels()
         {
 
-            //this.Time = this.current.Worker.AvailbleUntil - DateTime.Today;
+            this.time = this.current.Worker.AvailbleUntil;
 
         }
 
@@ -40,9 +40,13 @@ namespace IDA.App.ViewModels
             get => time - DateTime.Today;
             set
             {
-                this.time = DateTime.Today.Add(value);
-                OnPropertyChanged("IsAvailable");
-                OnPropertyChanged("Time");
+                if (this.time != DateTime.Today.Add(value))
+                {
+                    this.time = DateTime.Today.Add(value);
+                    AvailbleWorker();
+                }
+                
+                
             }
         }
         #endregion
@@ -70,8 +74,9 @@ namespace IDA.App.ViewModels
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
                     time = current.Worker.AvailbleUntil;
-                    Time = time - DateTime.Today;
-
+                    //Time = time - DateTime.Today;
+                    OnPropertyChanged("IsAvailable");
+                    OnPropertyChanged("Time");
                 }
 
             }
@@ -103,7 +108,9 @@ namespace IDA.App.ViewModels
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "your now set as Unavailable", "ok", FlowDirection.RightToLeft);
                     time = current.Worker.AvailbleUntil;
-                    Time = time - DateTime.Today;
+                    //Time = time - DateTime.Today;
+                    OnPropertyChanged("IsAvailable");
+                    OnPropertyChanged("Time");
 
                 }
 

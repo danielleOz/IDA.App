@@ -41,9 +41,8 @@
                         <Label Text=" "></Label>
 
                     </StackLayout>
-
                 </Frame>
-                
+
                 <Label Text=" "></Label>
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="230">
