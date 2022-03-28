@@ -86,7 +86,7 @@ namespace IDA.Services
 
             foreach(City city in cities)
             {
-                citiesName.Add(city.name);
+                citiesName.Add(city.english_name);
             }
             citiesName.Remove(citiesName[0]);
 

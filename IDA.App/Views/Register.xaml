@@ -53,11 +53,13 @@
                 </Frame>
 
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
-                        <Entry Text="{Binding EntryCity}" Placeholder="city" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="city"  TextColor="#aaaaaa"></Label>
                         <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" TextColor="#aaaaaa"/>
-
+                        <SearchBar Placeholder="search city" Text="{Binding City}"/>
+                        <CollectionView EmptyView="cold not find cities"  x:Name="cities" ItemsSource="{Binding FilteredCities}" SelectedItem="{Binding SelectedCityItem}" SelectionMode="Single"
+                                   IsVisible="{Binding ShowCities}" SelectionChangedCommand="{Binding Source={x:Reference cities}, Path=BindingContext.SelectedCity}" SelectionChangedCommandParameter="{Binding Source={x:Reference cities}, Path=SelectedItem}"></CollectionView>
                     </StackLayout>
                 </Frame>
 

@@ -8,10 +8,9 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
-            
+
             <Label Text="user pageeeeeeeeee"></Label>
-
-
+            <Button Command="{Binding newcommand}"></Button>
 
         </StackLayout>
     </ContentPage.Content>

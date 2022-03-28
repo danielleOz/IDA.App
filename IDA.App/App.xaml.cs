@@ -5,6 +5,8 @@ using IDA.App.Views;
 using Xamarin.Forms.Xaml;
 using System.Collections.Generic;
 using IDA.App.Models;
+using IDA.DTO;
+using IDA.App.Services;
 
 namespace IDA.App
 {
@@ -27,23 +29,40 @@ namespace IDA.App
                 return true; //change this before release!
             }
         }
+
+        public List<string> Cities { get; set; }
+        public List<string> Streets { get; set; }
+        public List<Street> StreetList { get; set; }
+
+
         public App()
         {
+            Cities = new List<string>();
+            Streets = new List<string>();
+            StreetList = new List<Street>();
             services = new List<Service>();
+            OnStart();
             InitializeComponent();
+          
             TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
             TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
             tabbedPage.BindingContext = vm;
 
-            MainPage = new NavigationPage(tabbedPage)
-            {
-                BarBackgroundColor = Color.FromHex("#f0d9d7")
-            };
-            
+            Page page = new HomePage();
+            MainPage = new NavigationPage(page);
+            //MainPage = new NavigationPage(tabbedPage)
+            //{
+            //    BarBackgroundColor = Color.FromHex("#f0d9d7")
+            //};
+
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
+            IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
+            this.Streets = await proxy.GetStreetsAsync();
+            this.Cities = await proxy.GetCitiesAsync();
+            this.StreetList = await proxy.GetStreetListAsync();
         }
 
         protected override void OnSleep()
