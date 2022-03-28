@@ -35,7 +35,10 @@ namespace IDA.App
             TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
             tabbedPage.BindingContext = vm;
 
-            MainPage = new NavigationPage(tabbedPage);
+            MainPage = new NavigationPage(tabbedPage)
+            {
+                BarBackgroundColor = Color.FromHex("#f0d9d7")
+            };
             
         }
 

@@ -309,7 +309,9 @@ namespace IDA.App.ViewModels
         public ICommand UpdateCommand => new Command(OnUpdate);
         public void OnUpdate()
         {
+            UpdateViewModels vm = new UpdateViewModels();
             Page NewPage = new Views.Update();
+            NewPage.BindingContext = vm;
             App.Current.MainPage.Navigation.PushAsync(NewPage);
               
         }

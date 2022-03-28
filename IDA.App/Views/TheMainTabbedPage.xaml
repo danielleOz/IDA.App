@@ -12,6 +12,6 @@
              xmlns:local="clr-namespace:IDA.App.Views"
             xmlns:windows="clr-namespace:Xamarin.Forms.PlatformConfiguration.WindowsSpecific;assembly=Xamarin.Forms.Core"
             windows:TabbedPage.HeaderIconsEnabled="True" >
-    
+
 
 </TabbedPage>
