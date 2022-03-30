@@ -60,6 +60,7 @@ namespace IDA.App.ViewModels
             {
                 TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0];
                 TheMainTabbedPageViewModels mainPageVM = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
+
                 this.current.User = user;
                 //TO DO: Assign worker and customer as needed
                 if (user is Worker)
@@ -68,17 +69,17 @@ namespace IDA.App.ViewModels
                     this.current.Worker = (Worker)user;
                 }
 
-                mainPageVM.LoginUser = user;
 
+                mainPageVM.LoginUser = user;
+                
                 await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
 
                 //Page p = new UserPage();
                 //await App.Current.MainPage..PushAsync(p);
 
-                HomePageViewModels homePageViewModels = (HomePageViewModels)((theMainTabbedPage).home.BindingContext);
-                //if ((homePageViewModels.CounterCorrectAnswers > 0) && (homePageViewModels.CounterCorrectAnswers % 3 == 0))
-                // theMainTabbedPage.AddTab((theMainTabbedPage).addQTab);
+                JobOfferPageViewModels JobOfferViewModels = (JobOfferPageViewModels)(theMainTabbedPage.home.BindingContext);
+
 
             }
             else

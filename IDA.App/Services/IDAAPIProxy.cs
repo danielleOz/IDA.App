@@ -484,7 +484,7 @@ namespace IDA.App.Services
 
             foreach (City city in cities)
             {
-                citiesName.Add(city.name);
+                citiesName.Add(city.english_name);
             }
             citiesName.Remove(citiesName[0]);
 
@@ -569,6 +569,35 @@ namespace IDA.App.Services
         }
         #endregion
 
+        #region GetStreetListAsync
+        public async Task<List<Street>> GetStreetListAsync()
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseDataUri}/streets.json?666");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+
+                    List<Street> streets = JsonSerializer.Deserialize<List<Street>>(content, options);
+                    return streets;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+        #endregion
 
         #region GetStreetsNameByCity
         private List<string> GetStreetsNameByCity(List<Street> streets, string city)
@@ -615,36 +644,22 @@ namespace IDA.App.Services
         }
         #endregion
 
-
-        #region GetStreetListAsync
-        public async Task<List<Street>> GetStreetListAsync()
+        #region GetServicesNameList
+        private List<string> GetServicesNameList(List<Service> services)
         {
-            try
-            {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseDataUri}/streets.json?666");
-                if (response.IsSuccessStatusCode)
-                {
-                    JsonSerializerOptions options = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    };
-                    string content = await response.Content.ReadAsStringAsync();
+            List<string> serviceName = new List<string>();
 
-                    List<Street> streets = JsonSerializer.Deserialize<List<Street>>(content, options);
-                    return streets;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
+            foreach (Service s in services)
             {
-                Console.WriteLine(e.Message);
-                return null;
+                serviceName.Add(s.Name);
             }
+
+            return serviceName;
         }
         #endregion
+
+
+       
 
     }
 

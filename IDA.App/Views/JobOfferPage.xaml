@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IDA.App.Views.JobOfferPage">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                <StackLayout>
+                    <SearchBar Placeholder="search services" Text="{Binding Services}"/>
+                    <CollectionView EmptyView="could not find services"  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedStreetItem}" SelectionMode="Single"
+                                   IsVisible="{Binding ShowServicesError}" SelectionChangedCommand="{Binding Source={x:Reference services}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference services}, Path=SelectedItem}"></CollectionView>
+                </StackLayout>
+            </Frame>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+    

@@ -37,6 +37,8 @@ namespace IDA.App.ViewModels
         #endregion
 
 
+
+
         #region isnt worker
         private bool isntWorker;
         public bool IsntWorker

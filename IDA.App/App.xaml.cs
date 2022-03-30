@@ -41,12 +41,12 @@ namespace IDA.App
             Streets = new List<string>();
             StreetList = new List<Street>();
             services = new List<Service>();
-            OnStart();
+            //OnStart();
             InitializeComponent();
-          
-            TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
-            TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
-            tabbedPage.BindingContext = vm;
+            MainPage = new Loading();
+            //TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
+            //TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
+            //tabbedPage.BindingContext = vm;
 
             Page page = new HomePage();
             MainPage = new NavigationPage(page);
@@ -63,6 +63,18 @@ namespace IDA.App
             this.Streets = await proxy.GetStreetsAsync();
             this.Cities = await proxy.GetCitiesAsync();
             this.StreetList = await proxy.GetStreetListAsync();
+            this.services = await proxy.GetServices();
+            //Page page = new JobOfferPage();
+            //MainPage = new NavigationPage(page);
+            TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
+            TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
+            tabbedPage.BindingContext = vm;
+            MainPage = new NavigationPage(tabbedPage)
+            {
+                BarBackgroundColor = Color.FromHex("#f0d9d7")
+            };
+
+
         }
 
         protected override void OnSleep()

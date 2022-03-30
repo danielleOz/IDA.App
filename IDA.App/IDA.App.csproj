@@ -20,6 +20,9 @@
     <Compile Update="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\JobOfferPage.xaml.cs">
+      <DependentUpon>JobOfferPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Reviews.xaml.cs">
       <DependentUpon>Reviews.xaml</DependentUpon>
     </Compile>
@@ -27,6 +30,12 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\Availbilty.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\JobOfferPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Loading.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LogIn.xaml">
