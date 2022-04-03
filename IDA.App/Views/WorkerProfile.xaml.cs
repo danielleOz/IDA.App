@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using IDA.App.ViewModels;
 
 namespace IDA.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WorkerD : ContentPage
+    public partial class WorkerProfile : ContentPage
     {
-        public WorkerD()
+        public WorkerProfile()
         {
+            this.BindingContext = new WorkerProfileViewModels();
             InitializeComponent();
         }
     }

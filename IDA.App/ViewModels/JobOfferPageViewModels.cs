@@ -162,5 +162,16 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+        #region go to worker profile page
+        public ICommand WorkerPCommand => new Command(workerP);
+        public void workerP()
+        {
+            WorkerProfileViewModels vm = new WorkerProfileViewModels();
+            Page NewPage = new Views.WorkerProfile();
+            NewPage.BindingContext = vm;
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
+
+        }
+        #endregion
     }
 }

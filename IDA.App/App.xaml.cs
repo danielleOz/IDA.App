@@ -59,6 +59,7 @@ namespace IDA.App
 
         protected async override void OnStart()
         {
+           
             IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
             this.Streets = await proxy.GetStreetsAsync();
             this.Cities = await proxy.GetCitiesAsync();

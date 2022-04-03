@@ -125,6 +125,7 @@ namespace IDA.App.Services
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     User u = JsonSerializer.Deserialize<User>(content, options);
+                    //TO DO: loop  through  user job offers and get chosen worker for each one!
                     if (u.IsWorker)
                     {
                         w = JsonSerializer.Deserialize<Worker>(content, options);
