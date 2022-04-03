@@ -108,9 +108,39 @@ namespace IDA.App.Services
 
         public string GetBasePhotoUri() { return this.basePhotosUri; }
 
-        #region login
-        //Login - if user name and password are correct User object is returned. otherwise a null will be returned
-        public async Task<User> LoginAsync(string email, string pass)
+        public async Task<Worker> GetWorkerAsync(int? workerId)
+        {
+            try
+            {
+                if (workerId == null)
+                    return null;
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetWorker?workerId={workerId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    Worker w = JsonSerializer.Deserialize<Worker>(content, options);
+                    return w;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+            
+    #region login
+    //Login - if user name and password are correct User object is returned. otherwise a null will be returned
+    public async Task<User> LoginAsync(string email, string pass)
         {
             Worker w = null;
             try
@@ -126,9 +156,19 @@ namespace IDA.App.Services
                     string content = await response.Content.ReadAsStringAsync();
                     User u = JsonSerializer.Deserialize<User>(content, options);
                     //TO DO: loop  through  user job offers and get chosen worker for each one!
+                    foreach(JobOffer job in u.JobOffers)
+                    {
+                        if (job.ChosenWorkerId != null)
+                            job.ChosenWorker = await this.GetWorkerAsync(job.ChosenWorkerId);
+                    }
                     if (u.IsWorker)
                     {
                         w = JsonSerializer.Deserialize<Worker>(content, options);
+                        foreach (JobOffer job in w.WorkerJobOffers)
+                        {
+                            if (job.ChosenWorkerId != null)
+                                job.ChosenWorker = await this.GetWorkerAsync(job.ChosenWorkerId);
+                        }
                         return w;
                     }
                     else
