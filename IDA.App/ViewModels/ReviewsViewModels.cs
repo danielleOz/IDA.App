@@ -146,6 +146,6 @@ namespace IDA.App.ViewModels
             this.JobOffers = new ObservableCollection<JobOffer>(filtered);
         }
 
-
+       
     }
 }

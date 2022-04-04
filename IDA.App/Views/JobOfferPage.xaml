@@ -12,14 +12,15 @@
                                    IsVisible="{Binding ShowServicesError}" SelectionChangedCommand="{Binding Source={x:Reference services}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference services}, Path=SelectedItem}">
                     </CollectionView>
 
-                    <Button Text="ss" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
                
                 
                 </StackLayout>
                 
             </Frame>
+
+            <Button Text="see the worker review" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
+
             
-          
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -78,8 +78,8 @@ namespace IDA.App.ViewModels
             public const string BAD_PHONE = "invalid phone";
             public const string BAD_DATE = "you must be above 18";
             public const string BAD_RADIUS = "must be a number";
-            public const string BAD_CITY = "must be a number";
-            public const string BAD_STREET = "must be a number";
+            public const string BAD_CITY = "city must be from list";
+            public const string BAD_STREET = "must be from list";
         }
         #endregion
 

@@ -4,6 +4,8 @@
              x:Class="IDA.App.Views.WorkerProfile">
     <ContentPage.Content>
         <StackLayout>
+
+            <Label Text=" "> </Label>
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="50"  HorizontalOptions="Center">
                 <StackLayout>
                     <Label Text="{Binding WName}"></Label>
@@ -14,37 +16,7 @@
 
             <StackLayout>
 
-                <!--show reviews on this worker wrote-->
-
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="2*" ></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="500" ></ColumnDefinition>
-                        <ColumnDefinition Width="*" ></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding Reviews}" EmptyView="there are no reviews right now"  >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text=" " />
-                                            <Span Text="{Binding ReviewDateString} " />
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-
-                </Grid>
-
-
+                <Label Text="here you will be able workers info (reviews and details) after seeing his job offer in the job offer page "> </Label>
             </StackLayout>
 
         </StackLayout>

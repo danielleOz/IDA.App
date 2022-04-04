@@ -36,7 +36,11 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
-                                            <Span Text="{Binding ChosenWorker.Email} " />
+                                            <Span Text="{Binding ChosenWorker.FirstName} " />
+                                            <Span Text="{Binding JobOffers.Description}" />
+                                            <Span Text="&#10; " />
+                                            <Span Text="{Binding ReviewDateString}" />
+
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
