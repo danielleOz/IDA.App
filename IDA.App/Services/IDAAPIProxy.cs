@@ -185,6 +185,7 @@ namespace IDA.App.Services
                 return null;
             }
         }
+
         #endregion
 
         #region User Register
