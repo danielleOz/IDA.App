@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using IDA.App.ViewModels;
 
 namespace IDA.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Update : ContentPage
+    public partial class Loading : ContentPage
     {
-        public Update()
+        public Loading()
         {
-            this.BindingContext = new UpdateViewModels();
             InitializeComponent();
         }
     }

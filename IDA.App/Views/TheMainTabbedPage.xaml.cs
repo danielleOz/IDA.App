@@ -17,7 +17,7 @@ namespace IDA.App.Views
     {
         public Register register;
         public LogIn logIn;
-        public HomePage home;
+        public JobOfferPage home ;
         public Profile profile;
 
         public TheMainTabbedPage()
@@ -27,8 +27,8 @@ namespace IDA.App.Views
             On<Windows>().SetHeaderIconsEnabled(true);
             On<Windows>().SetHeaderIconsSize(new Size(50, 50));
 
-            home = new HomePage();
-            home.Title = "home page";
+            home = new JobOfferPage();
+            home.Title = "job offer";
             //home.IconImageSource = "home.png.png";
             //this.Children.Add(home);
             

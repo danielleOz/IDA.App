@@ -2,16 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
-             x:Class="IDA.App.Views.HomePage">
+             x:Class="IDA.App.Views.HomePage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#FFE9E9">
     <ContentPage.BindingContext>
         <local:HomePageViewModels></local:HomePageViewModels>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#fff7f7">
+        <StackLayout BackgroundColor="#FFE9E9" HorizontalOptions="Center" VerticalOptions="Center">
             
-            <Label Text="user pageeeeeeeeee"></Label>
-
-
+            <Image Source="finallogo.png" HeightRequest="500" WidthRequest="1000" BackgroundColor="Transparent"></Image>
+            <!--BackgroundColor="#fff7f7"-->
 
         </StackLayout>
     </ContentPage.Content>

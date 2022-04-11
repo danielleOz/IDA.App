@@ -45,9 +45,9 @@
 
                 <Label Text=" "></Label>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="230">
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="240">
 
-                    <StackLayout>
+                    <StackLayout >
 
                         <Button Text="update your personal details" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateCommand}"></Button>
                         <Label Text=" "></Label>

@@ -56,11 +56,14 @@ namespace IDA.App.ViewModels
             entryFname = currentUser.FirstName;
             entryLname = currentUser.LastName;
             entryPass = currentUser.UserPswd;
+            if(currentUser.IsWorker)
+            {
+                Worker CurruntWorker = this.current.Worker;
+                entryRadius = CurruntWorker.RadiusKm.ToString();
+            }
 
-            //Worker CurruntWorker = this.current.Worker;
-            //entryRadius = CurruntWorker.RadiusKm.ToString();
-              
-       
+
+
         }
 
         #region city

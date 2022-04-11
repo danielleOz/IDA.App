@@ -4,16 +4,15 @@
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
               x:Class="IDA.App.Views.Update">
 
-    <ContentPage.BindingContext>
-        <local:UpdateViewModels></local:UpdateViewModels>
-    </ContentPage.BindingContext>
+   
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="#fff7f7">
+                
+                <Label Text=" "></Label>
+                <Label Text="update"  TextColor="#aaaaaa" FontFamily="Bodoni MT Black" FontSize="Large" Font="Bold,20" HorizontalOptions="Center"></Label>
 
-                <Label Text="update your personal information "></Label>
-
-
+                <Label Text=" "></Label>
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
@@ -24,6 +23,7 @@
                     </StackLayout>
                 </Frame>
 
+                <Label Text=" "></Label>
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="last name" TextColor="#bdbdbd"></Label>
@@ -32,7 +32,7 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=" "></Label>
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="password" TextColor="#bdbdbd"></Label>
@@ -41,7 +41,7 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=" "></Label>
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="city" TextColor="#bdbdbd"></Label>
@@ -51,7 +51,7 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=" "></Label>
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="street" TextColor="#bdbdbd"></Label>
@@ -62,7 +62,7 @@
                 </Frame>
 
 
-
+                <Label Text=" "></Label>
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="house number" TextColor="#bdbdbd"></Label>
@@ -72,18 +72,18 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=" "></Label>
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="aprtment" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryAp}" Placeholder="aprtment" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryAp, Mode=OneWay}" Placeholder="aprtment" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
                         <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" TextColor="#aaaaaa"/>
 
                     </StackLayout>
                 </Frame>
 
 
-
+                <Label Text=" "></Label>
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="birth date" TextColor="#bdbdbd"></Label>
@@ -95,13 +95,13 @@
 
                 <!--WORKER DETAILS PART-->
                 <StackLayout IsVisible="{Binding IsWorker}">
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
+               
 
                     <StackLayout>
 
                         <Label Text=""></Label>
 
-                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="200"  HorizontalOptions="Center">
+                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="50"  HorizontalOptions="Center">
                                 <StackLayout>
                                     <Label Text="radius" TextColor="#bdbdbd"></Label>
                                     <Entry Text="{Binding EntryRadius}" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
@@ -111,7 +111,7 @@
                             </Frame>
 
                             <Label Text=" "></Label>
-
+                        <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="140">
                             <StackLayout Orientation="Horizontal">
 
                                 <Grid >
@@ -147,11 +147,11 @@
                                 </Grid>
 
 
-                        </StackLayout>
-
+                            </StackLayout>
+                        </Frame>
 
                     </StackLayout>
-                </Frame>
+
                 </StackLayout>
                 <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=UpdateDetailsCommand}"></Button>
 

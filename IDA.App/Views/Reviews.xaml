@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
-             x:Class="IDA.App.Views.Reviews" >
+             x:Class="IDA.App.Views.Reviews" 
+             NavigationPage.HasNavigationBar="True"
+             >
 
   
     <ContentPage.Content>
@@ -14,7 +16,7 @@
 
                 <StackLayout>
                 
-                <!--show reviews customer wrote-->
+                <!--show reviews customer wrote or was written on worker-->
 
                 <Grid >
                     <Grid.RowDefinitions>
@@ -34,7 +36,11 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
-                                            <Span Text="{Binding ReviewDateString} " />
+                                            <Span Text="{Binding ChosenWorker.FirstName} " />
+                                            <Span Text="{Binding JobOffers.Description}" />
+                                            <Span Text="&#10; " />
+                                            <Span Text="{Binding ReviewDateString}" />
+
                                         </FormattedString>
                                     </Label.FormattedText>
                                 </Label>

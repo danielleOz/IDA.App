@@ -17,6 +17,7 @@ namespace IDA.App.Views
         {
             this.BindingContext = new ReviewsViewModels();
             InitializeComponent();
+            
         }
     }
 }

@@ -11,11 +11,11 @@ using IDA.App.ViewModels;
 namespace IDA.App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Update : ContentPage
+    public partial class WorkerProfile : ContentPage
     {
-        public Update()
+        public WorkerProfile()
         {
-            this.BindingContext = new UpdateViewModels();
+            this.BindingContext = new WorkerProfileViewModels();
             InitializeComponent();
         }
     }

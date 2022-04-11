@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IDA.App.Views.WorkerProfile">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Label Text=" "> </Label>
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="50"  HorizontalOptions="Center">
+                <StackLayout>
+                    <Label Text="{Binding WName}"></Label>
+                    <!--worker pic-->
+
+                </StackLayout>
+            </Frame>
+
+            <StackLayout>
+
+                <Label Text="here you will be able workers info (reviews and details) after seeing his job offer in the job offer page "> </Label>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
