@@ -41,23 +41,24 @@
                     </StackLayout>
                 </Frame>
 
-                <Label Text=" "></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
-                        <Label Text="city" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryCity}" Placeholder="city" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="city"  TextColor="#aaaaaa"></Label>
                         <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" TextColor="#aaaaaa"/>
-
+                        <SearchBar Placeholder="search city" Text="{Binding City}"/>
+                        <CollectionView EmptyView="cold not find cities"  x:Name="cities" ItemsSource="{Binding FilteredCities}" SelectedItem="{Binding SelectedCityItem}" SelectionMode="Single"
+                                   IsVisible="{Binding ShowCities}" SelectionChangedCommand="{Binding Source={x:Reference cities}, Path=BindingContext.SelectedCity}" SelectionChangedCommandParameter="{Binding Source={x:Reference cities}, Path=SelectedItem}"></CollectionView>
                     </StackLayout>
                 </Frame>
 
-                <Label Text=" "></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
-                    <StackLayout>
-                        <Label Text="street" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryStreet}" Placeholder="street" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                        <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
 
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                    <StackLayout>
+                        <Label Text="street"  TextColor="#aaaaaa"></Label>
+                        <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
+                        <SearchBar Placeholder="search street" Text="{Binding Street}"/>
+                        <CollectionView EmptyView="could not find streets"  x:Name="streets" ItemsSource="{Binding FilteredStreets}" SelectedItem="{Binding SelectedStreetItem}" SelectionMode="Single"
+                                   IsVisible="{Binding ShowStreetError}" SelectionChangedCommand="{Binding Source={x:Reference streets}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference streets}, Path=SelectedItem}"></CollectionView>
                     </StackLayout>
                 </Frame>
 

@@ -8,6 +8,8 @@ using System.Collections.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using IDA.DTO;
+using System.Linq;
 
 namespace IDA.App.ViewModels
 {
@@ -15,30 +17,32 @@ namespace IDA.App.ViewModels
     class UpdateViewModels : ViewModelBase
     {
 
-        public ObservableCollection<object> selectedServices;
-        public ObservableCollection<object> SelectedServices
-        {
-            get => selectedServices;
-            set
-            {
-                if (selectedServices != value)
-                    selectedServices = value;
-            }
-        }
-        private List<Service> workerServices;
+        //public ObservableCollection<object> selectedServices;
+        //public ObservableCollection<object> SelectedServices
+        //{
+        //    get => selectedServices;
+        //    set
+        //    {
+        //        if (selectedServices != value)
+        //            selectedServices = value;
+        //    }
+        //}
+        //private List<Service> workerServices;
 
-        private ObservableCollection<Service> services;
-        public ObservableCollection<Service> Services { get => services; set { services = value; OnPropertyChanged("Services"); } }
+        //private ObservableCollection<Service> services;
+        //public ObservableCollection<Service> Services { get => services; set { services = value; OnPropertyChanged("Services"); } }
 
-        public static class ERROR_MESSAGES
-        {
-            public const string REQUIRED_FIELD = "this is a required field";
-            public const string BAD_EMAIL = "invalid email";
-            public const string SHORT_PASS = "password must contain at least 6 characters";
-            public const string BAD_PHONE = "invalid phone";
-            public const string BAD_DATE = "you must be above 18";
-            public const string BAD_RADIUS = "must be a number";
-        }
+        //public static class ERROR_MESSAGES
+        //{
+        //    public const string REQUIRED_FIELD = "this is a required field";
+        //    public const string BAD_EMAIL = "invalid email";
+        //    public const string SHORT_PASS = "password must contain at least 6 characters";
+        //    public const string BAD_PHONE = "invalid phone";
+        //    public const string BAD_DATE = "you must be above 18";
+        //    public const string BAD_RADIUS = "must be a number";
+        //    public const string BAD_CITY = "city must be from list";
+        //    public const string BAD_STREET = "must be from list";
+        //}
 
         public UpdateViewModels()
         {
@@ -47,10 +51,14 @@ namespace IDA.App.ViewModels
             SelectedServices = new ObservableCollection<object>();
             //UpdateCommand = new Command(Update);
             SelectServicesCommand = new Command(SelectServices);
+            this.allCities = current.Cities;
+            this.FilteredCities = new ObservableCollection<string>();
+            this.allStreets = current.StreetList;
+            this.FilteredStreets = new ObservableCollection<string>();
             User currentUser = this.current.User;
             entryAp = currentUser.Apartment;
-            entryCity = currentUser.City;
-            entryStreet = currentUser.Street;
+            city = currentUser.City;
+            street = currentUser.Street;
             entryHN = currentUser.HouseNumber;
             entryBirthDate = currentUser.Birthday;
             entryFname = currentUser.FirstName;
@@ -66,22 +74,182 @@ namespace IDA.App.ViewModels
 
         }
 
-        #region city
-        private string entryCity;
-        public string EntryCity
+        #region city + street
+
+        public ObservableCollection<object> selectedServices;
+        public ObservableCollection<object> SelectedServices
         {
-            get => this.entryCity;
+            get => selectedServices;
             set
             {
-                if (value != this.entryCity)
+                if (selectedServices != value)
+                    selectedServices = value;
+            }
+        }
+        private List<string> allCities;
+        private ObservableCollection<string> filteredCities;
+        public ObservableCollection<string> FilteredCities
+        {
+            get
+            {
+                return this.filteredCities;
+            }
+            set
+            {
+                if (this.filteredCities != value)
                 {
-                    this.entryCity = value;
-                    ValidateCity();
-                    OnPropertyChanged("EntryCity");
+
+                    this.filteredCities = value;
+                    OnPropertyChanged("FilteredCities");
                 }
             }
         }
 
+        private List<Street> allStreets;
+        private ObservableCollection<string> filteredStreets;
+        public ObservableCollection<string> FilteredStreets
+        {
+            get
+            {
+                return this.filteredStreets;
+            }
+            set
+            {
+                if (this.filteredStreets != value)
+                {
+
+                    this.filteredStreets = value;
+                    OnPropertyChanged("FilteredStreets");
+                }
+            }
+        }
+        private List<Service> workerServices;
+
+        private ObservableCollection<Service> services;
+        public ObservableCollection<Service> Services { get => services; set { services = value; OnPropertyChanged("Services"); } }
+
+        public static class ERROR_MESSAGES
+        {
+            public const string REQUIRED_FIELD = "this is a required field";
+            public const string BAD_EMAIL = "invalid email";
+            public const string SHORT_PASS = "password must contain at least 6 characters";
+            public const string BAD_PHONE = "invalid phone";
+            public const string BAD_DATE = "you must be above 18";
+            public const string BAD_RADIUS = "must be a number";
+            public const string BAD_CITY = "city must be from list";
+            public const string BAD_STREET = "must be from list";
+        }
+        #endregion
+
+        #region OnCityChanged
+        public void OnCityChanged(string search)
+        {
+            this.Street = "";
+            this.ShowStreets = false;
+            this.FilteredStreets.Clear();
+            this.IsStreetEnabled = false;
+
+            if (this.City != this.SelectedCityItem)
+            {
+                this.ShowCities = true;
+                this.SelectedCityItem = null;
+            }
+            //Filter the list of cities based on the search term
+            if (this.allCities == null)
+                return;
+            if (String.IsNullOrWhiteSpace(search) || String.IsNullOrEmpty(search))
+            {
+                this.ShowCities = false;
+                this.FilteredCities.Clear();
+            }
+            else
+            {
+                foreach (string city in this.allCities)
+                {
+                    if (!this.FilteredCities.Contains(city) &&
+                        city.Contains(search))
+                        this.FilteredCities.Add(city);
+                    else if (this.FilteredCities.Contains(city) &&
+                        !city.Contains(search))
+                        this.FilteredCities.Remove(city);
+                }
+            }
+        }
+        #endregion
+
+        #region IsStreetEnabled
+        private bool isStreetEnabled;
+        public bool IsStreetEnabled
+        {
+            get => isStreetEnabled;
+            set
+            {
+                isStreetEnabled = value;
+                OnPropertyChanged("IsStreetEnabled");
+            }
+        }
+        #endregion
+
+        #region OnStreetChanged
+        public void OnStreetChanged(string search)
+        {
+            if (this.Street != this.SelectedStreetItem)
+            {
+                this.ShowStreets = true;
+                this.SelectedStreetItem = null;
+            }
+            //Filter the list of streets based on the search term
+            if (this.allStreets == null)
+                return;
+            if (String.IsNullOrWhiteSpace(search) || String.IsNullOrEmpty(search))
+            {
+                this.ShowStreets = false;
+                this.FilteredStreets.Clear();
+            }
+            else
+            {
+                foreach (Street street in this.allStreets)
+                {
+                    string streetName = street.street_name;
+
+                    if (!this.FilteredStreets.Contains(streetName) &&
+                        streetName.Contains(search) && street.city_name == this.City)
+                        this.FilteredStreets.Add(streetName);
+                    else if (this.FilteredStreets.Contains(streetName) &&
+                        (!streetName.Contains(search) || !(street.city_name == this.City)))
+                        this.FilteredStreets.Remove(streetName);
+                }
+            }
+        }
+        #endregion
+
+        #region SelectedCity
+        public ICommand SelectedCity => new Command<string>(OnSelectedCity);
+        public void OnSelectedCity(string city)
+        {
+            if (city != null)
+            {
+                this.ShowCities = false;
+                this.City = city;
+
+                this.IsStreetEnabled = true;
+            }
+        }
+        #endregion
+
+        #region SelectedStreet
+        public ICommand SelectedStreet => new Command<string>(OnSelectedStreet);
+        public void OnSelectedStreet(string street)
+        {
+            if (street != null)
+            {
+                this.ShowStreets = false;
+                this.Street = street;
+            }
+        }
+        #endregion
+
+        #region City
         private bool showCityError;
         public bool ShowCityError
         {
@@ -93,10 +261,46 @@ namespace IDA.App.ViewModels
             }
         }
 
+        //This property holds the selected city on the collection of cities
+        private string selectedCityItem;
+        public string SelectedCityItem
+        {
+            get => selectedCityItem;
+            set
+            {
+                selectedCityItem = value;
+                OnPropertyChanged("SelectedCityItem");
+            }
+        }
+
+        //ShowCities
+        private bool showCities;
+        public bool ShowCities
+        {
+            get => showCities;
+            set
+            {
+                showCities = value;
+                OnPropertyChanged("ShowCities");
+            }
+        }
+
+        private string city;
+        public string City
+        {
+            get => city;
+            set
+            {
+                city = value;
+                OnCityChanged(value);
+                ValidateCity();
+                OnPropertyChanged("City");
+            }
+        }
 
         private string cityError;
         public string CityError
-        { 
+        {
             get => cityError;
             set
             {
@@ -107,10 +311,15 @@ namespace IDA.App.ViewModels
 
         private void ValidateCity()
         {
-            this.ShowCityError = string.IsNullOrEmpty(entryCity);
+            this.ShowCityError = string.IsNullOrEmpty(this.City);
             if (!this.ShowCityError)
             {
-                this.ShowCityError = string.IsNullOrEmpty(entryCity);
+                string city = this.allCities.Where(c => c == this.City).FirstOrDefault();
+                if (string.IsNullOrEmpty(city))
+                {
+                    this.ShowCityError = true;
+                    this.CityError = ERROR_MESSAGES.BAD_CITY;
+                }
             }
             else
                 this.CityError = ERROR_MESSAGES.REQUIRED_FIELD;
@@ -119,21 +328,6 @@ namespace IDA.App.ViewModels
 
 
         #region Street
-        private string entryStreet;
-        public string EntryStreet
-        {
-            get => this.entryStreet;
-            set
-            {
-                if (value != this.entryStreet)
-                {
-                    this.entryStreet = value;
-                    ValidateStreet();
-                    OnPropertyChanged("EntryStreet");
-                }
-            }
-        }
-
         private bool showStreetError;
         public bool ShowStreetError
         {
@@ -145,6 +339,42 @@ namespace IDA.App.ViewModels
             }
         }
 
+        //This property holds the selected street on the collection of streets
+        private string selectedStreetItem;
+        public string SelectedStreetItem
+        {
+            get => selectedStreetItem;
+            set
+            {
+                selectedStreetItem = value;
+                OnPropertyChanged("SelectedStreetItem");
+            }
+        }
+
+        //ShowStreets
+        private bool showStreets;
+        public bool ShowStreets
+        {
+            get => showStreets;
+            set
+            {
+                showStreets = value;
+                OnPropertyChanged("ShowStreets");
+            }
+        }
+
+        private string street;
+        public string Street
+        {
+            get => street;
+            set
+            {
+                street = value;
+                OnStreetChanged(value);
+                ValidateStreet();
+                OnPropertyChanged("Street");
+            }
+        }
 
         private string streetError;
         public string StreetError
@@ -156,18 +386,23 @@ namespace IDA.App.ViewModels
                 OnPropertyChanged("StreetError");
             }
         }
+
         private void ValidateStreet()
         {
-            this.ShowStreetError = string.IsNullOrEmpty(entryStreet);
+            this.ShowStreetError = string.IsNullOrEmpty(this.Street);
             if (!this.ShowStreetError)
             {
-                this.ShowStreetError = string.IsNullOrEmpty(entryStreet);
+                Street street = this.allStreets.Where(s => s.street_name == this.Street).FirstOrDefault();
+                if (street == null)
+                {
+                    this.ShowStreetError = true;
+                    this.StreetError = ERROR_MESSAGES.BAD_STREET;
+                }
             }
             else
                 this.StreetError = ERROR_MESSAGES.REQUIRED_FIELD;
         }
         #endregion
-
 
         #region ap
         private string entryAp;
@@ -675,9 +910,9 @@ namespace IDA.App.ViewModels
                     user.UserPswd = EntryPass;
                     user.FirstName = EntryFname;
                     user.LastName = EntryLname;
-                    user.City = EntryCity;
+                    user.City = City;
                     user.Birthday = EntryBirthDate;
-                    user.Street = EntryStreet;
+                    user.Street = Street;
                     user.Apartment = EntryAp;
                     user.HouseNumber = EntryHN;
 
