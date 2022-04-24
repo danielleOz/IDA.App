@@ -1,23 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.WorkerProfile">
+    <ContentPage.BindingContext>
+        <local:WorkerProfileViewModels></local:WorkerProfileViewModels>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
-
+            <Label Text=" "></Label>
+            <Label Text="worker detailes " FontSize="Medium" HorizontalOptions="Center"
+                   ></Label>
             <Label Text=" "> </Label>
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="50"  HorizontalOptions="Center">
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="500"  HorizontalOptions="Center">
                 <StackLayout>
-                    <Label Text="{Binding WName}"></Label>
-                    <!--worker pic-->
 
+                    <Label Text=" "></Label>
+                    <Label Text="{Binding EntryFname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text=" "></Label>
+                    <Label Text="{Binding EntryLname, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text=" "></Label>
+                    <Label Text="{Binding EntryEmail, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text=" "></Label>
+                    <Label Text="{Binding EntryCity, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text=" "></Label>
+                    <Label Text="{Binding Age,StringFormat='age- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text=" "></Label>
+                   
                 </StackLayout>
             </Frame>
 
-            <StackLayout>
+            <Button Text="contact the worker" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  ></Button>
 
-                <Label Text="here you will be able workers info (reviews and details) after seeing his job offer in the job offer page "> </Label>
-            </StackLayout>
 
         </StackLayout>
     </ContentPage.Content>

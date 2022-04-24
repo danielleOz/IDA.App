@@ -57,6 +57,7 @@ namespace IDA.App
 
         }
 
+        public TheMainTabbedPage TheMainTabbedPage { get; private set; }
         protected async override void OnStart()
         {
            
@@ -69,6 +70,7 @@ namespace IDA.App
             //MainPage = new NavigationPage(page);
             TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
             TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
+            TheMainTabbedPage = tabbedPage;
             tabbedPage.BindingContext = vm;
             MainPage = new NavigationPage(tabbedPage)
             {

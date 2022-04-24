@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IDA.App.Views.JobOfferPage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#fff7f7">
+        <StackLayout>
+
+            <StackLayout BackgroundColor="#fff7f7">
 
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                 <StackLayout>
@@ -18,9 +20,11 @@
                 
             </Frame>
 
-            <Button Text="see the worker review" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
+            <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
 
             
+        </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

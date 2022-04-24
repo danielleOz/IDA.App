@@ -39,8 +39,42 @@ namespace IDA.App.ViewModels
         }
 
 
-        
-        #region Street
+        #region is worker
+        private bool isWorker;
+        public bool IsWorker
+        {
+            get => current.User.IsWorker;
+            set
+            {
+                if (current.User.IsWorker)
+                {
+                    isWorker = value;
+                    OnPropertyChanged("IsWorker");
+                }
+
+            }
+        }
+        #endregion
+
+
+        #region isnt worker
+        private bool isntWorker;
+        public bool IsntWorker
+        {
+            get => this.current.User.IsWorker;
+            set
+            {
+                if (!this.current.User.IsWorker)
+                {
+                    this.isntWorker = value;
+                    OnPropertyChanged("IsntWorker");
+                }
+
+            }
+        }
+        #endregion
+
+        #region service
         //private bool showStreetError;
         //public bool ShowStreetError
         //{
