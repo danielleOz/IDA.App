@@ -964,7 +964,7 @@ namespace IDA.App.ViewModels
                         await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                     }
 
-                    else
+                    else 
                     {
                         await App.Current.MainPage.DisplayAlert("", "Register failed, please try again", "Ok");
                     }
