@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Net;
+using System.Net.Mail;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace IDA.App.ViewModels
 {
@@ -146,6 +152,41 @@ namespace IDA.App.ViewModels
 
         #endregion
 
+        #region send email
+        public ICommand SendEmailCommand => new Command(SendMail);
+        private void SendMail()
+        {
+
+
+
+        }
+        //public async Task SendEmail()
+        //{
+        //    try
+        //    {
+        //        string subject = "New Job Offer";
+        //        string body = "hi i would like to schedule the job offer with you ";
+        //        // List<string> recipients = the workers email ;
+        //        var message = new EmailMessage
+        //        {
+        //            //Subject = subject,
+        //            //Body = body,
+        //            //To = recipients,
+        //        };
+        //        await Email.ComposeAsync(message);
+        //    }
+        //    catch (FeatureNotSupportedException fbsEx)
+        //    {
+        //        // Email is not supported on this device
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Some other exception occurred
+        //    }
+        //}
+
+
+        #endregion
 
     }
 }

@@ -10,7 +10,7 @@
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                 <StackLayout>
                     <SearchBar Placeholder="search services" Text="{Binding Services}"/>
-                    <CollectionView EmptyView="could not find services"  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedStreetItem}" SelectionMode="Single"
+                    <CollectionView EmptyView="could not find services"  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedServiceItem}" SelectionMode="Single"
                                    IsVisible="{Binding ShowServicesError}" SelectionChangedCommand="{Binding Source={x:Reference services}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference services}, Path=SelectedItem}">
                     </CollectionView>
 

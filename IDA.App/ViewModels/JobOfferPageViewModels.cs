@@ -8,6 +8,7 @@ using IDA.App.Models;
 using IDA.App.Services;
 using IDA.App.Views;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace IDA.App.ViewModels
 {
@@ -87,6 +88,7 @@ namespace IDA.App.ViewModels
         //}
 
         //This property holds the selected street on the collection of streets
+
         private string selectedServicesItem;
         public string SelectedServicesItem
         {
@@ -98,7 +100,19 @@ namespace IDA.App.ViewModels
             }
         }
 
-        //ShowStreets
+        private Service selected;
+        public ICommand SelectServicesCommand { get; set; }
+
+        //private void SelectService()
+        //{
+        //    if (selected == null)
+        //        selected = new Service();
+        //    selected = selectedServicesItem;
+        //    Service s = this.se.Where(s => s.street_name == this.Street).FirstOrDefault();
+
+        //}
+
+        //ShowServices
         private bool showServices;
         public bool ShowServices
         {
@@ -207,5 +221,29 @@ namespace IDA.App.ViewModels
 
         }
         #endregion
+
+
+        private ObservableCollection<JobOffer> jobOffers;
+        public ObservableCollection<JobOffer> JobOffers
+        {
+            get
+            {
+                return this.jobOffers;
+            }
+            set
+            {
+                this.jobOffers = value;
+                OnPropertyChanged("JobOffers");
+            }
+        }
+
+
+
+        public JobOfferPageViewModels(List<JobOffer> jobOffers)
+        {
+            List<JobOffer> filtered = jobOffers.Where(j => j.Service.Name == selectedServicesItem).ToList();
+            this.jobOffers = new ObservableCollection<JobOffer>(filtered);
+        }
+
     }
 }

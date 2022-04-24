@@ -959,7 +959,6 @@ namespace IDA.App.ViewModels
 
                     if (isRegister)
                     {
-                        int 
                         App app = (App)App.Current;
                         TheMainTabbedPage theMainTabbedPage = app.TheMainTabbedPage;
                         TheMainTabbedPageViewModels vm = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
