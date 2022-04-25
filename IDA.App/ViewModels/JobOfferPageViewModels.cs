@@ -9,6 +9,7 @@ using IDA.App.Services;
 using IDA.App.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IDA.App.ViewModels
 {
@@ -37,6 +38,7 @@ namespace IDA.App.ViewModels
         {
             this.allServices = current.services;
             this.FilteredServices = new ObservableCollection<string>();
+            SelectServicesCommand = new Command<string>(SelectService);
         }
 
 
@@ -114,12 +116,13 @@ namespace IDA.App.ViewModels
         private Service selected;
         public ICommand SelectServicesCommand { get; set; }
 
-        private void SelectService()
+        private void SelectService(string selected)
         {
-            if (selected == null)
-                selected = new Service();
-            selected.Name = selectedServicesItem;
-            Service s = this.allServices.Where(sw => sw.Name == this.selected.Name).FirstOrDefault();
+            if (this.SelectedService != null)
+                this.selected = this.allServices.Where(sw => sw.Name == this.SelectedService).FirstOrDefault();
+            else
+                this.selected = null;
+
 
         }
 
@@ -235,10 +238,20 @@ namespace IDA.App.ViewModels
 
 
         public ICommand SearchCommand => new Command(search);
-        public void search()
+        public async void search()
         {
-            List<JobOffer> l = JobOffer();
-            this.jobOffers = new ObservableCollection<JobOffer>(l);
+            List<JobOffer> l = await JobOffer();
+
+            if (l != null)
+            {
+               
+                this.JobOffers = new ObservableCollection<JobOffer>(l);
+            }
+            else this.JobOffers = new ObservableCollection<JobOffer>();
+
+            if (string.IsNullOrEmpty(Services))
+                selected = null;
+ 
             FilterList(l);
 
 
@@ -258,27 +271,30 @@ namespace IDA.App.ViewModels
             }
         }
 
-        private List<JobOffer> JobOffer()
+        private async Task<List<JobOffer>> JobOffer()
         {
-            List<JobOffer> jobOffers;
-            if (IsWorker)
-            {
-               return jobOffers = this.current.Worker.WorkerJobOffers;
-            }
-            else
-            {
-               return jobOffers = this.current.User.JobOffers;
-            }
+            //List<JobOffer> jobOffers;
+            //if (IsWorker)
+            //{
+            //   return jobOffers = this.current.Worker.WorkerJobOffers;
+            //}
+            //else
+            //{
+            //   return jobOffers = this.current.User.JobOffers;
+            //}
+            return await IDAproxy.GetWorkerReviews();
         }
 
         public void FilterList(List<JobOffer> jobOffers)
         {
             if (selected == null)
-                selected = new Service();
-            selected.Name = SelectedService;
-            Service s = this.allServices.Where(sw => sw.Name == this.selected.Name).FirstOrDefault();
-            List<JobOffer> list = this.jobOffers.Where(a => a.Service.Name == s.Name).ToList();
-            this.jobOffers = new ObservableCollection<JobOffer>(list);
+                this.JobOffers.Clear() ;
+
+            else
+            {
+                List<JobOffer> list = this.jobOffers.Where(a => a.Service.Name == selected.Name).ToList();
+                this.JobOffers = new ObservableCollection<JobOffer>(list);
+            }
 
         }
 

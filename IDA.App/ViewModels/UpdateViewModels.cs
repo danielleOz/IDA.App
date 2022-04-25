@@ -845,7 +845,7 @@ namespace IDA.App.ViewModels
             ValidatePassword();
 
             //check if any validation failed
-            if (ShowNameError || ShowLastNameError || ShowApError || ShowBirthDateError || ShowCityError || ShowHNError || ShowPassErorr || ShowStreetError)
+            if (ShowNameError || ShowLastNameError || ShowApError || ShowBirthDateError/* || ShowCityError*/ || ShowHNError || ShowPassErorr /*|| ShowStreetError*/)
                 return false;
             else
             {

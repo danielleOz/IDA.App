@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IDA.App.Views.JobOfferPage">
+             xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
+             xmlns:models="clr-namespace:IDA.App.Models"
+             x:Class="IDA.App.Views.JobOfferPage" x:DataType="viewmodels:JobOfferPageViewModels">
     <ContentPage.Content>
 
 
@@ -11,7 +13,8 @@
                 <StackLayout>
                     <SearchBar Placeholder="search services" Text="{Binding Services}"/>
                     <CollectionView EmptyView="could not find services"  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
-                                   IsVisible="{Binding ShowServicesError}" SelectionChangedCommand="{Binding Source={x:Reference services}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference services}, Path=SelectedItem}">
+                                    SelectionChangedCommand="{Binding SelectServicesCommand}" SelectionChangedCommandParameter="{Binding SelectedService}">
+                                   <!--IsVisible="{Binding ShowServicesError}"--> 
                     </CollectionView>
 
 
@@ -21,7 +24,7 @@
             </Frame>
 
 
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                 <StackLayout>
 
                     <Grid >
@@ -35,14 +38,14 @@
                             <ColumnDefinition Width="*" ></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <CollectionView  Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding JobOffers}" EmptyView="there are no job offers right now"  >
+                        <CollectionView  Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding JobOffers}" EmptyView="you have to select service"  >
                             <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                <DataTemplate x:DataType="models:JobOffer">
+                                    <Label   VerticalTextAlignment="Center" VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text=" " />
-                                                <Span Text="{Binding } " />
+                                                <Span Text="{Binding ChosenWorker.FirstName} " />
+                                                <Span Text="{Binding ChosenWorker.LastName} " />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
