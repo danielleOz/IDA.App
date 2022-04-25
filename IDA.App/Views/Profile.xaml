@@ -53,8 +53,8 @@
                         <Label Text=" "></Label>
                         <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>
-                        <Button Text="aaaa" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand }" IsVisible="{Binding IsWorker}"></Button>
-
+                        <Button Text="availbilty update" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand }" IsVisible="{Binding IsWorker}"></Button>
+                        
 
                         <!--customer can see the reviews he wrote worker will be able to see what was wreeten on himcustomer can see the reviews he wrote worker will be able to see what was wreeten on him-->
                         <Button Text="log out" Command="{Binding LogOutCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
@@ -62,6 +62,10 @@
                     </StackLayout>
 
                 </Frame>
+
+                <Label Text=" "></Label>
+                <Button Text="aaaa" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToJobCommand }" ></Button>
+
 
                 <Label Text=" "></Label>
               

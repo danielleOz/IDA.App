@@ -305,6 +305,27 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+        //#region go to job offer
+        //public ICommand GoToJobCommand => new Command(JobOffer);
+        //private void JobOffer()
+        //{
+        //    List<JobOffer> jobOffers;
+        //    if (IsWorker)
+        //    {
+        //        jobOffers = this.current.Worker.WorkerJobOffers;
+        //    }
+        //    else
+        //    {
+        //        jobOffers = this.current.User.JobOffers;
+        //    }
+
+        //    JobOfferPageViewModels vm = new JobOfferPageViewModels(jobOffers);
+        //    Page NewPage = new Views.JobOfferPage();
+        //    NewPage.BindingContext = vm;
+        //    App.Current.MainPage.Navigation.PushAsync(NewPage);
+        //}
+        //#endregion
+
         #region go to update page
         public ICommand UpdateCommand => new Command(OnUpdate);
         public void OnUpdate()

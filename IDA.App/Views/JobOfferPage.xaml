@@ -3,27 +3,62 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IDA.App.Views.JobOfferPage">
     <ContentPage.Content>
-        <StackLayout>
 
-            <StackLayout BackgroundColor="#fff7f7">
+
+        <StackLayout BackgroundColor="#fff7f7">
 
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                 <StackLayout>
                     <SearchBar Placeholder="search services" Text="{Binding Services}"/>
-                    <CollectionView EmptyView="could not find services"  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedServiceItem}" SelectionMode="Single"
+                    <CollectionView EmptyView="could not find services"  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
                                    IsVisible="{Binding ShowServicesError}" SelectionChangedCommand="{Binding Source={x:Reference services}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference services}, Path=SelectedItem}">
                     </CollectionView>
 
-               
-                
+
+                    <Button Command="{Binding Path=SearchCommand}"></Button>
                 </StackLayout>
-                
+
+            </Frame>
+
+
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <StackLayout>
+
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="2*" ></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="500" ></ColumnDefinition>
+                            <ColumnDefinition Width="*" ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <CollectionView  Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding JobOffers}" EmptyView="there are no job offers right now"  >
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text=" " />
+                                                <Span Text="{Binding } " />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </Grid>
+
+
+                </StackLayout>
+
             </Frame>
 
             <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
 
-            
-        </StackLayout>
 
         </StackLayout>
     </ContentPage.Content>

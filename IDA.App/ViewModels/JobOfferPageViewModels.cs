@@ -100,17 +100,28 @@ namespace IDA.App.ViewModels
             }
         }
 
+        private string selectedService;
+        public string SelectedService
+        {
+            get => selectedService;
+            set
+            {
+                selectedService = value;
+                OnPropertyChanged("SelectedService");
+            }
+        }
+
         private Service selected;
         public ICommand SelectServicesCommand { get; set; }
 
-        //private void SelectService()
-        //{
-        //    if (selected == null)
-        //        selected = new Service();
-        //    selected = selectedServicesItem;
-        //    Service s = this.se.Where(s => s.street_name == this.Street).FirstOrDefault();
+        private void SelectService()
+        {
+            if (selected == null)
+                selected = new Service();
+            selected.Name = selectedServicesItem;
+            Service s = this.allServices.Where(sw => sw.Name == this.selected.Name).FirstOrDefault();
 
-        //}
+        }
 
         //ShowServices
         private bool showServices;
@@ -132,7 +143,7 @@ namespace IDA.App.ViewModels
             {
                 services = value;
                 OnServicesChanged(value);
-                //ValidateStreet();
+               
                 OnPropertyChanged("Services");
             }
         }
@@ -187,7 +198,7 @@ namespace IDA.App.ViewModels
                 this.ShowServices = true;
                 this.SelectedServicesItem = null;
             }
-            //Filter the list of streets based on the search term
+           
             if (this.allServices == null)
                 return;
             if (String.IsNullOrWhiteSpace(search) || String.IsNullOrEmpty(search))
@@ -223,6 +234,15 @@ namespace IDA.App.ViewModels
         #endregion
 
 
+        public ICommand SearchCommand => new Command(search);
+        public void search()
+        {
+            List<JobOffer> l = JobOffer();
+            FilterList(l);
+
+
+        }
+
         private ObservableCollection<JobOffer> jobOffers;
         public ObservableCollection<JobOffer> JobOffers
         {
@@ -237,12 +257,28 @@ namespace IDA.App.ViewModels
             }
         }
 
-
-
-        public JobOfferPageViewModels(List<JobOffer> jobOffers)
+        private List<JobOffer> JobOffer()
         {
-            List<JobOffer> filtered = jobOffers.Where(j => j.Service.Name == selectedServicesItem).ToList();
-            this.jobOffers = new ObservableCollection<JobOffer>(filtered);
+            List<JobOffer> jobOffers;
+            if (IsWorker)
+            {
+               return jobOffers = this.current.Worker.WorkerJobOffers;
+            }
+            else
+            {
+               return jobOffers = this.current.User.JobOffers;
+            }
+        }
+
+        public void FilterList(List<JobOffer> jobOffers)
+        {
+            if (selected == null)
+                selected = new Service();
+            selected.Name = SelectedService;
+            Service s = this.allServices.Where(sw => sw.Name == this.selected.Name).FirstOrDefault();
+            List<JobOffer> list = this.jobOffers.Where(a => a.Service.Name == s.Name).ToList();
+            this.jobOffers = new ObservableCollection<JobOffer>(list);
+
         }
 
     }
