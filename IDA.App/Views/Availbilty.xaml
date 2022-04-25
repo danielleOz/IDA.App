@@ -18,6 +18,7 @@
                         <TimePicker TextColor="#aaaaaa" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
                        
                         <Button Text="set as unavailable" Command="{Binding UnAvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+                        <Label Text="I love apples I love Apples I love Apples I Love Apples" TextColor="Red"></Label>
 
 
 
