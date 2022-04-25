@@ -277,8 +277,6 @@ namespace IDA.App.ViewModels
                 selected = new Service();
             selected.Name = SelectedService;
             Service s = this.allServices.Where(sw => sw.Name == this.selected.Name).FirstOrDefault();
-            Service g = new Service();
-            
             List<JobOffer> list = this.jobOffers.Where(a => a.Service.Name == s.Name).ToList();
             this.jobOffers = new ObservableCollection<JobOffer>(list);
 

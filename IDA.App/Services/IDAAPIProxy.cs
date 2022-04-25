@@ -439,7 +439,7 @@ namespace IDA.App.Services
         {
             try
             {
-
+                 
                 c.IsWorker = false;
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {

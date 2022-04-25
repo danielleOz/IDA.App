@@ -55,6 +55,9 @@
 
             </Frame>
 
+            <Button Text="dddd" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding upload}"></Button>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -46,6 +46,18 @@ namespace IDA.App.ViewModels
             this.JobOffers = new ObservableCollection<JobOffer>(filtered);
         }
 
-       
+
+        #region go to upload review page
+        public ICommand UploadCommand => new Command(upload);
+        public void upload()
+        {
+            UploadReviewViewModels vm = new UploadReviewViewModels();
+            Page NewPage = new Views.UploadReview();
+            NewPage.BindingContext = vm;
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
+
+        }
+        #endregion
+
     }
 }
