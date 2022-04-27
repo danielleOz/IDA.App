@@ -58,7 +58,11 @@ namespace IDA.App.ViewModels
             User user = await IDAAPIProxy.LoginAsync(EntryEmail, EntryPass);
             if (user != null)
             {
-                TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0];
+                TheMainTabbedPage theMainTabbedPage;
+                if (Application.Current.MainPage.Navigation.NavigationStack.Count>0)
+                {  theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0]; }
+                else
+                    theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
                 TheMainTabbedPageViewModels mainPageVM = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
 
                 this.current.User = user;

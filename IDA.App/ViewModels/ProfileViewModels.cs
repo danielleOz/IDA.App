@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace IDA.App.ViewModels
 {
-    class ProfileViewModels : ViewModelBase
+   public class ProfileViewModels : ViewModelBase
     {
         public ProfileViewModels()
         {
@@ -374,6 +374,7 @@ namespace IDA.App.ViewModels
 
                 Page p = new TheMainTabbedPage();
                 p.Title = "login";
+
                 App.Current.MainPage = p;
 
             }

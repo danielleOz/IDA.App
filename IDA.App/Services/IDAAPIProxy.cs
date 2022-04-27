@@ -700,12 +700,42 @@ namespace IDA.App.Services
         }
         #endregion
 
+        #region get workers list
 
-       
+        public async Task<List<Worker>> GetAvailableWorkers()
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetAvailableWorkrs");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Worker> lst = JsonSerializer.Deserialize<List<Worker>>(content, options);
+                    return lst;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        #endregion
+
+        //GetAvailableWorkrs
+
 
     }
-
-
 
 
 }

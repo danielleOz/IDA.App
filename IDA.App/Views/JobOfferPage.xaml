@@ -4,6 +4,23 @@
              xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
              xmlns:models="clr-namespace:IDA.App.Models"
              x:Class="IDA.App.Views.JobOfferPage" x:DataType="viewmodels:JobOfferPageViewModels">
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
 
 
@@ -21,40 +38,44 @@
                     <Button Command="{Binding Path=SearchCommand}"></Button>
                 </StackLayout>
 
-            </Frame>
+            </Frame> 
 
 
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                 <StackLayout>
 
-                    <Grid >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"></RowDefinition>
-                            <RowDefinition Height="2*" ></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="500" ></ColumnDefinition>
-                            <ColumnDefinition Width="*" ></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-
-                        <CollectionView  Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding JobOffers}" EmptyView="you have to select service"  >
+                        <CollectionView  Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Workers}" EmptyView="you have to select service">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="models:JobOffer">
+                                <DataTemplate x:DataType="models:Worker">
+                                    
+                                    <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,15,0,15">
+                                        
+                                        
                                     <Label   VerticalTextAlignment="Center" VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding ChosenWorker.FirstName} " />
-                                                <Span Text="{Binding ChosenWorker.LastName} " />
+                                                <Span Text="{Binding FirstName} " />
+                                                <Span Text="{Binding LastName} " />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
+                                        
+                                    <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                            <RowDefinition Height="2*" ></RowDefinition>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="500" ></ColumnDefinition>
+                                            <ColumnDefinition Width="*" ></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                    </Grid>
+                                    
+                                   
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-
-                    </Grid>
-
 
                 </StackLayout>
 

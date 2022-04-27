@@ -236,18 +236,20 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
+        
         public ICommand SearchCommand => new Command(search);
         public async void search()
         {
-            List<JobOffer> l = await JobOffer();
+            IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
+
+            List<Worker> l = await proxy.GetAvailableWorkers();
 
             if (l != null)
             {
                
-                this.JobOffers = new ObservableCollection<JobOffer>(l);
+                this.Workers = new ObservableCollection<Worker>(l);
             }
-            else this.JobOffers = new ObservableCollection<JobOffer>();
+            else this.Workers = new ObservableCollection<Worker>();
 
             if (string.IsNullOrEmpty(Services))
                 selected = null;
@@ -257,17 +259,17 @@ namespace IDA.App.ViewModels
 
         }
 
-        private ObservableCollection<JobOffer> jobOffers;
-        public ObservableCollection<JobOffer> JobOffers
+        private ObservableCollection<Worker> workers;
+        public ObservableCollection<Worker> Workers
         {
             get
             {
-                return this.jobOffers;
+                return this.workers;
             }
             set
             {
-                this.jobOffers = value;
-                OnPropertyChanged("JobOffers");
+                this.workers = value;
+                OnPropertyChanged("Workers");
             }
         }
 
@@ -285,15 +287,15 @@ namespace IDA.App.ViewModels
             return await IDAproxy.GetWorkerReviews();
         }
 
-        public void FilterList(List<JobOffer> jobOffers)
+        public void FilterList(List<Worker> workers)
         {
             if (selected == null)
-                this.JobOffers.Clear() ;
+                this.Workers.Clear() ;
 
             else
             {
-                List<JobOffer> list = this.jobOffers.Where(a => a.Service.Name == selected.Name).ToList();
-                this.JobOffers = new ObservableCollection<JobOffer>(list);
+                List<Worker> list = this.workers.Where(w => w.WorkerServices.Where(s => s.Service.Name == selected.Name).FirstOrDefault() != null).ToList();
+                this.Workers = new ObservableCollection<Worker>(list);
             }
 
         }

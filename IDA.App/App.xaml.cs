@@ -22,6 +22,7 @@ namespace IDA.App
         { get; set; }
 
         public List<Service> services { get; set; }
+        public List<Worker> workers { get; set; }
         public static bool IsDevEnv
         {
             get
@@ -41,6 +42,7 @@ namespace IDA.App
             Streets = new List<string>();
             StreetList = new List<Street>();
             services = new List<Service>();
+            workers = new List<Worker>();
             //OnStart();
             InitializeComponent();
             MainPage = new Loading();
@@ -66,6 +68,7 @@ namespace IDA.App
             this.Cities = await proxy.GetCitiesAsync();
             this.StreetList = await proxy.GetStreetListAsync();
             this.services = await proxy.GetServices();
+            //this.workers = await proxy.GetWorkersList();
             //Page page = new JobOfferPage();
             //MainPage = new NavigationPage(page);
             TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();

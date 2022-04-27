@@ -10,12 +10,16 @@ using IDA.App.Views;
 using System.Collections.ObjectModel;
 namespace IDA.App.ViewModels
 {
-    class AvailbiltyViewModels:ViewModelBase
+  public  class AvailbiltyViewModels:ViewModelBase
     {
-        public AvailbiltyViewModels()
+        private ProfileViewModels profileVm;
+       public AvailbiltyViewModels() { }
+        public AvailbiltyViewModels(DateTime availableUntil, ProfileViewModels profileVm)
         {
-
-            this.time = this.current.Worker.AvailbleUntil;
+            this.profileVm = profileVm;
+            this.time = availableUntil;
+            DateTime oneHourLater = DateTime.Now.AddHours(1);
+            this.Time = new TimeSpan(oneHourLater.Hour, oneHourLater.Minute, 0);
 
         }
 
@@ -34,19 +38,19 @@ namespace IDA.App.ViewModels
         #endregion
 
         #region time
-        private DateTime time = DateTime.Today;
+        private DateTime time;
+
+        private TimeSpan spanTime;
         public TimeSpan Time
         {
-            get => time - DateTime.Today;
+            get
+            {
+                return this.spanTime;
+            }
             set
             {
-                if (this.time != DateTime.Today.Add(value))
-                {
-                    this.time = DateTime.Today.Add(value);
-                    AvailbleWorker();
-                }
-                
-                
+                if (value != this.spanTime)
+                    this.spanTime = value;
             }
         }
         #endregion
@@ -122,6 +126,15 @@ namespace IDA.App.ViewModels
             }
 
         }
+
+        #endregion
+
+        #region Change to Availble Worker 
+
+        public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
+
+
+        
 
         #endregion
 

@@ -23,9 +23,12 @@ namespace IDA.App.ViewModels
             get { return loginUser; }
             set
             {
-                
+                TheMainTabbedPage theMainTabbedPage;
                 loginUser = value;
-                TheMainTabbedPage theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0];
+                if (Application.Current.MainPage.Navigation.NavigationStack.Count > 0)
+                    theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0];
+                else
+                    theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
                 if (loginUser == null) //Logout
                 {
                     theMainTabbedPage.RemoveTab(theMainTabbedPage.home);
