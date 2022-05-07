@@ -131,7 +131,9 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Photos\emptyStar.png" />
     <Content Include="Photos\FinalLogo.png" />
+    <Content Include="Photos\fullStar.png" />
     <Content Include="Photos\logo1.png" />
     <Content Include="Photos\logo2.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -153,6 +155,9 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.12" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Rating">
+      <Version>1.0.0.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IDA.App\IDA.App.csproj">

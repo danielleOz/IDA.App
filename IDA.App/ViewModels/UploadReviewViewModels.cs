@@ -16,8 +16,17 @@ namespace IDA.App.ViewModels
     class UploadReviewViewModels
     {
 
+        #region on submit
+        public ICommand OnSubmitCommand => new Command(OnSubmit);
 
 
+        private void OnSubmit()
+        {
+            
+            
+        }
+
+        #endregion
 
     }
 }

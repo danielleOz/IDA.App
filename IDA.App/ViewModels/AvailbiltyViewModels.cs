@@ -8,12 +8,14 @@ using IDA.App.Models;
 using IDA.App.Services;
 using IDA.App.Views;
 using System.Collections.ObjectModel;
+
+
 namespace IDA.App.ViewModels
 {
-  public  class AvailbiltyViewModels:ViewModelBase
+    public class AvailbiltyViewModels : ViewModelBase
     {
         private ProfileViewModels profileVm;
-       public AvailbiltyViewModels() { }
+        public AvailbiltyViewModels() { }
         public AvailbiltyViewModels(DateTime availableUntil, ProfileViewModels profileVm)
         {
             this.profileVm = profileVm;
@@ -62,15 +64,15 @@ namespace IDA.App.ViewModels
 
         private async void AvailbleWorker()
         {
-            if (current.User.IsWorker) 
+            if (current.User.IsWorker)
             {
-                if(time<DateTime.Now)
+                if (time < DateTime.Now)
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "", "ok", FlowDirection.RightToLeft);
 
                 }
                 current.Worker.AvailbleUntil = time;
-                
+
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
                 bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
                 if (!success)
@@ -134,7 +136,7 @@ namespace IDA.App.ViewModels
         public ICommand AvailbleWorkerCommand => new Command(AvailbleWorker);
 
 
-        
+
 
         #endregion
 

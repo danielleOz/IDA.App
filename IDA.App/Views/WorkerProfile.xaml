@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#fff7f7">
             <Label Text=" "></Label>
             <Label Text="worker detailes " FontSize="Medium" HorizontalOptions="Center"
                    ></Label>

@@ -2,20 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IDA.App.ViewModels"
+             xmlns:fRating="clr-namespace:Rating;assembly=Rating"
              x:Class="IDA.App.Views.UploadReview">
- 
-      
+    
+    <ContentPage.BindingContext>
+        <local:UploadReviewViewModels></local:UploadReviewViewModels>
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
         
         <StackLayout>
 
             <Label Text="write your review"></Label>
+            <Label Text="{Binding WorkerName, StringFormat='worker name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+            <Label Text="{Binding UserName, StringFormat='user name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+            <Label Text="{Binding Service, StringFormat='service- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
 
-            <Slider Minimum="1" Maximum="5" />
-            <Entry Placeholder=""  />
-            <ActivityIndicator />
+            <StackLayout Padding="20">
+                <Entry Placeholder="description" HeightRequest="90" WidthRequest="10" IsSpellCheckEnabled="True" ></Entry>
 
-            <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
+            </StackLayout>
+            
+            <Label Text=""></Label>
+
+            <fRating:RatingBar x:Name="ratingBar" HorizontalOptions="Center" ImageWidth="70" ImageHeight="70" FlowDirection="LeftToRight" EmptyStarImage="emptyStar.png" FillStarImage="fullStar.png" SelectedStarValue="5" ></fRating:RatingBar>
+
+            <Label Text=""></Label>
+
+            <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  ></Button>
 
         </StackLayout>
        

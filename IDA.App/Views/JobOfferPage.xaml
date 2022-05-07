@@ -43,8 +43,9 @@
 
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                 <StackLayout>
+                    <StackLayout >
 
-                        <CollectionView  Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding Workers}" EmptyView="you have to select service">
+                        <CollectionView  Grid.Row="1" SelectionMode="Single"  ItemsSource="{Binding Workers}" EmptyView="there are no available workers right now">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:Worker">
                                     
@@ -79,10 +80,19 @@
 
                 </StackLayout>
 
+                    
+                </StackLayout>
+
             </Frame>
 
+           
             <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
+           
+            <StackLayout>
+                <Label Text="will be only for workers"></Label>
+                <Button Text="availbilty update" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand }"></Button>
 
+            </StackLayout>
 
         </StackLayout>
     </ContentPage.Content>

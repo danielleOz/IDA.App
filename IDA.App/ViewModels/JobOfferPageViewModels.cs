@@ -42,40 +42,41 @@ namespace IDA.App.ViewModels
         }
 
 
+    
         #region is worker
-        private bool isWorker;
         public bool IsWorker
         {
-            get => current.User.IsWorker;
-            set
+            get
             {
-                if (current.User.IsWorker)
-                {
-                    isWorker = value;
-                    OnPropertyChanged("IsWorker");
-                }
-
+                if (this.current != null && this.current.User != null)
+                    return this.current.User.IsWorker;
+                return false;
             }
         }
         #endregion
 
+        #region go to updateAvailbilty page
 
-        #region isnt worker
-        private bool isntWorker;
-        public bool IsntWorker
+        public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
+        public void UpdateAvailbilty()
         {
-            get => this.current.User.IsWorker;
-            set
-            {
-                if (!this.current.User.IsWorker)
-                {
-                    this.isntWorker = value;
-                    OnPropertyChanged("IsntWorker");
-                }
-
-            }
+            Page NewPage = new Views.Availbilty();
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
         }
         #endregion
+
+        //#region isnt worker
+
+        //public bool IsntWorker
+        //{
+        //    get
+        //    {
+        //        if (this.current != null && this.current.User != null)
+        //            return this.current.User.IsWorker;
+        //        return false;
+        //    }
+        //}
+        //#endregion
 
         #region service
         //private bool showStreetError;

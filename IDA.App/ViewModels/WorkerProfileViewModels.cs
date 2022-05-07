@@ -157,7 +157,8 @@ namespace IDA.App.ViewModels
         public ICommand SendEmailCommand => new Command(SendMail);
         private void SendMail()
         {
-
+          
+            
 
 
         }
