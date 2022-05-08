@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local ="clr-namespace:IDA.App.ViewModels"
+            xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.Reviews" 
-             NavigationPage.HasNavigationBar="True"
+             xmlns:models="clr-namespace:IDA.App.Models"
+             NavigationPage.HasNavigationBar="True" x:DataType="viewmodels:ReviewsViewModels"
              >
 
   
@@ -31,13 +32,13 @@
 
                     <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                         <CollectionView.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate x:DataType="models:JobOffer">
                                 <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
                                             <Span Text="{Binding ChosenWorker.FirstName} " />
-                                            <Span Text="{Binding JobOffers.Description}" />
+                                                <Span Text="{Binding WorkerReviewDescriptipon}" />
                                             <Span Text="&#10; " />
                                             <Span Text="{Binding ReviewDateString}" />
 
