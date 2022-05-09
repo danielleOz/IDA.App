@@ -19,13 +19,14 @@
             <Label Text="{Binding Service, StringFormat='service- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
 
             <StackLayout Padding="20">
-                <Entry Placeholder="description" HeightRequest="90" WidthRequest="10" IsSpellCheckEnabled="True" ></Entry>
+               
+                <Editor Placeholder="description" Text="{Binding Descriptoin}" HeightRequest="90"></Editor>
 
             </StackLayout>
             
             <Label Text=""></Label>
 
-            <fRating:RatingBar x:Name="ratingBar"  HorizontalOptions="Center" ImageWidth="70" ImageHeight="70" FlowDirection="LeftToRight" EmptyStarImage="emptyStar.png" FillStarImage="fullStar.png"  SelectedStarValue="5" ></fRating:RatingBar>
+            <fRating:RatingBar x:Name="ratingBar"  HorizontalOptions="Center" ImageWidth="70" ImageHeight="70" FlowDirection="LeftToRight" EmptyStarImage="emptyStar.png" FillStarImage="fullStar.png"  SelectedStarValue="{Binding WorkerRating}" ></fRating:RatingBar>
 
             <Label Text=""></Label>
 

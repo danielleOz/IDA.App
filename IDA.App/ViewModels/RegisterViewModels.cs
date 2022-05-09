@@ -928,7 +928,7 @@ namespace IDA.App.ViewModels
                         if (w != null)
                         {
                             this.current.Worker = w;
-                            //   this.current.User = w.IdNavigation;
+                          /*  this.current.User = w;*/ /// to check!!!!
                             isRegister = true;
                         }
 

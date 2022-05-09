@@ -21,6 +21,9 @@ namespace IDA.App
         public Worker Worker
         { get; set; }
 
+        public JobOffer JobOffer
+        { get; set; }
+
         public List<Service> services { get; set; }
         public List<Worker> workers { get; set; }
         public static bool IsDevEnv

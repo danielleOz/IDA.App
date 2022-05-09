@@ -153,11 +153,19 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-        #region send email
+        #region submit
         public ICommand SendEmailCommand => new Command(SendMail);
         private void SendMail()
         {
-          
+            JobOffer j = new JobOffer();
+            j.ServiceId;
+            j.ChosenWorker;
+            j.ChosenWorkerId;
+            j.Description = "";
+            j.PublishDate = DateTime.Now;
+            j.StatusId = 0;
+            j.UserId;
+            this.current.JobOffer = j;
             
 
 
