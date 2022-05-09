@@ -10,6 +10,8 @@ using IDA.App.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Location = Xamarin.Essentials.Location;
 
 namespace IDA.App.ViewModels
 {
@@ -247,8 +249,24 @@ namespace IDA.App.ViewModels
 
             if (l != null)
             {
-               
-                this.Workers = new ObservableCollection<Worker>(l);
+                string userAddress = current.User.Street + " " + current.User.HouseNumber +" " + current.User.City + " " + "ISRAEL";
+                var userLocations = await Geocoding.GetLocationsAsync(userAddress);
+                var userLocation = userLocations?.FirstOrDefault();
+                List<Worker> closeToMe = new List<Worker>();
+                foreach(Worker w in l)
+                {
+                    var workerAddress = $" {w.Street} {w.HouseNumber} {w.City} ISRAEL";
+                    var workerLocations = await Geocoding.GetLocationsAsync(workerAddress);
+                    var workerlocation = workerLocations?.FirstOrDefault();
+                    if(workerlocation!=null)
+                    {
+                        var distance = Location.CalculateDistance(userLocation, workerlocation, DistanceUnits.Kilometers);
+                        if (distance <= w.RadiusKm)
+                            closeToMe.Add(w);
+                    }
+
+                }
+                this.Workers = new ObservableCollection<Worker>(closeToMe);
             }
             else this.Workers = new ObservableCollection<Worker>();
 

@@ -19,7 +19,7 @@
                     <StackLayout>
 
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryFname, Mode=TwoWay, StringFormat='first name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryFname, StringFormat='first name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryLname , Mode=TwoWay, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
