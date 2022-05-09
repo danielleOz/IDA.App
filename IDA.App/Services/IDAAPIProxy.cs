@@ -108,6 +108,7 @@ namespace IDA.App.Services
 
         public string GetBasePhotoUri() { return this.basePhotosUri; }
 
+        #region get worker
         public async Task<Worker> GetWorkerAsync(int? workerId)
         {
             try
@@ -137,10 +138,11 @@ namespace IDA.App.Services
                 return null;
             }
         }
-            
-    #region login
-    //Login - if user name and password are correct User object is returned. otherwise a null will be returned
-    public async Task<User> LoginAsync(string email, string pass)
+        #endregion
+
+        #region login
+        //Login - if user name and password are correct User object is returned. otherwise a null will be returned
+        public async Task<User> LoginAsync(string email, string pass)
         {
             Worker w = null;
             try
@@ -478,9 +480,6 @@ namespace IDA.App.Services
         }
         #endregion
 
-
-
-
         //#region Worker Update
         //public async Task<Worker> WorkerUpdate(Worker w)
         //{
@@ -517,7 +516,6 @@ namespace IDA.App.Services
         //    }
         //}
         //#endregion
-
 
         #region GetCitiesNameList
         private List<string> GetCitiesNameList(List<City> cities)
@@ -732,7 +730,43 @@ namespace IDA.App.Services
 
         #endregion
 
-        //GetAvailableWorkrs
+        #region job offer
+        public async Task<JobOffer> JobOffer(JobOffer j)
+        {
+            try
+            {
+
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    PropertyNameCaseInsensitive = true
+                };
+
+                string jsonObject = JsonSerializer.Serialize<JobOffer>(j, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/JobOffer", content);
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string str = await response.Content.ReadAsStringAsync();
+
+                    JobOffer jobOffer = JsonSerializer.Deserialize<JobOffer>(str, options);
+                    return jobOffer;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+        #endregion
+
 
 
     }

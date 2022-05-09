@@ -10,7 +10,7 @@ using Xamarin.Essentials;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-
+using IDA.App.Services;
 
 namespace IDA.App.ViewModels
 {
@@ -19,12 +19,27 @@ namespace IDA.App.ViewModels
 
         public WorkerProfileViewModels()
         {
-            //User currentUser = ; //the worker from the job offer 
-            //entryCity = currentUser.City;
-            //entryBirthDate = currentUser.Birthday;
-            //entryFname = currentUser.FirstName;
-            //entryLname = currentUser.LastName;
-            //entryEmail = currentUser.Email;
+            
+        }
+
+        List<Worker> WorkersList = new List<Worker>();
+        public  WorkerProfileViewModels(string workerId, int serviceId)
+        {
+           
+            int id = int.Parse(workerId);
+             GetList();
+            Worker w = this.WorkersList.Where(a => a.Worker.Id == id).FirstOrDefault();
+            city = w.City;
+            birthDate = w.Birthday;
+           fname = w.FirstName;
+           lname = w.LastName;
+            email = w.Email;
+        }
+
+        public async void GetList()
+        {
+            IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
+             WorkersList = await proxy.GetAvailableWorkers();
         }
 
         #region reviews
@@ -45,18 +60,33 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-
         #region city
-        private string entryCity;
-        public string EntryCity
+        private string city;
+        public string City
         {
-            get => this.entryCity;
+            get => this.city;
             set
             {
-                if (value != this.entryCity)
+                if (value != this.city)
                 {
-                    this.entryCity = value;
-                    OnPropertyChanged("EntryCity");
+                    this.city = value;
+                    OnPropertyChanged("City");
+                }
+            }
+        }
+        #endregion
+
+        #region id
+        private int id;
+        public int Id
+        {
+            get => this.id;
+            set
+            {
+                if (value != this.id)
+                {
+                    this.id = value;
+                    OnPropertyChanged("Id");
                 }
             }
         }
@@ -64,76 +94,90 @@ namespace IDA.App.ViewModels
 
         #endregion
 
- 
+        #region service id
+        private int sId;
+        public int SId
+        {
+            get => this.sId;
+            set
+            {
+                if (value != this.sId)
+                {
+                    this.sId = value;
+                    OnPropertyChanged("SId");
+                }
+            }
+        }
+
+
+        #endregion
+
         #region email
-        private string entryEmail;
-        public string EntryEmail
+        private string email;
+        public string Email
         {
-            get => this.entryEmail;
+            get => this.email;
             set
             {
-                if (value != this.entryEmail)
+                if (value != this.email)
                 {
-                    this.entryEmail = value;
-                    OnPropertyChanged("EntryEmail");
+                    this.email = value;
+                    OnPropertyChanged("Email");
                 }
             }
         }
 
 
         #endregion
-
-      
+ 
         #region first name 
-        private string entryFname;
-        public string EntryFname
+        private string fname;
+        public string Fname
         {
-            get => this.entryFname;
+            get => this.fname;
             set
             {
-                if (value != this.entryFname)
+                if (value != this.fname)
                 {
-                    this.entryFname = value;
-                    OnPropertyChanged("EntryFname");
+                    this.fname = value;
+                    OnPropertyChanged("Fname");
                 }
             }
         }
 
 
         #endregion
-
 
         #region last name
 
-        private string entryLname;
-        public string EntryLname
+        private string lname;
+        public string Lname
         {
-            get => this.entryLname;
+            get => this.lname;
             set
             {
-                if (value != this.entryLname)
+                if (value != this.lname)
                 {
-                    this.entryLname = value;
-                    OnPropertyChanged("EntryLname");
+                    this.lname = value;
+                    OnPropertyChanged("Lname");
                 }
             }
         }
 
 
         #endregion
-
 
         #region birthdate
-        private DateTime entryBirthDate = DateTime.Now;
-        public DateTime EntryBirthDate
+        private DateTime birthDate = DateTime.Now;
+        public DateTime BirthDate
         {
-            get => this.entryBirthDate.Date;
+            get => this.birthDate.Date;
             set
             {
-                if (value != this.entryBirthDate)
+                if (value != this.birthDate)
                 {
-                    this.entryBirthDate = value;
-                    OnPropertyChanged("EntryBirthDate");
+                    this.birthDate = value;
+                    OnPropertyChanged("BirthDate");
                 }
             }
         }
@@ -141,11 +185,11 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-        #region get age
+        #region age
         private string age;
         public string Age
         {
-            get => (DateTime.Now.Year - this.entryBirthDate.Year).ToString();
+            get => (DateTime.Now.Year - this.birthDate.Year).ToString();
 
            
         }
@@ -155,48 +199,81 @@ namespace IDA.App.ViewModels
 
         #region submit
         public ICommand SendEmailCommand => new Command(SendMail);
-        private void SendMail()
+        private async void SendMail()
         {
-            JobOffer j = new JobOffer();
-            j.ServiceId;
-            j.ChosenWorker;
-            j.ChosenWorkerId;
+            
+            IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
+
+                bool isOK = false;
+
+            JobOffer j = new JobOffer
+            {
+
+            };
+
+            j.ServiceId = sId;
+            j.ChosenWorkerId = id ;
             j.Description = "";
             j.PublishDate = DateTime.Now;
             j.StatusId = 0;
-            j.UserId;
-            this.current.JobOffer = j;
-            
+            j.UserId= this.current.User.Id;
+
+            j = await IDAproxy.JobOffer(j);
+            if (j != null) 
+            {
+                this.current.JobOffer = j;
+                isOK = true;
+            }
+
+
+           
+
+                if (isOK)
+                {
+
+                    await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+                }
+
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
+                }
 
 
         }
-        //public async Task SendEmail()
-        //{
-        //    try
-        //    {
-        //        string subject = "New Job Offer";
-        //        string body = "hi i would like to schedule the job offer with you ";
-        //        // List<string> recipients = the workers email ;
-        //        var message = new EmailMessage
-        //        {
-        //            //Subject = subject,
-        //            //Body = body,
-        //            //To = recipients,
-        //        };
-        //        await Email.ComposeAsync(message);
-        //    }
-        //    catch (FeatureNotSupportedException fbsEx)
-        //    {
-        //        // Email is not supported on this device
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Some other exception occurred
-        //    }
-        //}
 
-
-        #endregion
 
     }
+
+    #endregion
+
+    //public async Task SendEmail()
+    //{
+    //    try
+    //    {
+    //        string subject = "New Job Offer";
+    //        string body = "hi i would like to schedule the job offer with you ";
+    //        List<string>  = recipients
+    //        var message = new EmailMessage
+    //        {
+    //            Subject = subject,
+    //            Body = body,
+    //            To = recipients,
+    //        };
+    //        await Email.ComposeAsync(message);
+    //    }
+    //    catch (FeatureNotSupportedException fbsEx)
+    //    {
+    //        // Email is not supported on this device
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        // Some other exception occurred
+    //    }
+    //}
+
+
+
+
+
 }

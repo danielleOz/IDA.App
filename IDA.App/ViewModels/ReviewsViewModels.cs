@@ -19,9 +19,6 @@ namespace IDA.App.ViewModels
 
         }
 
-
-        
-
         #region reviews
         private ObservableCollection<JobOffer> jobOffers;
         public ObservableCollection<JobOffer> JobOffers

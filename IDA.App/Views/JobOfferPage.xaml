@@ -45,14 +45,14 @@
                 <StackLayout>
                     <StackLayout >
 
-                        <CollectionView  Grid.Row="1" SelectionMode="Single"  ItemsSource="{Binding Workers}" EmptyView="there are no available workers right now">
+                        <CollectionView  Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding WorkerId}" ItemsSource="{Binding Workers}" EmptyView="there are no available workers right now">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:Worker">
                                     
                                     <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,15,0,15">
                                         
                                         
-                                    <Label   VerticalTextAlignment="Center" VerticalOptions="Center">
+                                    <Label VerticalTextAlignment="Center" VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span Text="{Binding FirstName} " />

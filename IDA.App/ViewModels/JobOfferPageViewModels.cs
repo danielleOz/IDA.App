@@ -43,8 +43,8 @@ namespace IDA.App.ViewModels
             SelectServicesCommand = new Command<string>(SelectService);
         }
 
+       
 
-    
         #region is worker
         public bool IsWorker
         {
@@ -57,7 +57,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        #region go to updateAvailbilty page
+        #region go to update Availbilty page
 
         public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
         public void UpdateAvailbilty()
@@ -80,7 +80,7 @@ namespace IDA.App.ViewModels
         //}
         //#endregion
 
-        #region service
+        #region services
         //private bool showStreetError;
         //public bool ShowStreetError
         //{
@@ -183,7 +183,7 @@ namespace IDA.App.ViewModels
         //}
         #endregion
 
-        #region IsServicesEnabled
+        #region Is Services Enabled
         private bool isServicesEnabled;
         public bool IsServicesEnabled
         {
@@ -196,7 +196,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        #region OnServicesChanged
+        #region On Services Changed
         public void OnServicesChanged(string search)
         {
             if (this.services != this.SelectedServicesItem)
@@ -231,7 +231,7 @@ namespace IDA.App.ViewModels
         public ICommand WorkerPCommand => new Command(workerP);
         public void workerP()
         {
-            WorkerProfileViewModels vm = new WorkerProfileViewModels();
+            WorkerProfileViewModels vm = new WorkerProfileViewModels(workerId, selected.Id);
             Page NewPage = new Views.WorkerProfile();
             NewPage.BindingContext = vm;
             App.Current.MainPage.Navigation.PushAsync(NewPage);
@@ -239,7 +239,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        
+        #region workers list
         public ICommand SearchCommand => new Command(search);
         public async void search()
         {
@@ -249,24 +249,24 @@ namespace IDA.App.ViewModels
 
             if (l != null)
             {
-                string userAddress = current.User.Street + " " + current.User.HouseNumber +" " + current.User.City + " " + "ISRAEL";
-                var userLocations = await Geocoding.GetLocationsAsync(userAddress);
-                var userLocation = userLocations?.FirstOrDefault();
-                List<Worker> closeToMe = new List<Worker>();
-                foreach(Worker w in l)
-                {
-                    var workerAddress = $" {w.Street} {w.HouseNumber} {w.City} ISRAEL";
-                    var workerLocations = await Geocoding.GetLocationsAsync(workerAddress);
-                    var workerlocation = workerLocations?.FirstOrDefault();
-                    if(workerlocation!=null)
-                    {
-                        var distance = Location.CalculateDistance(userLocation, workerlocation, DistanceUnits.Kilometers);
-                        if (distance <= w.RadiusKm)
-                            closeToMe.Add(w);
-                    }
+                //string userAddress = current.User.Street + " " + current.User.HouseNumber +" " + current.User.City + " " + "ISRAEL";
+                //var userLocations = await Geocoding.GetLocationsAsync(userAddress);
+                //var userLocation = userLocations?.FirstOrDefault();
+                //List<Worker> closeToMe = new List<Worker>();
+                //foreach(Worker w in l)
+                //{
+                //    var workerAddress = $" {w.Street} {w.HouseNumber} {w.City} ISRAEL";
+                //    var workerLocations = await Geocoding.GetLocationsAsync(workerAddress);
+                //    var workerlocation = workerLocations?.FirstOrDefault();
+                //    if(workerlocation!=null)
+                //    {
+                //        var distance = Location.CalculateDistance(userLocation, workerlocation, DistanceUnits.Kilometers);
+                //        if (distance <= w.RadiusKm)
+                //            closeToMe.Add(w);
+                //    }
 
-                }
-                this.Workers = new ObservableCollection<Worker>(closeToMe);
+                //}
+                this.Workers = new ObservableCollection<Worker>(/*closeToMe*/ l);
             }
             else this.Workers = new ObservableCollection<Worker>();
 
@@ -318,6 +318,18 @@ namespace IDA.App.ViewModels
             }
 
         }
+
+        private string workerId;
+        public string WorkerId
+        {
+            get => workerId;
+            set
+            {
+                workerId = value;
+                OnPropertyChanged("WorkerId");
+            }
+        }
+        #endregion
 
     }
 }
