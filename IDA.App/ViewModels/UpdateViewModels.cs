@@ -875,7 +875,24 @@ namespace IDA.App.ViewModels
 
             if (ValidateForm())
             {
-                User user = this.current.User;
+                User user = new User()
+                {
+                    Id = this.current.User.Id,
+                    Email = this.current.User.Email,
+                    FirstName = this.current.User.FirstName,
+                    LastName = this.current.User.LastName,
+                    UserPswd = this.current.User.UserPswd,
+                    City = this.current.User.City,
+                    Street = this.current.User.Street,
+                    Apartment = this.current.User.Apartment,
+                    HouseNumber = this.current.User.HouseNumber,
+                    Birthday = this.current.User.Birthday,
+                    IsWorker = this.current.User.IsWorker,
+                    Worker = null,
+                    ChatMessageRecievers = new List<ChatMessage>(),
+                    ChatMessageSenders = new List<ChatMessage>(),
+                    JobOffers = new List<JobOffer>()
+                };
                 IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
 
                 bool isUpdated = false;

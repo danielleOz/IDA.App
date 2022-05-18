@@ -23,17 +23,22 @@ namespace IDA.App.ViewModels
         }
 
         List<Worker> WorkersList = new List<Worker>();
-        public  WorkerProfileViewModels(string workerId, int serviceId)
+        public  WorkerProfileViewModels(int workerId, int serviceId)
         {
            
-            int id = int.Parse(workerId);
-             GetList();
+            int id = workerId;
+            GetList();
             Worker w = this.WorkersList.Where(a => a.Worker.Id == id).FirstOrDefault();
-            city = w.City;
-            birthDate = w.Birthday;
-           fname = w.FirstName;
-           lname = w.LastName;
-            email = w.Email;
+
+            if(w != null)
+            {
+                city = w.City;
+                birthDate = w.Birthday;
+                fname = w.FirstName;
+                lname = w.LastName;
+                email = w.Email;
+            }
+
         }
 
         public async void GetList()
