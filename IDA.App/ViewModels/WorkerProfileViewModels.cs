@@ -14,37 +14,40 @@ using IDA.App.Services;
 
 namespace IDA.App.ViewModels
 {
-    class WorkerProfileViewModels:ViewModelBase
+    public class WorkerProfileViewModels : ViewModelBase
     {
 
         public WorkerProfileViewModels()
         {
-            
+
         }
 
         List<Worker> WorkersList = new List<Worker>();
-        public  WorkerProfileViewModels(int workerId, int serviceId)
+        public WorkerProfileViewModels(int workerId, int serviceId)
         {
-           
-            int id = workerId;
-            GetList();
-            Worker w = this.WorkersList.Where(a => a.Worker.Id == id).FirstOrDefault();
 
-            if(w != null)
-            {
-                city = w.City;
-                birthDate = w.Birthday;
-                fname = w.FirstName;
-                lname = w.LastName;
-                email = w.Email;
-            }
+            Id = workerId;
+
+
 
         }
 
-        public async void GetList()
+        public async Task GetList()
         {
             IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
-             WorkersList = await proxy.GetAvailableWorkers();
+            List<Worker> workers = await proxy.GetAvailableWorkers();
+            WorkersList = workers;
+            Worker w = this.WorkersList.Where(a => a.Id == Id).FirstOrDefault();
+            ThisWorker = w;
+            if (w != null)
+            {
+                City = w.City;
+                Age = (DateTime.Now.Year - w.Birthday.Year).ToString();
+                Fname = w.FirstName;
+                Lname = w.LastName;
+                Email = w.Email;
+            }
+
         }
 
         #region reviews
@@ -63,6 +66,22 @@ namespace IDA.App.ViewModels
         }
 
 
+        #endregion
+
+        #region Thisworker
+        private Worker thisWorker;
+        public Worker ThisWorker
+        {
+            get => this.thisWorker;
+            set
+            {
+                if (value != this.thisWorker)
+                {
+                    this.thisWorker = value;
+                    OnPropertyChanged("ThisWorker");
+                }
+            }
+        }
         #endregion
 
         #region city
@@ -134,7 +153,7 @@ namespace IDA.App.ViewModels
 
 
         #endregion
- 
+
         #region first name 
         private string fname;
         public string Fname
@@ -173,7 +192,7 @@ namespace IDA.App.ViewModels
         #endregion
 
         #region birthdate
-        private DateTime birthDate = DateTime.Now;
+        private DateTime birthDate;
         public DateTime BirthDate
         {
             get => this.birthDate.Date;
@@ -194,9 +213,15 @@ namespace IDA.App.ViewModels
         private string age;
         public string Age
         {
-            get => (DateTime.Now.Year - this.birthDate.Year).ToString();
-
-           
+            get => this.age;
+            set
+            {
+                if (value != this.age)
+                {
+                    this.age = value;
+                    OnPropertyChanged("Age");
+                }
+            }
         }
 
 
@@ -206,10 +231,10 @@ namespace IDA.App.ViewModels
         public ICommand SendEmailCommand => new Command(SendMail);
         private async void SendMail()
         {
-            
+
             IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
 
-                bool isOK = false;
+            bool isOK = false;
 
             JobOffer j = new JobOffer
             {
@@ -217,68 +242,71 @@ namespace IDA.App.ViewModels
             };
 
             j.ServiceId = sId;
-            j.ChosenWorkerId = id ;
+            j.ChosenWorkerId = id;
             j.Description = "";
             j.PublishDate = DateTime.Now;
             j.StatusId = 0;
-            j.UserId= this.current.User.Id;
+            j.UserId = this.current.User.Id;
 
             j = await IDAproxy.JobOffer(j);
-            if (j != null) 
+            if (j != null)
             {
                 this.current.JobOffer = j;
                 isOK = true;
             }
 
 
-           
 
-                if (isOK)
-                {
 
-                    await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
-                }
+            if (isOK)
+            {
 
-                else
-                {
-                    await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
-                }
+                await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+            }
+
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
+            }
 
 
         }
 
 
+
+
+        #endregion
+
+        //public async Task SendEmail()
+        //{
+        //    try
+        //    {
+        //        string subject = "New Job Offer";
+        //        string body = "hi i would like to schedule the job offer with you ";
+
+        //        List<string> recipients = new List<string>();
+        //        recipients.Add(ThisWorker.Email);
+        //        var message = new EmailMessage
+        //        {
+        //            Subject = subject,
+        //            Body = body,
+        //            To = recipients,
+        //        };
+        //        await SendEmail.ComposeAsync(message);
+        //    }
+        //    catch (FeatureNotSupportedException fbsEx)
+        //    {
+        //        // Email is not supported on this device
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Some other exception occurred
+        //    }
+        //}
+
+
+
     }
-
-    #endregion
-
-    //public async Task SendEmail()
-    //{
-    //    try
-    //    {
-    //        string subject = "New Job Offer";
-    //        string body = "hi i would like to schedule the job offer with you ";
-    //        List<string>  = recipients
-    //        var message = new EmailMessage
-    //        {
-    //            Subject = subject,
-    //            Body = body,
-    //            To = recipients,
-    //        };
-    //        await Email.ComposeAsync(message);
-    //    }
-    //    catch (FeatureNotSupportedException fbsEx)
-    //    {
-    //        // Email is not supported on this device
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        // Some other exception occurred
-    //    }
-    //}
-
-
-
-
-
 }
+
+

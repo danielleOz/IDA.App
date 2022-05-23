@@ -18,5 +18,17 @@ namespace IDA.App.Views
             this.BindingContext = new WorkerProfileViewModels();
             InitializeComponent();
         }
+
+        public WorkerProfile(WorkerProfileViewModels vm)
+        {
+            this.BindingContext = vm;
+            InitializeComponent();
+        }
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            var viewModel = this.BindingContext as WorkerProfileViewModels;
+            await viewModel.GetList();
+        }
     }
 }

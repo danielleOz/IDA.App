@@ -17,13 +17,13 @@
                 <StackLayout>
 
                     <Label Text=" "></Label>
-                    <Label Text="{Binding EntryFname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text="{Binding Fname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding EntryLname, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text="{Binding Lname, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding EntryEmail, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text="{Binding Email, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding EntryCity, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text="{Binding City, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
                     <Label Text="{Binding Age,StringFormat='age- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>

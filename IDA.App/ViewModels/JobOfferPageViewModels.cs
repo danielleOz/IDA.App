@@ -235,8 +235,8 @@ namespace IDA.App.ViewModels
         public void workerP()
         {
             WorkerProfileViewModels vm = new WorkerProfileViewModels(workerId.Id, selected.Id);
-            Page NewPage = new Views.WorkerProfile();
-            NewPage.BindingContext = vm;
+            Page NewPage = new Views.WorkerProfile() { BindingContext = vm };
+           // NewPage.BindingContext = vm;
             App.Current.MainPage.Navigation.PushAsync(NewPage);
 
         }
