@@ -19,6 +19,8 @@
                     <Label Text=" "></Label>
                     <Label Text="{Binding Fname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
+                    <Label Text="{Binding Sname, StringFormat='service name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                    <Label Text=" "></Label>
                     <Label Text="{Binding Lname, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
                     <Label Text="{Binding Email, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>

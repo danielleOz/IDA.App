@@ -20,27 +20,28 @@ namespace IDA.App.ViewModels
         public WorkerProfileViewModels()
         {
 
+
         }
 
         List<Worker> WorkersList = new List<Worker>();
         public WorkerProfileViewModels(int workerId, int serviceId)
         {
-
             Id = workerId;
-
-
-
+            SId = serviceId;
         }
 
         public async Task GetList()
         {
             IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
             List<Worker> workers = await proxy.GetAvailableWorkers();
+            List<Service> services = await proxy.GetServices();
             WorkersList = workers;
+            Service s = services.Where(b => b.Id == SId).FirstOrDefault();
             Worker w = this.WorkersList.Where(a => a.Id == Id).FirstOrDefault();
             ThisWorker = w;
             if (w != null)
             {
+                Sname = s.Name;
                 City = w.City;
                 Age = (DateTime.Now.Year - w.Birthday.Year).ToString();
                 Fname = w.FirstName;
@@ -172,6 +173,22 @@ namespace IDA.App.ViewModels
 
         #endregion
 
+        #region service name 
+        private string sname;
+        public string Sname
+        {
+            get => this.sname;
+            set
+            {
+                if (value != this.sname)
+                {
+                    this.sname = value;
+                    OnPropertyChanged("Sname");
+                }
+            }
+        }
+        #endregion
+
         #region last name
 
         private string lname;
@@ -227,6 +244,25 @@ namespace IDA.App.ViewModels
 
         #endregion
 
+        //#region reviews
+        //private ObservableCollection<JobOffer> jobOffers;
+        //public ObservableCollection<JobOffer> JobOffers
+        //{
+        //    get
+        //    {
+        //        return this.jobOffers;
+        //    }
+        //    set
+        //    {
+        //        this.jobOffers = value;
+        //        OnPropertyChanged("JobOffers");
+        //    }
+        //}
+
+
+        //#endregion
+
+
         #region submit
         public ICommand SendEmailCommand => new Command(SendMail);
         private async void SendMail()
@@ -255,9 +291,6 @@ namespace IDA.App.ViewModels
                 isOK = true;
             }
 
-
-
-
             if (isOK)
             {
 
@@ -271,8 +304,6 @@ namespace IDA.App.ViewModels
 
 
         }
-
-
 
 
         #endregion

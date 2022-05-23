@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using IDA.DTO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace IDA.App.ViewModels
 {
@@ -17,17 +18,40 @@ namespace IDA.App.ViewModels
     {
 
         #region on submit
-        public ICommand OnSubmitCommand => new Command(OnSubmit);
+        public ICommand OnSubmitCommand => new Command(OnSubmitAsync);
 
 
-        private void OnSubmit()
+        private async void OnSubmitAsync()
         {
             this.current.JobOffer.WorkerReviewDate = DateTime.Now;
             this.current.JobOffer.WorkerReviewDescriptipon = descriptoin;
             this.current.JobOffer.WorkerReviewRate = workerRating;
 
-                
-            
+            IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
+
+            bool isOK = false;
+
+            JobOffer j = this.current.JobOffer;
+   
+            j = await IDAproxy.JobOffer(j);
+
+            if (j != null)
+            {
+                isOK = true;
+            }
+
+            if (isOK)
+            {
+
+                await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+            }
+
+            else
+            {
+                await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
+            }
+
+
         }
 
         #endregion
