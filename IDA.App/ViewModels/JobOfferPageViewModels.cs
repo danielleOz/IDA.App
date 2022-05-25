@@ -203,33 +203,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        //#region isnt worker
-
-        //public bool IsntWorker
-        //{
-        //    get
-        //    {
-        //        if (this.current != null && this.current.User != null)
-        //            return this.current.User.IsWorker;
-        //        return false;
-        //    }
-        //}
-        //#endregion
-
-
-        //private bool showStreetError;
-        //public bool ShowStreetError
-        //{
-        //    get => showStreetError;
-        //    set
-        //    {
-        //        showStreetError = value;
-        //        OnPropertyChanged("ShowStreetError");
-        //    }
-        //}
-
-        //This property holds the selected street on the collection of streets
-
         #region go to worker profile page
         public ICommand WorkerPCommand => new Command(workerP);
         public void workerP()

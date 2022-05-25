@@ -72,6 +72,7 @@
                                         <Label.FormattedText>
                                             <FormattedString>
                                                 <Span Text="{Binding FirstName} " />
+                                                    <Span Text=" "></Span>
                                                 <Span Text="{Binding LastName} " />
                                             </FormattedString>
                                         </Label.FormattedText>

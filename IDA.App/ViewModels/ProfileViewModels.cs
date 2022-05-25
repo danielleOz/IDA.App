@@ -305,6 +305,27 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+        #region go to Job offer history page
+        public ICommand GoJOHistoryCommand => new Command(JOHistory);
+        private void JOHistory()
+        {
+            List<JobOffer> jobOffers;
+            if (IsWorker)
+            {
+                jobOffers = this.current.Worker.WorkerJobOffers;
+            }
+            else
+            {
+                jobOffers = this.current.User.JobOffers;
+            }
+
+            JobHistoryViewModels vm = new JobHistoryViewModels(jobOffers);
+            Page NewPage = new Views.JobHistory();
+            NewPage.BindingContext = vm;
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
+        }
+        #endregion
+
         //#region go to job offer
         //public ICommand GoToJobCommand => new Command(JobOffer);
         //private void JobOffer()

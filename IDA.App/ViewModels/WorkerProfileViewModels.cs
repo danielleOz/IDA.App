@@ -295,7 +295,7 @@ namespace IDA.App.ViewModels
             if (isOK)
             {
                 try
-                { await SendEmail();
+                { /*await SendEmail();*/
                     await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
                 }
                 catch

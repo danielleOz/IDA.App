@@ -44,17 +44,17 @@ namespace IDA.App.ViewModels
         }
 
 
-        #region go to upload review page
-        public ICommand UploadCommand => new Command(upload);
-        public void upload()
-        {
-            UploadReviewViewModels vm = new UploadReviewViewModels();
-            Page NewPage = new Views.UploadReview();
-            NewPage.BindingContext = vm;
-            App.Current.MainPage.Navigation.PushAsync(NewPage);
+        //#region go to upload review page
+        //public ICommand UploadCommand => new Command(upload);
+        //public void upload()
+        //{
+        //    UploadReviewViewModels vm = new UploadReviewViewModels();
+        //    Page NewPage = new Views.UploadReview();
+        //    NewPage.BindingContext = vm;
+        //    App.Current.MainPage.Navigation.PushAsync(NewPage);
 
-        }
-        #endregion
+        //}
+        //#endregion
 
     }
 }

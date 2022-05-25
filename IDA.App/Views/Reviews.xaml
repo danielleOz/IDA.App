@@ -10,11 +10,12 @@
   
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
+            
 
             <Label Text="in this page you can find your reviews"></Label>
 
 
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+            <!--<Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">-->
                 <StackLayout>
                 
                 <!--show reviews customer wrote or was written on worker-->
@@ -37,10 +38,21 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
+                                            <Span Text="worker name- " />
                                             <Span Text="{Binding ChosenWorker.FirstName} " />
-                                                <Span Text="{Binding WorkerReviewDescriptipon}" />
                                             <Span Text="&#10; " />
+                                            <Span Text="review description- " />
+                                            <Span Text="{Binding WorkerReviewDescriptipon}" />
+                                            <Span Text="&#10; " />
+                                            <Span Text="review date- " />
                                             <Span Text="{Binding ReviewDateString}" />
+                                            <Span Text="&#10; " />
+                                            <Span Text=" " />
+                                            <Span Text="rate- " />
+                                            <Span Text="{Binding WorkerReviewRate}" />
+                                            <Span Text="&#10; " />
+                                            <Span Text=" " />
+
 
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -54,9 +66,9 @@
 
             </StackLayout>
 
-            </Frame>
+            <!--</Frame>-->
 
-            <Button Text="upload new review" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UploadCommand}"></Button>
+          
 
 
         </StackLayout>

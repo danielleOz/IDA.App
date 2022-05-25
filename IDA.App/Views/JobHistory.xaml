@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IDA.App.ViewModels"
+             x:Class="IDA.App.Views.JobHistory"
+             xmlns:models="clr-namespace:IDA.App.Models">
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <ScrollView>
+                <CollectionView SelectionMode="Single" SelectedItem="{Binding Chosen}" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:JobOffer">
+                            <Label VerticalTextAlignment="Center" VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=" " />
+                                        <Span Text="worker name- " />
+                                        <Span Text="{Binding ChosenWorker.FirstName} " />
+                                        <Span Text="&#10; " />
+                                        <Span Text="service type- " />
+                                        <Span Text="{Binding Service.Name}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text="date- " />
+                                        <Span Text="{Binding PublishDateString}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text="rate- " />
+                                        <Span Text="{Binding WorkerReviewRate}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text=" " />
+
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
+            <Button Text="upload new review" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UploadCommand}"></Button>
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

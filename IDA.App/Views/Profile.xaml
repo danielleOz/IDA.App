@@ -21,23 +21,23 @@
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryFname, StringFormat='first name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryLname , Mode=TwoWay, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryLname , StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryEmail, Mode=TwoWay, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryEmail,  StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryPass,  Mode=TwoWay, StringFormat='password- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryPass,  StringFormat='password- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryCity, Mode=TwoWay, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryCity, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryStreet,  Mode=TwoWay,StringFormat='street- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryStreet, StringFormat='street- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryAp , Mode=TwoWay, StringFormat='aprtmant- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryAp , StringFormat='aprtmant- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryHN, Mode=TwoWay, StringFormat='house number- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryHN, StringFormat='house number- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryBirthDate, Mode=TwoWay, StringFormat='birth date- {0:dd/MM/yyyy}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryBirthDate, StringFormat='birth date- {0:dd/MM/yyyy}'}"  TextColor="#aaaaaa" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryRadius, Mode=TwoWay, StringFormat='radius- {0:F0}'}"  TextColor="#aaaaaa" IsVisible="{Binding IsWorker}"></Label>
+                        <Label Text="{Binding EntryRadius, StringFormat='radius- {0:F0}'}"  TextColor="#aaaaaa" IsVisible="{Binding IsWorker}"></Label>
                         <Label Text=" "></Label>
 
                     </StackLayout>
@@ -53,17 +53,15 @@
                         <Label Text=" "></Label>
                         <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>
-                        
 
-                        <!--customer can see the reviews he wrote worker will be able to see what was wreeten on himcustomer can see the reviews he wrote worker will be able to see what was wreeten on him-->
+                        <Button Text="my jobs" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoJOHistoryCommand }"></Button>
+                        <Label Text=" "></Label>
+
                         <Button Text="log out" Command="{Binding LogOutCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
 
                     </StackLayout>
 
                 </Frame>
-
-                <Label Text=" "></Label>
-                <Button Text="aaaa" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToJobCommand }" ></Button>
 
 
                 <Label Text=" "></Label>
