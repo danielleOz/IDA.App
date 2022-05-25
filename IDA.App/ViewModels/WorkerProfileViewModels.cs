@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using IDA.App.Services;
+using IDA.DTO;
 
 namespace IDA.App.ViewModels
 {
@@ -293,8 +294,15 @@ namespace IDA.App.ViewModels
 
             if (isOK)
             {
-
-                await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+                try
+                { await SendEmail();
+                    await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+                }
+                catch
+                {
+                    await App.Current.MainPage.DisplayAlert("", "your request could not be Sent", "Ok");
+                }
+               
             }
 
             else
@@ -308,32 +316,34 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-        //public async Task SendEmail()
-        //{
-        //    try
-        //    {
-        //        string subject = "New Job Offer";
-        //        string body = "hi i would like to schedule the job offer with you ";
-
-        //        List<string> recipients = new List<string>();
-        //        recipients.Add(ThisWorker.Email);
-        //        var message = new EmailMessage
-        //        {
-        //            Subject = subject,
-        //            Body = body,
-        //            To = recipients,
-        //        };
-        //        await SendEmail.ComposeAsync(message);
-        //    }
-        //    catch (FeatureNotSupportedException fbsEx)
-        //    {
-        //        // Email is not supported on this device
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Some other exception occurred
-        //    }
-        //}
+        public async  Task SendEmail()
+        {
+            try
+            {
+                string subject = "New Job Offer";
+                string body = "hi i would like to schedule the job offer with you ";
+                var from = new MailAddress(current.User.Email);
+                MailAddressCollection recipients = new MailAddressCollection();
+                recipients.Add(new MailAddress(ThisWorker.Email));
+                var message = new System.Net.Mail.MailMessage(from,recipients.First())
+                {
+                    Subject = subject,
+                    Body = body,
+                     
+                   
+                };
+               await  EmailSender.SendEmail(message);
+                return;
+            }
+            catch (FeatureNotSupportedException fbsEx)
+            {
+                // Email is not supported on this device
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("error sending email");
+            }
+        }
 
 
 

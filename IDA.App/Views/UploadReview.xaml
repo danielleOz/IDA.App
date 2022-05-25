@@ -30,7 +30,7 @@
 
             <Label Text=""></Label>
 
-            <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  ></Button>
+            <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding OnSubmitCommand}" ></Button>
 
         </StackLayout>
        

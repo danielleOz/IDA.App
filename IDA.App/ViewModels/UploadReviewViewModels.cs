@@ -43,7 +43,7 @@ namespace IDA.App.ViewModels
             if (isOK)
             {
 
-                await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+                await App.Current.MainPage.DisplayAlert("", "your review has been submitted", "Ok");
             }
 
             else
@@ -51,7 +51,8 @@ namespace IDA.App.ViewModels
                 await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
             }
 
-
+            workerRating = 5;
+            descriptoin = "";
         }
 
         #endregion
