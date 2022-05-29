@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
              xmlns:models="clr-namespace:IDA.App.Models"
-             x:Class="IDA.App.Views.JobOfferPage" x:DataType="viewmodels:JobOfferPageViewModels">
+             x:DataType="viewmodels:JobOfferPageViewModels"
+             x:Class="IDA.App.Views.JobOfferPage">
     <ContentPage.Resources>
         <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -21,31 +22,16 @@
             </Setter>
         </Style>
 
-        <Style TargetType="CollectionView">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="Pink" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
 
 
         <StackLayout BackgroundColor="#fff7f7">
-
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
-                <StackLayout>
+            <Label Text=""></Label>
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
+                <StackLayout >
                     <SearchBar Placeholder="search services" Text="{Binding Services}"/>
-                    <CollectionView EmptyView="could not find services"  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
+                    <CollectionView EmptyView=""  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
                                     SelectionChangedCommand="{Binding SelectServicesCommand}" SelectionChangedCommandParameter="{Binding SelectedService}">
                                    <!--IsVisible="{Binding ShowServicesError}"--> 
                     </CollectionView>
@@ -54,14 +40,14 @@
                     <Button Command="{Binding Path=SearchCommand}"></Button>
                 </StackLayout>
 
-            </Frame> 
+            </Frame>
 
-
+            <StackLayout IsVisible="{Binding IsSearched}">
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
-                <StackLayout>
+                <StackLayout >
                     <StackLayout >
 
-                        <CollectionView  Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding WorkerId, Mode=TwoWay}"  ItemsSource="{Binding Workers}" EmptyView="there are no available workers right now">
+                        <CollectionView  Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding WorkerId, Mode=TwoWay}"  ItemsSource="{Binding Workers}" EmptyView="">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:Worker">
                                     
@@ -101,12 +87,11 @@
                 </StackLayout>
 
             </Frame>
+            </StackLayout>
 
-           
             <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
-           
+
             <StackLayout IsVisible="{Binding IsWorker}">
-                <Label Text="will be only for workers"></Label>
                 <Button Text="availbilty update" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand }"></Button>
 
             </StackLayout>

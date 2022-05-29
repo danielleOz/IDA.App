@@ -32,6 +32,7 @@ namespace IDA.App.ViewModels
             bool isOK = false;
 
             JobOffer j = this.current.JobOffer;
+            j.User = null;
    
             j = await IDAproxy.JobOffer(j);
 
@@ -51,8 +52,6 @@ namespace IDA.App.ViewModels
                 await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
             }
 
-            workerRating = 5;
-            descriptoin = "";
         }
 
         #endregion

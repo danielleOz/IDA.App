@@ -39,6 +39,7 @@ namespace IDA.App.ViewModels
             WorkersList = workers;
             Service s = services.Where(b => b.Id == SId).FirstOrDefault();
             Worker w = this.WorkersList.Where(a => a.Id == Id).FirstOrDefault();
+            //List<JobOffer> jobOffers = w.JobOffers;
             ThisWorker = w;
             if (w != null)
             {
@@ -49,7 +50,7 @@ namespace IDA.App.ViewModels
                 Lname = w.LastName;
                 Email = w.Email;
             }
-
+            //this.jobOffers = new ObservableCollection<JobOffer>(jobOffers);
         }
 
         #region reviews
@@ -312,11 +313,7 @@ namespace IDA.App.ViewModels
 
 
         }
-
-
-        #endregion
-
-        public async  Task SendEmail()
+        public async Task SendEmail()
         {
             try
             {
@@ -325,14 +322,14 @@ namespace IDA.App.ViewModels
                 var from = new MailAddress(current.User.Email);
                 MailAddressCollection recipients = new MailAddressCollection();
                 recipients.Add(new MailAddress(ThisWorker.Email));
-                var message = new System.Net.Mail.MailMessage(from,recipients.First())
+                var message = new System.Net.Mail.MailMessage(from, recipients.First())
                 {
                     Subject = subject,
                     Body = body,
-                     
-                   
+
+
                 };
-               await  EmailSender.SendEmail(message);
+                await EmailSender.SendEmail(message);
                 return;
             }
             catch (FeatureNotSupportedException fbsEx)
@@ -344,6 +341,9 @@ namespace IDA.App.ViewModels
                 throw new Exception("error sending email");
             }
         }
+
+        #endregion
+
 
 
 

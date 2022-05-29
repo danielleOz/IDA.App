@@ -99,33 +99,6 @@ namespace IDA.App.ViewModels
         }
 
 
-        //private string streetError;
-        //public string StreetError
-        //{
-        //    get => streetError;
-        //    set
-        //    {
-        //        streetError = value;
-        //        OnPropertyChanged("StreetError");
-        //    }
-        //}
-
-        //private void ValidateStreet()
-        //{
-        //    this.ShowStreetError = string.IsNullOrEmpty(this.Street);
-        //    if (!this.ShowStreetError)
-        //    {
-        //        Street street = this.allStreets.Where(s => s.street_name == this.Street).FirstOrDefault();
-        //        if (street == null)
-        //        {
-        //            this.ShowStreetError = true;
-        //            this.StreetError = ERROR_MESSAGES.BAD_STREET;
-        //        }
-        //    }
-        //    else
-        //        this.StreetError = ERROR_MESSAGES.REQUIRED_FIELD;
-        //}
-
         #region Is Services Enabled
         private bool isServicesEnabled;
         public bool IsServicesEnabled
@@ -193,6 +166,39 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
+        #region IsSearched
+        private bool isSearched;
+        public bool IsSearched
+        {
+            get => this.isSearched;
+            set
+            {
+                if (value != this.isSearched)
+                {
+                    this.isSearched = value;
+                    OnPropertyChanged("IsSearched");
+                }
+            }
+        }
+        #endregion
+
+        //#region is not worker
+        //public bool IsntWorker
+        //{
+        //    get
+        //    {
+        //        if (this.current != null && this.current.User != null)
+        //        {
+        //            return !this.current.User.IsWorker;
+
+        //        }
+        //        return false;
+
+        //    }
+        //}
+        //#endregion
+
         #region go to update Availbilty page
 
         public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
@@ -250,7 +256,7 @@ namespace IDA.App.ViewModels
                 selected = null;
 
             FilterList(l);
-
+            IsSearched = true;
 
         }
 

@@ -2,20 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IDA.App.ViewModels"
+             xmlns:DataType="clr-namespace:IDA.App.Models"
              x:Class="IDA.App.Views.WorkerProfile">
     <ContentPage.BindingContext>
         <local:WorkerProfileViewModels></local:WorkerProfileViewModels>
     </ContentPage.BindingContext>
     
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout BackgroundColor="#fff7f7">
             <Label Text=" "></Label>
             <Label Text="worker detailes " FontSize="Medium" HorizontalOptions="Center"
                    ></Label>
             <Label Text=" "> </Label>
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="500"  HorizontalOptions="Center">
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="300"  HorizontalOptions="Center">
                 <StackLayout>
-
+                    
                     <Label Text=" "></Label>
                     <Label Text="{Binding Fname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
@@ -33,9 +35,43 @@
                 </StackLayout>
             </Frame>
 
+            
+                <CollectionView SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="DataType:JobOffer">
+                            <Label  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=" " />
+                                        <Span Text="worker name- " />
+                                        <Span Text="{Binding ChosenWorker.FirstName} " />
+                                        <Span Text="&#10; " />
+                                        <Span Text="review description- " />
+                                        <Span Text="{Binding WorkerReviewDescriptipon}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text="review date- " />
+                                        <Span Text="{Binding ReviewDateString}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text=" " />
+                                        <Span Text="rate- " />
+                                        <Span Text="{Binding WorkerReviewRate}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text=" " />
+
+
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+           
+
             <Button Text="contact the worker" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding SendEmailCommand}"  ></Button>
 
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
