@@ -97,7 +97,6 @@
                 <!--WORKER DETAILS PART-->
                 <StackLayout IsVisible="{Binding IsWorker}">
                
-
                     <StackLayout>
 
                         <Label Text=""></Label>

@@ -68,6 +68,8 @@ namespace IDA.App.ViewModels
             {
                 Worker CurruntWorker = this.current.Worker;
                 entryRadius = CurruntWorker.RadiusKm.ToString();
+                //List<WorkerService> WorkerS = CurruntWorker.WorkerServices;
+                //SelectedServices = new ObservableCollection<object>(WorkerS);
             }
 
 
@@ -326,7 +328,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region Street
         private bool showStreetError;
         public bool ShowStreetError
@@ -460,7 +461,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region house num
         private string entryHN;
         public string EntryHN
@@ -517,7 +517,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region password
         private string entryPass;
         public string EntryPass
@@ -573,7 +572,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region first name 
         private string entryFname;
         public string EntryFname
@@ -624,7 +622,6 @@ namespace IDA.App.ViewModels
         }
 
         #endregion
-
 
         #region last name
 
@@ -686,7 +683,6 @@ namespace IDA.App.ViewModels
                 LastNameError = string.Empty;
         }
         #endregion
-
 
         #region birthdate
         private DateTime entryBirthDate = DateTime.Now;
@@ -751,7 +747,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region Radius
         private string entryRadius;
         public string EntryRadius
@@ -810,7 +805,6 @@ namespace IDA.App.ViewModels
         }
 
         #endregion
-
 
         #region is worker
         private bool isWorker;
@@ -897,27 +891,27 @@ namespace IDA.App.ViewModels
 
                 bool isUpdated = false;
                 //if (double.Parse(EntryRadius) != this.current.Worker.RadiusKm || this.current.Worker.WorkerServices != selectedServices)
-                if(isWorker)
+                if(this.current.User.IsWorker)
                 {
-                    //Worker w = this.current.Worker;
-                    //w.UserPswd = EntryPass;
-                    //w.FirstName = EntryFname;
-                    //w.LastName = EntryLname;
-                    //w.City = EntryCity;
-                    //w.Birthday = EntryBirthDate;
-                    //w.Street = EntryStreet;
-                    //w.Apartment = EntryAp;
-                    //w.HouseNumber = EntryHN;
-                    //w.IsWorker = true;
-                    //w.RadiusKm = double.Parse(EntryRadius);
-                    //w.WorkerServices = new List<WorkerService>();
-                    //foreach (Service s in workerServices)
-                    //{
-                    //    w.WorkerServices.Add(new WorkerService() { Service = s });
-                    //}
-                    //w = await IDAproxy.WorkerUpdate(w);
-                    //if (w != null)
-                    //    isUpdated = true;
+                    Worker w = this.current.Worker;
+                    w.UserPswd = EntryPass;
+                    w.FirstName = EntryFname;
+                    w.LastName = EntryLname;
+                    w.City = City;
+                    w.Birthday = EntryBirthDate;
+                    w.Street = Street;
+                    w.Apartment = EntryAp;
+                    w.HouseNumber = EntryHN;
+                    w.IsWorker = true;
+                    w.RadiusKm = double.Parse(EntryRadius);
+                    w.WorkerServices = new List<WorkerService>();
+                    foreach (Service s in workerServices)
+                    {
+                        w.WorkerServices.Add(new WorkerService() { Service = s });
+                    }
+                    w = await IDAproxy.WorkerUpdate(w);
+                    if (w != null)
+                        isUpdated = true;
 
 
                 }
@@ -997,7 +991,6 @@ namespace IDA.App.ViewModels
 
         //private Command selectServicesCommand;
         public ICommand SelectServicesCommand { get; set; }
-
         private void SelectServices()
         {
             if (workerServices == null)

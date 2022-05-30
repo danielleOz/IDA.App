@@ -42,7 +42,7 @@
 
             </Frame>
 
-            <StackLayout IsVisible="{Binding IsSearched}">
+            <StackLayout >
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                 <StackLayout >
                     <StackLayout >
