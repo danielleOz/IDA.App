@@ -33,6 +33,7 @@ namespace IDA.App.ViewModels
 
             JobOffer j = this.current.JobOffer;
             j.User = null;
+            j.ChosenWorker = null;
    
             j = await IDAproxy.JobOffer(j);
 

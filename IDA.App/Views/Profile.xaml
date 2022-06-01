@@ -12,7 +12,7 @@
             
             <StackLayout BackgroundColor="#fff7f7">
                 <Label Text=" "></Label>
-                <Label Text="profile page" TextColor="#aaaaaa"></Label>
+                <Label Text="profile page" TextColor="#aaaaaa" FontSize="Medium" HorizontalTextAlignment="Center"></Label>
 
                 <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="500">
 
@@ -45,7 +45,7 @@
 
                 <Label Text=" "></Label>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="240">
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="279">
 
                     <StackLayout >
 

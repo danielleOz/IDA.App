@@ -14,14 +14,20 @@ namespace IDA.App.ViewModels
 {
     public class AvailbiltyViewModels : ViewModelBase
     {
-        private ProfileViewModels profileVm;
-        public AvailbiltyViewModels() { }
-        public AvailbiltyViewModels(DateTime availableUntil, ProfileViewModels profileVm)
+        public AvailbiltyViewModels()
         {
-            this.profileVm = profileVm;
-            this.time = availableUntil;
-            DateTime oneHourLater = DateTime.Now.AddHours(1);
-            this.Time = new TimeSpan(oneHourLater.Hour, oneHourLater.Minute, 0);
+            if (current.Worker.AvailbleUntil.Date < DateTime.Now.Date)
+            {
+                this.Time = new TimeSpan(0);
+            }
+            else
+            {
+                this.Time = new TimeSpan(current.Worker.AvailbleUntil.Hour, current.Worker.AvailbleUntil.Minute, 0);
+            }
+            this.time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, spanTime.Hours, spanTime.Minutes, 0);
+
+            OnPropertyChanged("IsAvailable");
+            OnPropertyChanged("Time");
 
         }
 
@@ -38,6 +44,35 @@ namespace IDA.App.ViewModels
             }
         }
         #endregion
+
+
+        #region is Availble bool
+        public bool IsAvailableBool
+        {
+            get
+            {
+                if (DateTime.Now <= this.time)
+                    return true;
+                else
+                    return false;
+            }
+        }
+        #endregion
+
+
+        #region is Availble bool
+        public bool IsntAvailableBool
+        {
+            get
+            {
+                if (DateTime.Now <= this.time)
+                    return false;
+                else
+                    return true;
+            }
+        }
+        #endregion
+
 
         #region time
         private DateTime time;
@@ -64,13 +99,9 @@ namespace IDA.App.ViewModels
 
         private async void AvailbleWorker()
         {
+            time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, spanTime.Hours, spanTime.Minutes, 0);
             if (current.User.IsWorker)
             {
-                if (time < DateTime.Now)
-                {
-                    await App.Current.MainPage.DisplayAlert(" ", "", "ok", FlowDirection.RightToLeft);
-
-                }
                 current.Worker.AvailbleUntil = time;
 
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
@@ -84,8 +115,6 @@ namespace IDA.App.ViewModels
                 else
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
-                    time = current.Worker.AvailbleUntil;
-                    //Time = time - DateTime.Today;
                     OnPropertyChanged("IsAvailable");
                     OnPropertyChanged("Time");
                 }
@@ -105,21 +134,20 @@ namespace IDA.App.ViewModels
         {
             if (current.User.IsWorker)
             {
-                current.Worker.AvailbleUntil = DateTime.Today;
+                this.spanTime = new TimeSpan(0);
+                time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, spanTime.Hours, spanTime.Minutes, 0);
+                current.Worker.AvailbleUntil = time;
 
                 IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
                 bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
                 if (!success)
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
-                    current.Worker.AvailbleUntil = time;
                 }
 
                 else
                 {
                     await App.Current.MainPage.DisplayAlert(" ", "your now set as Unavailable", "ok", FlowDirection.RightToLeft);
-                    time = current.Worker.AvailbleUntil;
-                    //Time = time - DateTime.Today;
                     OnPropertyChanged("IsAvailable");
                     OnPropertyChanged("Time");
 

@@ -151,6 +151,7 @@ namespace IDA.App.ViewModels
             this.FilteredServices = new ObservableCollection<string>();
             SelectServicesCommand = new Command<string>(SelectService);
             WorkerId = null;
+           
         }
 
 
@@ -166,6 +167,18 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
+        #region isnt worker
+        public bool IsntWorker
+        {
+            get
+            {
+                if (this.current != null && this.current.User != null)
+                    return !this.current.User.IsWorker;
+                return false;
+            }
+        }
+        #endregion
 
         #region IsSearched
         private bool isSearched;
@@ -204,7 +217,8 @@ namespace IDA.App.ViewModels
         public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
         public void UpdateAvailbilty()
         {
-            Page NewPage = new Views.Availbilty();
+            Views.Availbilty NewPage = new Views.Availbilty();
+            NewPage.BindingContext = new ViewModels.AvailbiltyViewModels();
             App.Current.MainPage.Navigation.PushAsync(NewPage);
         }
         #endregion
@@ -255,7 +269,7 @@ namespace IDA.App.ViewModels
             if (string.IsNullOrEmpty(Services))
                 selected = null;
 
-            FilterList(l);
+            FilterList();
             IsSearched = true;
 
         }
@@ -288,17 +302,10 @@ namespace IDA.App.ViewModels
             return await IDAproxy.GetWorkerReviews();
         }
 
-        public void FilterList(List<Worker> workers)
+        public void FilterList()
         {
-            if (selected == null)
-                this.Workers.Clear();
-
-            else
-            {
-                List<Worker> list = this.workers.Where(w => w.WorkerServices.Where(s => s.Service.Name == selected.Name).FirstOrDefault() != null).ToList();
-                this.Workers = new ObservableCollection<Worker>(list);
-            }
-
+            List<Worker> list = this.Workers.Where(w => w.WorkerServices.Where(s => s.Service.Name == selectedService).FirstOrDefault() != null).ToList();
+            this.Workers = new ObservableCollection<Worker>(list);
         }
 
         private Models.Worker workerId;

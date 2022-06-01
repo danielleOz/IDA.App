@@ -30,6 +30,33 @@ namespace IDA.App.ViewModels
             }
         }
 
+
+        #region is worker
+        public bool IsWorker
+        {
+            get
+            {
+                if (this.current != null && this.current.User != null)
+                    return this.current.User.IsWorker;
+                return false;
+            }
+        }
+        #endregion
+
+
+        #region isnt worker
+        public bool IsntWorker
+        {
+            get
+            {
+                if (this.current != null && this.current.User != null)
+                    return !this.current.User.IsWorker;
+                return false;
+            }
+        }
+        #endregion
+
+
         private JobOffer chosen;
         public JobOffer Chosen
         {

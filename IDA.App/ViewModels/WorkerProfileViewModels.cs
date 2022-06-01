@@ -34,12 +34,11 @@ namespace IDA.App.ViewModels
         public async Task GetList()
         {
             IDAAPIProxy proxy = IDAAPIProxy.CreateProxy();
-            List<Worker> workers = await proxy.GetAvailableWorkers();
-            List<Service> services = await proxy.GetServices();
-            WorkersList = workers;
-            Service s = services.Where(b => b.Id == SId).FirstOrDefault();
-            Worker w = this.WorkersList.Where(a => a.Id == Id).FirstOrDefault();
-            //List<JobOffer> jobOffers = w.JobOffers;
+            Worker w = await proxy.GetWorkerAsync(Id);
+         
+            Service s = w.WorkerServices.Where(b => b.Service.Id== SId).FirstOrDefault().Service;
+            
+            List<JobOffer> jobOffers = w.JobOffers.Where(d => d.Service.Id == s.Id).ToList();
             ThisWorker = w;
             if (w != null)
             {
@@ -50,7 +49,7 @@ namespace IDA.App.ViewModels
                 Lname = w.LastName;
                 Email = w.Email;
             }
-            //this.jobOffers = new ObservableCollection<JobOffer>(jobOffers);
+            this.JobOffers = new ObservableCollection<JobOffer>(jobOffers);
         }
 
         #region reviews

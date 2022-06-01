@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.JobHistory"
-             xmlns:models="clr-namespace:IDA.App.Models">
+             xmlns:models="clr-namespace:IDA.App.Models" x:DataType="local:JobHistoryViewModels">
 
     <ContentPage.Content>
-
         <StackLayout>
+        <StackLayout IsVisible="{Binding IsntWorker}">
             <ScrollView>
                 <CollectionView SelectionMode="Single" SelectedItem="{Binding Chosen}" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
                     <CollectionView.ItemTemplate>
@@ -42,6 +42,40 @@
 
         </StackLayout>
 
+            <StackLayout IsVisible="{Binding IsWorker}">
+                <ScrollView>
+                <CollectionView SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:JobOffer">
+                            <Label VerticalTextAlignment="Center" VerticalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text=" " />
+                                        <Span Text="worker name- " />
+                                        <Span Text="{Binding ChosenWorker.FirstName} " />
+                                        <Span Text="&#10; " />
+                                        <Span Text="service type- " />
+                                        <Span Text="{Binding Service.Name}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text="date- " />
+                                        <Span Text="{Binding PublishDateString}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text="rate- " />
+                                        <Span Text="{Binding WorkerReviewRate, Mode=TwoWay}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text=" " />
+
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+
+        </StackLayout>
+
+        </StackLayout>
 
     </ContentPage.Content>
 </ContentPage>

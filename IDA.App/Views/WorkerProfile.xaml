@@ -35,7 +35,7 @@
                 </StackLayout>
             </Frame>
 
-            
+                <Label Text="Reviews" FontSize="Medium"></Label>
                 <CollectionView SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="DataType:JobOffer">
@@ -43,8 +43,6 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=" " />
-                                        <Span Text="worker name- " />
-                                        <Span Text="{Binding ChosenWorker.FirstName} " />
                                         <Span Text="&#10; " />
                                         <Span Text="review description- " />
                                         <Span Text="{Binding WorkerReviewDescriptipon}" />
@@ -55,18 +53,12 @@
                                         <Span Text=" " />
                                         <Span Text="rate- " />
                                         <Span Text="{Binding WorkerReviewRate}" />
-                                        <Span Text="&#10; " />
-                                        <Span Text=" " />
-
-
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-
-           
 
             <Button Text="contact the worker" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding SendEmailCommand}"  ></Button>
 

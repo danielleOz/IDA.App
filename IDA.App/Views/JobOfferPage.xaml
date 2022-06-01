@@ -6,7 +6,7 @@
              x:DataType="viewmodels:JobOfferPageViewModels"
              x:Class="IDA.App.Views.JobOfferPage">
     <ContentPage.Resources>
-        <Style TargetType="Grid">
+        <Style TargetType="CollectionView">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
@@ -25,8 +25,9 @@
     </ContentPage.Resources>
     <ContentPage.Content>
 
-
-        <StackLayout BackgroundColor="#fff7f7">
+  
+            <StackLayout BackgroundColor="#fff7f7">
+            <StackLayout IsVisible="{Binding IsntWorker}">
             <Label Text=""></Label>
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
                 <StackLayout >
@@ -50,10 +51,7 @@
                         <CollectionView  Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding WorkerId, Mode=TwoWay}"  ItemsSource="{Binding Workers}" EmptyView="">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:Worker">
-                                    
-                                    <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,15,0,15">
-                                        
-                                        
+                                                     
                                     <Label VerticalTextAlignment="Center" VerticalOptions="Center">
                                         <Label.FormattedText>
                                             <FormattedString>
@@ -63,24 +61,11 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                        
-                                    <Grid.RowDefinitions>
-                                            <RowDefinition Height="50"></RowDefinition>
-                                            <RowDefinition Height="2*" ></RowDefinition>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="500" ></ColumnDefinition>
-                                            <ColumnDefinition Width="*" ></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
 
-                                    </Grid>
-                                    
-                                   
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-
+                            <Label Text=""></Label>
                 </StackLayout>
 
                     
@@ -88,15 +73,14 @@
 
             </Frame>
             </StackLayout>
+            </StackLayout>
 
             <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
 
-            <StackLayout IsVisible="{Binding IsWorker}">
-                <Button Text="availbilty update" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand }"></Button>
-
-            </StackLayout>
-
+            <Button Text="availbilty update" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
+           
         </StackLayout>
+   
     </ContentPage.Content>
 </ContentPage>
     

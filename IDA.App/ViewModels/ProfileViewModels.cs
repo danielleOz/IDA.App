@@ -396,7 +396,10 @@ namespace IDA.App.ViewModels
                 Page p = new TheMainTabbedPage();
                 p.Title = "login";
 
-                App.Current.MainPage = p;
+                App.Current.MainPage = new NavigationPage(p)
+                {
+                    BarBackgroundColor = Color.FromHex("#f0d9d7")
+                };
 
             }
         }
