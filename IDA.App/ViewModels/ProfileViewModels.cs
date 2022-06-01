@@ -390,17 +390,10 @@ namespace IDA.App.ViewModels
             bool answer = await App.Current.MainPage.DisplayAlert("logout", "are you sure you want to logout?", "logout", "cancel", FlowDirection.LeftToRight);
             if (answer)
             {
-                App theApp = (App)App.Current;
-                theApp.User = null;
-
-                Page p = new TheMainTabbedPage();
-                p.Title = "login";
-
-                App.Current.MainPage = new NavigationPage(p)
-                {
-                    BarBackgroundColor = Color.FromHex("#f0d9d7")
-                };
-
+                current.User = null;
+                current.Worker = null;
+                Page p = new Views.LogIn();
+                App.Current.MainPage = p;
             }
         }
         #endregion

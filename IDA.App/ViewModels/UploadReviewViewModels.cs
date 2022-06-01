@@ -70,7 +70,21 @@ namespace IDA.App.ViewModels
                 }
             }
         }
+        
+        public string WorkerName
+        {
+            get => this.current.JobOffer.ChosenWorker.FirstName;
+        }
 
+        public string UserName
+        {
+            get => this.current.JobOffer.User.FirstName;
+        }
+
+        public string ServiceType
+        {
+            get => this.current.JobOffer.Service.Name;
+        }
 
         private string descriptoin;
         public string Descriptoin

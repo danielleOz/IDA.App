@@ -16,11 +16,11 @@
             <Label Text="write your review"></Label>
             <Label Text="{Binding WorkerName, StringFormat='worker name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
             <Label Text="{Binding UserName, StringFormat='user name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
-            <Label Text="{Binding Service, StringFormat='service- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+            <Label Text="{Binding ServiceType, StringFormat='service- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
 
             <StackLayout Padding="20">
                
-                <Editor Placeholder="description" Text="{Binding Descriptoin}" HeightRequest="90"></Editor>
+                <Editor Placeholder="description" Text="{Binding Descriptoin}" ></Editor>
 
             </StackLayout>
             
