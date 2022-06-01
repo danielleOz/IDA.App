@@ -70,7 +70,7 @@ namespace IDA.App.ViewModels
                 }
             }
         }
-        
+         
         public string WorkerName
         {
             get => this.current.JobOffer.ChosenWorker.FirstName;
