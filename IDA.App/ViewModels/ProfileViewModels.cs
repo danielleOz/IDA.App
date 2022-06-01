@@ -315,7 +315,7 @@ namespace IDA.App.ViewModels
                 jobOffers = this.current.Worker.WorkerJobOffers;
             }
             else
-            {
+            { 
                 jobOffers = this.current.User.JobOffers;
             }
 
