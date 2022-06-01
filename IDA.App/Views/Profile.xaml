@@ -14,7 +14,7 @@
                 <Label Text=" "></Label>
                 <Label Text="profile page" TextColor="#aaaaaa" FontSize="Medium" HorizontalTextAlignment="Center"></Label>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="500">
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="550">
 
                     <StackLayout>
 
@@ -39,6 +39,9 @@
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryRadius, StringFormat='radius- {0:F0}'}"  TextColor="#aaaaaa" IsVisible="{Binding IsWorker}"></Label>
                         <Label Text=" "></Label>
+                        <Label Text="{Binding WServices, StringFormat='services- {0:F0}'}"  TextColor="#aaaaaa" IsVisible="{Binding IsWorker}"></Label>
+                        <Label Text=" "></Label>
+
 
                     </StackLayout>
                 </Frame>
@@ -49,7 +52,7 @@
 
                     <StackLayout >
 
-                        <Button Text="update your personal details" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateCommand}"></Button>
+                        <Button Text="update " BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateCommand}"></Button>
                         <Label Text=" "></Label>
                         <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>

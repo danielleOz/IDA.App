@@ -76,7 +76,7 @@ namespace IDA.App.ViewModels
 
 
                 //mainPageVM.LoginUser = user;
-                await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
+                await App.Current.MainPage.DisplayAlert("", "successfully logged in", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
 
                 App.Current.MainPage = new NavigationPage(theMainTabbedPage)
