@@ -71,17 +71,19 @@ namespace IDA.App
             this.Cities = await proxy.GetCitiesAsync();
             this.StreetList = await proxy.GetStreetListAsync();
             this.services = await proxy.GetServices();
-            //this.workers = await proxy.GetWorkersList();
-            //Page page = new JobOfferPage();
-            //MainPage = new NavigationPage(page);
-            TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
-            TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
-            TheMainTabbedPage = tabbedPage;
-            tabbedPage.BindingContext = vm;
-            MainPage = new NavigationPage(tabbedPage)
-            {
-                BarBackgroundColor = Color.FromHex("#f0d9d7")
-            };
+
+            Page p = new Views.LogIn();
+            MainPage = p;
+
+
+            //TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
+            //TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
+            //TheMainTabbedPage = tabbedPage;
+            //tabbedPage.BindingContext = vm;
+            //MainPage = new NavigationPage(tabbedPage)
+            //{
+            //    BarBackgroundColor = Color.FromHex("#f0d9d7")
+            //};
 
 
         }

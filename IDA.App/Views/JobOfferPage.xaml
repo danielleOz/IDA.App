@@ -25,62 +25,67 @@
     </ContentPage.Resources>
     <ContentPage.Content>
 
-  
-            <StackLayout BackgroundColor="#fff7f7">
+
+        <StackLayout BackgroundColor="#fff7f7">
+            
+            <Label Text="jon offer page" FontSize="Medium"></Label>
+            <Label></Label>
             <StackLayout IsVisible="{Binding IsntWorker}">
-            <Label Text=""></Label>
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
-                <StackLayout >
-                    <SearchBar Placeholder="search services" Text="{Binding Services}"/>
-                    <CollectionView EmptyView=""  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
-                                    SelectionChangedCommand="{Binding SelectServicesCommand}" SelectionChangedCommandParameter="{Binding SelectedService}">
-                                   <!--IsVisible="{Binding ShowServicesError}"--> 
-                    </CollectionView>
 
-
-                    <Button Command="{Binding Path=SearchCommand}"></Button>
-                </StackLayout>
-
-            </Frame>
-
-            <StackLayout >
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
-                <StackLayout >
+                <Label Text=""></Label>
+                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
                     <StackLayout >
-
-                        <CollectionView  Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding WorkerId, Mode=TwoWay}"  ItemsSource="{Binding Workers}" EmptyView="">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="models:Worker">
-                                                     
-                                    <Label VerticalTextAlignment="Center" VerticalOptions="Center">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{Binding FirstName} " />
-                                                    <Span Text=" "></Span>
-                                                <Span Text="{Binding LastName} " />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
+                        <SearchBar Placeholder="search services" Text="{Binding Services}"/>
+                        <CollectionView EmptyView=""  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
+                                    SelectionChangedCommand="{Binding SelectServicesCommand}" SelectionChangedCommandParameter="{Binding SelectedService}">
+                            <!--IsVisible="{Binding ShowServicesError}"-->
                         </CollectionView>
-                            <Label Text=""></Label>
+
+
+                        <Button Command="{Binding Path=SearchCommand}"></Button>
+                    </StackLayout>
+
+                </Frame>
+
+                <StackLayout >
+                    <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                        <StackLayout >
+                            <StackLayout >
+
+                                <CollectionView  Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding WorkerId, Mode=TwoWay}"  ItemsSource="{Binding Workers}" EmptyView="">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Worker">
+
+                                            <Label VerticalTextAlignment="Center" VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding FirstName} " />
+                                                        <Span Text=" "></Span>
+                                                        <Span Text="{Binding LastName} " />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <Label Text=""></Label>
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+                    </Frame>
                 </StackLayout>
+                <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
 
-                    
-                </StackLayout>
-
-            </Frame>
-            </StackLayout>
             </StackLayout>
 
-            <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
 
             <Button Text="availbilty update" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
-           
+
         </StackLayout>
-   
+
     </ContentPage.Content>
 </ContentPage>
     

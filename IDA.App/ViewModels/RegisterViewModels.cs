@@ -962,7 +962,7 @@ namespace IDA.App.ViewModels
                         App app = (App)App.Current;
                         TheMainTabbedPage theMainTabbedPage = app.TheMainTabbedPage;
                         TheMainTabbedPageViewModels vm = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
-                        vm.LoginUser = user;
+                        //vm.LoginUser = user;
                         await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                     }
 

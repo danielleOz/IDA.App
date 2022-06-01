@@ -9,8 +9,9 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout BackgroundColor="#fff7f7">
+            <Label Text="login" FontSize="Medium"></Label>
             <Label></Label>
-
+            <Label Text=""></Label>
             <!--<Image Source="FinalLogo.png" HeightRequest="80" WidthRequest="20" Aspect="AspectFit" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"> </Image>-->
             
             <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">

@@ -60,7 +60,7 @@ namespace IDA.App.ViewModels
         #endregion
 
 
-        #region is Availble bool
+        #region is NOT Availble bool
         public bool IsntAvailableBool
         {
             get
@@ -117,6 +117,8 @@ namespace IDA.App.ViewModels
                     await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
                     OnPropertyChanged("IsAvailable");
                     OnPropertyChanged("Time");
+                    OnPropertyChanged("IsAvailableBool");
+                    OnPropertyChanged("IsntAvailableBool");
                 }
 
             }

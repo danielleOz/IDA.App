@@ -481,7 +481,7 @@ namespace IDA.App.Services
         #endregion
 
         #region Worker Update
-        public async Task<Worker> WorkerUpdate(Worker w)
+        public async Task<bool> WorkerUpdate(Worker w)
         {
             try
             {
@@ -500,18 +500,18 @@ namespace IDA.App.Services
 
                     string str = await response.Content.ReadAsStringAsync();
 
-                    Worker worker = JsonSerializer.Deserialize<Worker>(str, options);
-                    return worker;
+                    bool success = JsonSerializer.Deserialize<bool>(str, options);
+                    return success;
                 }
                 else
                 {
-                    return null;
+                    return false;
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return null;
+                return false;
             }
         }
         #endregion

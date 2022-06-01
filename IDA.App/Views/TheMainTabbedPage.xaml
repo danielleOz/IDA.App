@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              x:Class="IDA.App.Views.TheMainTabbedPage" 
-            
              BarBackgroundColor="#f0d9d7"
              BarTextColor="White"
              SelectedTabColor="#d28b87 "
@@ -14,4 +13,22 @@
             windows:TabbedPage.HeaderIconsEnabled="True" >
 
 
+    <windows:TabbedPage.HeaderIconsSize>
+        <Size>
+            <x:Arguments>
+                <x:Double>48</x:Double>
+                <x:Double>48</x:Double>
+            </x:Arguments>
+        </Size>
+    </windows:TabbedPage.HeaderIconsSize>
+
+    <local:JobOfferPage Title="Joboffer">
+      
+    </local:JobOfferPage>
+
+    <local:Profile Title="Profile">
+    
+
+    </local:Profile>
+    
 </TabbedPage>

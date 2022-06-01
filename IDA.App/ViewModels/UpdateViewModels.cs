@@ -48,7 +48,9 @@ namespace IDA.App.ViewModels
         {
             App current = ((App)Application.Current);
             IsWorker = false;
+            Worker CurruntWorker = this.current.Worker;
             SelectedServices = new ObservableCollection<object>();
+          
             //UpdateCommand = new Command(Update);
             SelectServicesCommand = new Command(SelectServices);
             this.allCities = current.Cities;
@@ -66,7 +68,7 @@ namespace IDA.App.ViewModels
             entryPass = currentUser.UserPswd;
             if(currentUser.IsWorker)
             {
-                Worker CurruntWorker = this.current.Worker;
+                
                 entryRadius = CurruntWorker.RadiusKm.ToString();
                 //List<WorkerService> WorkerS = CurruntWorker.WorkerServices;
                 //SelectedServices = new ObservableCollection<object>(WorkerS);
@@ -909,8 +911,8 @@ namespace IDA.App.ViewModels
                     {
                         w.WorkerServices.Add(new WorkerService() { Service = s });
                     }
-                    w = await IDAproxy.WorkerUpdate(w);
-                    if (w != null)
+                    bool success = await IDAproxy.WorkerUpdate(w);
+                    if (success)
                         isUpdated = true;
 
 
@@ -981,6 +983,15 @@ namespace IDA.App.ViewModels
                 {
                     this.Services.Add(((App)Application.Current).services[i]);
                 }
+                foreach (WorkerService a in current.Worker.WorkerServices)
+                {
+                   foreach(Service s in Services)
+                    {
+                        if (a.ServiceId == s.Id)
+                            SelectedServices.Add(s);
+                    }
+                }
+
             }
             else
             {

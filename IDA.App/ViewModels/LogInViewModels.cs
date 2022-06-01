@@ -56,33 +56,39 @@ namespace IDA.App.ViewModels
         {
             IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
             User user = await IDAAPIProxy.LoginAsync(EntryEmail, EntryPass);
+            if (user is Worker)
+            {
+
+                this.current.Worker = (Worker)user;
+            }
             if (user != null)
             {
-                TheMainTabbedPage theMainTabbedPage;
-                if (Application.Current.MainPage.Navigation.NavigationStack.Count>0)
-                {  theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage.Navigation.NavigationStack[0]; }
-                else
-                    theMainTabbedPage = (TheMainTabbedPage)Application.Current.MainPage;
-                TheMainTabbedPageViewModels mainPageVM = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
-
                 this.current.User = user;
-                //TO DO: Assign worker and customer as needed
-                if (user is Worker)
-                {
 
-                    this.current.Worker = (Worker)user;
-                }
-
-
-                mainPageVM.LoginUser = user;
+                TheMainTabbedPage theMainTabbedPage= new Views.TheMainTabbedPage(); ;
                 
+                TheMainTabbedPageViewModels mainPageVM = new TheMainTabbedPageViewModels();
+                theMainTabbedPage.BindingContext = mainPageVM;
+
+                
+                //TO DO: Assign worker and customer as needed
+                
+
+
+                //mainPageVM.LoginUser = user;
                 await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
 
+                App.Current.MainPage = new NavigationPage(theMainTabbedPage)
+                {
+                    BarBackgroundColor = Color.FromHex("#f0d9d7")
+
+                };
+            ;
                 //Page p = new UserPage();
                 //await App.Current.MainPage..PushAsync(p);
 
-                JobOfferPageViewModels JobOfferViewModels = (JobOfferPageViewModels)(theMainTabbedPage.home.BindingContext);
+                //JobOfferPageViewModels JobOfferViewModels = (JobOfferPageViewModels)(theMainTabbedPage.home.BindingContext);
 
 
             }
@@ -101,7 +107,7 @@ namespace IDA.App.ViewModels
         private  void GoToRegister()
         {
            
-            ((TheMainTabbedPage)Application.Current.MainPage).CurrentTab(((TheMainTabbedPage)Application.Current.MainPage).register);
+            Application.Current.MainPage = new Register();
         }
         #endregion
     }
