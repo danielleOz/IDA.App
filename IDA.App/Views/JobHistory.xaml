@@ -51,8 +51,8 @@
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=" " />
-                                        <Span Text="worker name- " />
-                                        <Span Text="{Binding ChosenWorker.FirstName} " />
+                                        <Span Text="user name- " />
+                                        <Span Text="{Binding User.FirstName} " />
                                         <Span Text="&#10; " />
                                         <Span Text="service type- " />
                                         <Span Text="{Binding Service.Name}" />

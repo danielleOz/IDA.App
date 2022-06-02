@@ -21,8 +21,6 @@
                     <Label Text=" "></Label>
                     <Label Text="{Binding Fname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding Sname, StringFormat='service- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
-                    <Label Text=" "></Label>
                     <Label Text="{Binding Lname, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
                     <Label Text=" "></Label>
                     <Label Text="{Binding Email, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
@@ -49,6 +47,10 @@
                                         <Span Text="&#10; " />
                                         <Span Text="review date- " />
                                         <Span Text="{Binding ReviewDateString}" />
+                                        <Span Text="&#10; " />
+                                        <Span Text=" " />
+                                        <Span Text="service- " />
+                                        <Span Text="{Binding Service.Name}" />
                                         <Span Text="&#10; " />
                                         <Span Text=" " />
                                         <Span Text="rate- " />

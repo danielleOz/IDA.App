@@ -810,10 +810,10 @@ namespace IDA.App.ViewModels
 
         private void ValidateRadius()
         {
-            this.ShowRadiusError = string.IsNullOrEmpty(entryRadius);
+            this.ShowRadiusError = string.IsNullOrEmpty(EntryRadius);
             if (!this.ShowRadiusError)
             {
-                bool isOK = double.TryParse(entryRadius, out _);
+                bool isOK = int.TryParse(EntryRadius, out _);
                 if (!isOK)
                 {
                     this.ShowRadiusError = true;

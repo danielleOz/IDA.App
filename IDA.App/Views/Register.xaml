@@ -58,7 +58,7 @@
                         <Label Text="city"  TextColor="#aaaaaa"></Label>
                         <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" TextColor="#aaaaaa"/>
                         <SearchBar Placeholder="search city" Text="{Binding City}"/>
-                        <CollectionView EmptyView="cold not find cities"  x:Name="cities" ItemsSource="{Binding FilteredCities}" SelectedItem="{Binding SelectedCityItem}" SelectionMode="Single"
+                        <CollectionView EmptyView=""  x:Name="cities" ItemsSource="{Binding FilteredCities}" SelectedItem="{Binding SelectedCityItem}" SelectionMode="Single"
                                    IsVisible="{Binding ShowCities}" SelectionChangedCommand="{Binding Source={x:Reference cities}, Path=BindingContext.SelectedCity}" SelectionChangedCommandParameter="{Binding Source={x:Reference cities}, Path=SelectedItem}"></CollectionView>
                     </StackLayout>
                 </Frame>
@@ -69,7 +69,7 @@
                         <Label Text="street"  TextColor="#aaaaaa"></Label>
                         <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
                         <SearchBar Placeholder="search street" Text="{Binding Street}"/>
-                        <CollectionView EmptyView="could not find streets"  x:Name="streets" ItemsSource="{Binding FilteredStreets}" SelectedItem="{Binding SelectedStreetItem}" SelectionMode="Single"
+                        <CollectionView EmptyView=""  x:Name="streets" ItemsSource="{Binding FilteredStreets}" SelectedItem="{Binding SelectedStreetItem}" SelectionMode="Single"
                                    IsVisible="{Binding ShowStreetError}" SelectionChangedCommand="{Binding Source={x:Reference streets}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference streets}, Path=SelectedItem}"></CollectionView>
                     </StackLayout>
                 </Frame>
@@ -119,10 +119,10 @@
 
                         <StackLayout IsVisible="{Binding IsWorker}" >
 
-                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="200"  HorizontalOptions="Center">
+                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="650"  HorizontalOptions="Center">
                                 <StackLayout>
                                     <Entry Text="{Binding EntryRadius}" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                                    <Label Text="{Binding RadiusError }" IsVisible="{Binding ShowRadiusError }" TextColor="#aaaaaa"/>
+                                    <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError}" TextColor="#aaaaaa"/>
 
                                 </StackLayout>
                             </Frame>

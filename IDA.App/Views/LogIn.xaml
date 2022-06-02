@@ -2,35 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
-             x:Class="IDA.App.Views.LogIn" >
+             x:Class="IDA.App.Views.LogIn" BackgroundImageSource="background.jpg">
     
     <ContentPage.BindingContext>
         <local:LogInViewModels></local:LogInViewModels>
     </ContentPage.BindingContext>
+
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#fff7f7">
+
+        <StackLayout >
+            
             <Label Text="login" FontSize="Medium"></Label>
             <Label></Label>
             <Label Text=""></Label>
             <!--<Image Source="FinalLogo.png" HeightRequest="80" WidthRequest="20" Aspect="AspectFit" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"> </Image>-->
-            
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
+
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
                 <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
 
             </Frame>
             
             
             <Label></Label>
-            
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
+
+            <Frame BorderColor="#aaaaaa" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
                 <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
             </Frame>
 
             <Label></Label>
-            <Button Text="Login" BackgroundColor="#f0d9d7" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"  ></Button>
-            <Button Text="Go to register" BackgroundColor="#f0d9d7" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
-
-
+            <Button Text="Login" BackgroundColor="#B08968" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"  ></Button>
+            <Button Text="Go to register" BackgroundColor="#B08968" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
+  
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -56,7 +56,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         private JobOffer chosen;
         public JobOffer Chosen
         {
@@ -74,6 +73,7 @@ namespace IDA.App.ViewModels
         {
             List<JobOffer> filtered = jobOffers.Where(j => j.PublishDate != null).ToList();
             this.JobOffers = new ObservableCollection<JobOffer>(filtered);
+           
         }
 
 
