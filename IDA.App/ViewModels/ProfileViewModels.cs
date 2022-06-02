@@ -11,7 +11,7 @@ using System.Globalization;
 
 namespace IDA.App.ViewModels
 {
-    public class ProfileViewModels : ViewModelBase
+   public class ProfileViewModels : ViewModelBase
     {
         public ProfileViewModels()
         {
@@ -25,18 +25,11 @@ namespace IDA.App.ViewModels
             entryLname = currentUser.LastName;
             entryPass = currentUser.UserPswd;
             entryEmail = currentUser.Email;
-            if (currentUser.IsWorker)
+            if(currentUser.IsWorker)
             {
                 Worker currentWorker = this.current.Worker;
                 double d = currentWorker.RadiusKm;
                 entryRadius = d.ToString();
-                
-                //foreach (WorkerService a in currentWorker.WorkerServices)
-                //{
-                //    WServices += a.Service.Name;
-                //}
-
-               
             }
         }
 
@@ -74,7 +67,7 @@ namespace IDA.App.ViewModels
         }
 
 
-
+  
         #endregion
 
 
@@ -111,7 +104,7 @@ namespace IDA.App.ViewModels
             }
         }
 
-
+       
         #endregion
 
         #region house num
@@ -129,7 +122,7 @@ namespace IDA.App.ViewModels
             }
         }
 
-
+        
         #endregion
 
 
@@ -148,7 +141,7 @@ namespace IDA.App.ViewModels
             }
         }
 
-
+      
         #endregion
 
 
@@ -167,7 +160,7 @@ namespace IDA.App.ViewModels
             }
         }
 
-
+       
         #endregion
 
 
@@ -187,12 +180,12 @@ namespace IDA.App.ViewModels
             }
         }
 
-
+        
         #endregion
 
 
         #region birthdate
-        private DateTime entryBirthDate = DateTime.Now;
+        private DateTime entryBirthDate = DateTime.Now ;
         public DateTime EntryBirthDate
         {
             get => this.entryBirthDate.Date;
@@ -240,24 +233,6 @@ namespace IDA.App.ViewModels
                 return false;
             }
         }
-        #endregion
-
-        #region worker services
-        private string wServices = "";
-        public string WServices
-        {
-            get => this.wServices;
-            set
-            {
-                if (value != this.wServices)
-                {
-                    this.wServices = value;
-                    OnPropertyChanged("WServices");
-                }
-            }
-        }
-
-
         #endregion
 
         //#region available until
@@ -340,7 +315,7 @@ namespace IDA.App.ViewModels
                 jobOffers = this.current.Worker.WorkerJobOffers;
             }
             else
-            {
+            { 
                 jobOffers = this.current.User.JobOffers;
             }
 
@@ -380,7 +355,7 @@ namespace IDA.App.ViewModels
             Page NewPage = new Views.Update();
             NewPage.BindingContext = vm;
             App.Current.MainPage.Navigation.PushAsync(NewPage);
-
+              
         }
         #endregion
 
