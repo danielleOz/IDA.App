@@ -10,28 +10,29 @@
 
     <ContentPage.Content>
 
-        <StackLayout >
-            
-            <Label Text="login" FontSize="Medium"></Label>
+        <StackLayout VerticalOptions="Fill" Padding="10">
             <Label></Label>
+            <Label Text="login" FontSize="Large" HorizontalOptions="Center" FontAttributes="Italic,Bold" TextColor="#B08968" ></Label>
+
             <Label Text=""></Label>
-            <!--<Image Source="FinalLogo.png" HeightRequest="80" WidthRequest="20" Aspect="AspectFit" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent"> </Image>-->
 
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
-                <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa" ></Entry>
+            <Frame BorderColor="#986F51" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
+                <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#6c584c" TextColor="#6c584c" ></Entry>
 
             </Frame>
             
-            
+   
             <Label></Label>
 
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
-                <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+            <Frame BorderColor="#986F51" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="40">
+                <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" PlaceholderColor="#6c584c" TextColor="#6c584c"></Entry>
             </Frame>
 
             <Label></Label>
-            <Button Text="Login" BackgroundColor="#B08968" Command="{Binding Path=LogInCommand}" TextColor="White" CornerRadius="3"  ></Button>
-            <Button Text="Go to register" BackgroundColor="#B08968" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="3"></Button>
+
+            <Button Text="Login"  Command="{Binding Path=LogInCommand}" Style="{StaticResource Button}"  ></Button>
+            
+            <Button Text="Go to register" BackgroundColor="#B08968" Command="{Binding Path=RegisterCommand}" TextColor="White" CornerRadius="6"></Button>
   
         </StackLayout>
     </ContentPage.Content>

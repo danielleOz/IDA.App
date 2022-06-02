@@ -5,7 +5,50 @@
              windows:Application.ImageDirectory="Photos"
              x:Class="IDA.App.App">
     <Application.Resources>
+        <ResourceDictionary>
+            
+            <Style x:Key="title" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Italic,Bold"/>
+                <Setter Property="FontFamily" Value="Amatic"></Setter>
+                <Setter Property="FontSize" Value="Large"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="TextColor" Value="#B08968"></Setter>
+            </Style>
 
+            <Style x:Key="entry" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="#6c584c"/>
+                <Setter Property="TextColor" Value="#6c584c"></Setter>
+            </Style>
+
+            <Style x:Key="frame" TargetType="Frame">
+                <Setter Property="BorderColor" Value="#986F51"></Setter>
+                <Setter Property="BackgroundColor" Value="#EDE0D4"></Setter>
+                <Setter Property="CornerRadius" Value="6"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            </Style>
+
+            <Style x:Key="ErrorLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#A47C5D"></Setter>
+                <Setter Property="VerticalOptions" Value="Start"></Setter>
+            </Style>
+
+            <Style TargetType="Button" x:Key="Button">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="#B08968"/>
+                <Setter Property="CornerRadius" Value="6"></Setter>
+            </Style>
+
+            <Style TargetType="DatePicker" x:Key="DateTime">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="#6c584c"/>
+                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+            </Style>
+            <Style TargetType="SearchBar" x:Key="CityStreet">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextColor" Value="#6c584c"/>
+                <Setter Property="HorizontalOptions" Value="Start"></Setter>
+            </Style>
+        </ResourceDictionary>
 
     </Application.Resources>
     

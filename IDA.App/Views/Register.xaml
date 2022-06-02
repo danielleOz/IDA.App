@@ -2,58 +2,51 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
-             x:Class="IDA.App.Views.Register">
+             x:Class="IDA.App.Views.Register" BackgroundImageSource="background.jpg">
     <ContentPage.BindingContext>
         <local:RegisterViewModel></local:RegisterViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout BackgroundColor="#fff7f7">
-
-                <!-- TO ADD PROFILE PIC
-            
-                     <Image Source="logo.png" HeightRequest="400" WidthRequest="1000"  >
-
-                    </Image>
-            
-                -->
+            <StackLayout >
 
                 <!-- USER DETAILS PART -->
 
                 <Label Text=""></Label>
-
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Label Text="Register" Style="{StaticResource Key=title}"></Label>
+                
+                <Frame BorderColor="#986F51" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryFname}"  Placeholder="first Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryFname}"  Placeholder="first Name" Style="{StaticResource entry}"></Entry>
 
-                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError} " TextColor="#aaaaaa"/>
+                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource ErrorLabel}" />
                     </StackLayout>
                 </Frame>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryLname}" Placeholder="last Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryLname}" Placeholder="last Name" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
 
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryEmail}" Placeholder="email" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryEmail}" Placeholder="email" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
 
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
                         <Label Text="city"  TextColor="#aaaaaa"></Label>
                         <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" TextColor="#aaaaaa"/>
@@ -64,7 +57,7 @@
                 </Frame>
 
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
                         <Label Text="street"  TextColor="#aaaaaa"></Label>
                         <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
@@ -76,38 +69,38 @@
 
 
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryHN}" Placeholder="house number" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryHN}" Placeholder="house number" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" TextColor="#aaaaaa"/>
 
                     </StackLayout>
                 </Frame>
 
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryAp}" Placeholder="aprtment" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Entry Text="{Binding EntryAp}" Placeholder="aprtment" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" TextColor="#aaaaaa"/>
 
                     </StackLayout>
                 </Frame>
-                
-        
 
-                
-                
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+
+
+
+
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <DatePicker  TextColor="#aaaaaa" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
+                        <DatePicker Date="{Binding EntryBirthDate}" Style="{StaticResource DateTime}" ></DatePicker>
                         <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
                 
 
                 <!--WORKER DETAILS PART-->
-                
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
+
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="350">
 
                     <StackLayout>
 
@@ -119,9 +112,9 @@
 
                         <StackLayout IsVisible="{Binding IsWorker}" >
 
-                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="650"  HorizontalOptions="Center">
+                            <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="650" >
                                 <StackLayout>
-                                    <Entry Text="{Binding EntryRadius}" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                                    <Entry Text="{Binding EntryRadius}" Placeholder="radius" Style="{StaticResource entry}"></Entry>
                                     <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError}" TextColor="#aaaaaa"/>
 
                                 </StackLayout>
