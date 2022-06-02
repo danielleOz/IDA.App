@@ -3,12 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.Register" BackgroundImageSource="background.jpg">
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="#EDE0D4" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <local:RegisterViewModel></local:RegisterViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout >
+            <StackLayout Padding="10">
 
                 <!-- USER DETAILS PART -->
 
@@ -17,8 +36,7 @@
                 
                 <Frame BorderColor="#986F51" BackgroundColor="#EDE0D4" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Entry Text="{Binding EntryFname}"  Placeholder="first Name" Style="{StaticResource entry}"></Entry>
-
+                        <Entry Text="{Binding EntryFname}"  Placeholder="first Name" Style="{StaticResource entry}" ></Entry>
                         <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource ErrorLabel}" />
                     </StackLayout>
                 </Frame>
@@ -26,7 +44,7 @@
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryLname}" Placeholder="last Name" Style="{StaticResource entry}"></Entry>
-                        <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" TextColor="#aaaaaa"/>
+                        <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
@@ -34,36 +52,36 @@
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryEmail}" Placeholder="email" Style="{StaticResource entry}"></Entry>
-                        <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" TextColor="#aaaaaa"/>
+                        <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" Style="{StaticResource entry}"></Entry>
-                        <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" TextColor="#aaaaaa"/>
+                        <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
 
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
-                        <Label Text="city"  TextColor="#aaaaaa"></Label>
-                        <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" TextColor="#aaaaaa"/>
-                        <SearchBar Placeholder="search city" Text="{Binding City}"/>
+                        <Label Text="city"  Style="{StaticResource ErrorLabel}"></Label>
+                        <SearchBar Placeholder="search city" Text="{Binding City}" Style="{StaticResource CityStreet}"/>
                         <CollectionView EmptyView=""  x:Name="cities" ItemsSource="{Binding FilteredCities}" SelectedItem="{Binding SelectedCityItem}" SelectionMode="Single"
                                    IsVisible="{Binding ShowCities}" SelectionChangedCommand="{Binding Source={x:Reference cities}, Path=BindingContext.SelectedCity}" SelectionChangedCommandParameter="{Binding Source={x:Reference cities}, Path=SelectedItem}"></CollectionView>
+                        <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
 
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
-                        <Label Text="street"  TextColor="#aaaaaa"></Label>
-                        <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
-                        <SearchBar Placeholder="search street" Text="{Binding Street}"/>
+                        <Label Text="street"  Style="{StaticResource label}"></Label>
+                        <SearchBar Placeholder="search street" Text="{Binding Street}" Style="{StaticResource CityStreet}" />
                         <CollectionView EmptyView=""  x:Name="streets" ItemsSource="{Binding FilteredStreets}" SelectedItem="{Binding SelectedStreetItem}" SelectionMode="Single"
                                    IsVisible="{Binding ShowStreetError}" SelectionChangedCommand="{Binding Source={x:Reference streets}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference streets}, Path=SelectedItem}"></CollectionView>
+                        <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
@@ -72,7 +90,7 @@
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryHN}" Placeholder="house number" Style="{StaticResource entry}"></Entry>
-                        <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" TextColor="#aaaaaa"/>
+                        <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" Style="{StaticResource ErrorLabel}"/>
 
                     </StackLayout>
                 </Frame>
@@ -81,7 +99,7 @@
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryAp}" Placeholder="aprtment" Style="{StaticResource entry}"></Entry>
-                        <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" TextColor="#aaaaaa"/>
+                        <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" Style="{StaticResource ErrorLabel}"/>
 
                     </StackLayout>
                 </Frame>
@@ -93,7 +111,7 @@
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <DatePicker Date="{Binding EntryBirthDate}" Style="{StaticResource DateTime}" ></DatePicker>
-                        <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}" TextColor="#aaaaaa"/>
+                        <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}" Style="{StaticResource ErrorLabel}" />
                     </StackLayout>
                 </Frame>
                 
@@ -107,15 +125,16 @@
                 <Label Text=""></Label>
 
 
-                        <Label Text="Do you want to be a worker?" TextColor="#aaaaaa"></Label>
-                        <Switch OnColor="#f0d9d7" ThumbColor="#deeded"  IsToggled="{Binding IsWorker}" />
+                        <Label Text="Register as a worker" Style="{StaticResource label}"></Label>
 
-                        <StackLayout IsVisible="{Binding IsWorker}" >
+                        <Switch OnColor="#CBAB8D" ThumbColor="#deeded"  IsToggled="{Binding IsWorker}" />
+
+                        <StackLayout IsVisible="{Binding IsWorker}"  >
 
                             <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="650" >
                                 <StackLayout>
                                     <Entry Text="{Binding EntryRadius}" Placeholder="radius" Style="{StaticResource entry}"></Entry>
-                                    <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError}" TextColor="#aaaaaa"/>
+                                    <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError}" Style="{StaticResource ErrorLabel}"/>
 
                                 </StackLayout>
                             </Frame>
@@ -135,13 +154,13 @@
                                         <ColumnDefinition Width="*" ></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" BorderWidth="0" HorizontalOptions="Start" >
+                                    <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}" Style="{StaticResource Button}"  BorderWidth="0" HorizontalOptions="Start" >
                                     </Button>
 
                                     <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}"   ItemsSource="{Binding Services}"  >
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label }" >
                                                     <Label.FormattedText>
                                                         <FormattedString>
                                                             <Span Text=" " />
@@ -165,7 +184,7 @@
 
                 </StackLayout>
                     </Frame>
-                <Button Text="Register" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=RegisterCommand}"></Button>
+                <Button Text="Register" Style="{StaticResource Button}"  Command="{Binding Path=RegisterCommand}"></Button>
 
             </StackLayout>
         </ScrollView>

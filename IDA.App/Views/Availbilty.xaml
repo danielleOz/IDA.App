@@ -2,24 +2,28 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:local ="clr-namespace:IDA.App.ViewModels" x:DataType="local:AvailbiltyViewModels"
-             x:Class="IDA.App.Views.Availbilty">
+             x:Class="IDA.App.Views.Availbilty" BackgroundImageSource="backgroung3.jpg">
 
    
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
             <StackLayout>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="300">
+                <Label></Label>
+                <Label Text="Avilabilty update" Style="{StaticResource title}"></Label>
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="300">
 
                     <StackLayout >
-                        <Label Text="your status is:" TextColor="#aaaaaa" ></Label>
-                        <Label Text="{Binding IsAvailable, Mode=TwoWay}" TextColor="#aaaaaa"></Label>
+                        <Label Text="your status is:" Style="{StaticResource label}" ></Label> <Label Text="{Binding IsAvailable, Mode=TwoWay}" TextColor="#aaaaaa"></Label>
+
                         <StackLayout  IsVisible="{Binding IsntAvailableBool}">
-                        <Label Text="avilable until" TextColor="#aaaaaa"></Label>
-                        <TimePicker TextColor="#aaaaaa" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
-                        <Button Text="Set as Available" Command="{Binding AvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"></Button>
+
+                            <Label Text="avilable until" Style="{StaticResource label}"></Label>
+                            <TimePicker Style="{StaticResource timePicker }" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
+                        <Button Text="Set as Available" Command="{Binding AvailbleWorkerCommand}" Style="{StaticResource Button}"></Button>
+                       
                         </StackLayout>
 
-                        <Button Text="set as Unavailable" Command="{Binding UnAvailbleWorkerCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" IsVisible="{Binding IsAvailableBool}"></Button>
+                        <Button Text="set as Unavailable" Command="{Binding UnAvailbleWorkerCommand}"  Style="{StaticResource Button}" IsVisible="{Binding IsAvailableBool}"></Button>
                     </StackLayout>
                 </Frame>
             </StackLayout>

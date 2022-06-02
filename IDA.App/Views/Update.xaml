@@ -2,19 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
+             BackgroundImageSource="Backgroung4.jpg"
              x:Class="IDA.App.Views.Update">
 
    
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout BackgroundColor="#fff7f7">
-                
-                <Label Text=" "></Label>
-                <Label Text="update"  TextColor="#aaaaaa" FontFamily="Bodoni MT Black" FontSize="Large" Font="Bold,20" HorizontalOptions="Center"></Label>
+            <StackLayout Padding="10">
+
+                <Label></Label>
+                <Label Text="Update" Style="{StaticResource title}" HorizontalOptions="Center"></Label>
 
                 <Label Text=" "></Label>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Label Text="first name" TextColor="#bdbdbd"></Label>
                         <Entry Text="{Binding EntryFname}"  Placeholder="first Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
@@ -24,39 +25,39 @@
                 </Frame>
 
                 <Label Text=" "></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Label Text="last name" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryLname}" Placeholder="last Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="last name" Style="{StaticResource label}"></Label>
+                        <Entry Text="{Binding EntryLname}" Placeholder="last Name" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" TextColor="#aaaaaa"/>
                     </StackLayout>
                 </Frame>
 
                 <Label Text=" "></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Label Text="password" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                        <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" TextColor="#aaaaaa"/>
+                        <Label Text="password" Style="{StaticResource label}"></Label>
+                        <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" Style="{StaticResource entry}"></Entry>
+                        <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
-                        <Label Text="city"  TextColor="#aaaaaa"></Label>
-                        <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" TextColor="#aaaaaa"/>
-                        <SearchBar Placeholder="search city" Text="{Binding City}"/>
+                        <Label Text="city"  Style="{StaticResource label}"></Label>
+                        <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" Style="{StaticResource ErrorLabel}"/>
+                        <SearchBar Placeholder="search city" Text="{Binding City}" Style="{StaticResource CityStreet}"/>
                         <CollectionView EmptyView="cold not find cities"  x:Name="cities" ItemsSource="{Binding FilteredCities}" SelectedItem="{Binding SelectedCityItem}" SelectionMode="Single"
                                    IsVisible="{Binding ShowCities}" SelectionChangedCommand="{Binding Source={x:Reference cities}, Path=BindingContext.SelectedCity}" SelectionChangedCommandParameter="{Binding Source={x:Reference cities}, Path=SelectedItem}"></CollectionView>
                     </StackLayout>
                 </Frame>
 
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
-                        <Label Text="street"  TextColor="#aaaaaa"></Label>
-                        <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" TextColor="#aaaaaa"/>
-                        <SearchBar Placeholder="search street" Text="{Binding Street}"/>
+                        <Label Text="street"  Style="{StaticResource label}"></Label>
+                        <Label Text="{Binding StreetError}" IsVisible="{Binding ShowStreetError}" Style="{StaticResource ErrorLabel}"/>
+                        <SearchBar Placeholder="search street" Text="{Binding Street}" Style="{StaticResource CityStreet}"/>
                         <CollectionView EmptyView="could not find streets"  x:Name="streets" ItemsSource="{Binding FilteredStreets}" SelectedItem="{Binding SelectedStreetItem}" SelectionMode="Single"
                                    IsVisible="{Binding ShowStreetError}" SelectionChangedCommand="{Binding Source={x:Reference streets}, Path=BindingContext.SelectedStreet}" SelectionChangedCommandParameter="{Binding Source={x:Reference streets}, Path=SelectedItem}"></CollectionView>
                     </StackLayout>
@@ -64,32 +65,32 @@
 
 
                 <Label Text=" "></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Label Text="house number" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryHN}" Placeholder="house number" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                        <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" TextColor="#aaaaaa"/>
+                        <Label Text="house number" Style="{StaticResource label}"></Label>
+                        <Entry Text="{Binding EntryHN}" Placeholder="house number" Style="{StaticResource entry}"></Entry>
+                        <Label Text="{Binding HNError}" IsVisible="{Binding ShowHNError}" Style="{StaticResource ErrorLabel}"/>
 
                     </StackLayout>
                 </Frame>
 
                 <Label Text=" "></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Label Text="aprtment" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryAp, Mode=OneWay}" Placeholder="aprtment" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                        <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" TextColor="#aaaaaa"/>
+                        <Label Text="aprtment" Style="{StaticResource label}"></Label>
+                        <Entry Text="{Binding EntryAp, Mode=OneWay}" Placeholder="aprtment" Style="{StaticResource entry}"></Entry>
+                        <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" Style="{StaticResource ErrorLabel}"/>
 
                     </StackLayout>
                 </Frame>
 
 
                 <Label Text=" "></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
-                        <Label Text="birth date" TextColor="#bdbdbd"></Label>
-                        <DatePicker  TextColor="#aaaaaa" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
-                        <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}" TextColor="#aaaaaa"/>
+                        <Label Text="birth date" Style="{StaticResource label}"></Label>
+                        <DatePicker  Style="{StaticResource DateTime}" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
+                        <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
@@ -101,17 +102,17 @@
 
                         <Label Text=""></Label>
 
-                            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="50"  HorizontalOptions="Center">
+                        <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50"  HorizontalOptions="Center">
                                 <StackLayout>
-                                    <Label Text="radius" TextColor="#bdbdbd"></Label>
-                                    <Entry Text="{Binding EntryRadius}" Placeholder="radius" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
-                                    <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError }" TextColor="#aaaaaa"/>
+                                <Label Text="radius" Style="{StaticResource label}"></Label>
+                                <Entry Text="{Binding EntryRadius}" Placeholder="radius" Style="{StaticResource entry}"></Entry>
+                                <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError }" Style="{StaticResource ErrorLabel}"/>
 
                                 </StackLayout>
-                            </Frame>
+                        </Frame>
 
                             <Label Text=" "></Label>
-                        <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="140">
+                        <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="140">
                             <StackLayout Orientation="Horizontal">
 
                                 <Grid >
@@ -131,7 +132,7 @@
                                     <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}"   ItemsSource="{Binding Services}"  >
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                                     <Label.FormattedText>
                                                         <FormattedString>
                                                             <Span Text=" " />
@@ -153,7 +154,7 @@
                     </StackLayout>
 
                 </StackLayout>
-                <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=UpdateDetailsCommand}"></Button>
+                <Button Text="submit" Style="{StaticResource Button}"  Command="{Binding Path=UpdateDetailsCommand}"></Button>
 
             </StackLayout>
         </ScrollView>

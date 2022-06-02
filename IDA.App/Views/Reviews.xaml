@@ -1,19 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
+             xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.Reviews" 
              xmlns:models="clr-namespace:IDA.App.Models"
+             BackgroundImageSource="Backgroung5.jpg"
              NavigationPage.HasNavigationBar="True" x:DataType="viewmodels:ReviewsViewModels"
              >
 
   
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#fff7f7">
-            
-
-            <Label Text="in this page you can find your reviews"></Label>
-
+        <StackLayout Padding="10" >
+            <Label></Label>
+            <Label Text="Rviews history" Style="{StaticResource title}" ></Label>
 
             <!--<Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">-->
                 <StackLayout>
@@ -34,7 +33,7 @@
                     <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:JobOffer">
-                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                    <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
@@ -80,7 +79,7 @@
                     <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:JobOffer">
-                                <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center">
+                                    <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />

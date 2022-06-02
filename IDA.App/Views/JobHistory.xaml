@@ -3,16 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.JobHistory"
+             BackgroundImageSource="Backgroung5.jpg"
              xmlns:models="clr-namespace:IDA.App.Models" x:DataType="local:JobHistoryViewModels">
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10">
+            <Label></Label>
+            <Label Text="Jobs history" Style="{StaticResource title}"></Label>
         <StackLayout IsVisible="{Binding IsntWorker}">
             <ScrollView>
                 <CollectionView SelectionMode="Single" SelectedItem="{Binding Chosen}" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:JobOffer">
-                            <Label VerticalTextAlignment="Center" VerticalOptions="Center">
+                            <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=" " />
@@ -38,7 +41,7 @@
                 </CollectionView>
             </ScrollView>
 
-            <Button Text="upload new review" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UploadCommand}"></Button>
+            <Button Text="upload new review" Style="{StaticResource Button}"  Command="{Binding UploadCommand}"></Button>
 
         </StackLayout>
 
@@ -47,7 +50,7 @@
                 <CollectionView SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:JobOffer">
-                            <Label VerticalTextAlignment="Center" VerticalOptions="Center">
+                                <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=" " />

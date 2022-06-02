@@ -4,6 +4,7 @@
              xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
              xmlns:models="clr-namespace:IDA.App.Models"
              x:DataType="viewmodels:JobOfferPageViewModels"
+             BackgroundImageSource="Backgroung1.jpg"
              x:Class="IDA.App.Views.JobOfferPage">
     <ContentPage.Resources>
         <Style TargetType="CollectionView">
@@ -26,29 +27,28 @@
     <ContentPage.Content>
 
 
-        <StackLayout BackgroundColor="#fff7f7">
-            
-            <Label Text="jon offer page" FontSize="Medium"></Label>
+        <StackLayout Padding="10">
+
             <Label></Label>
             <StackLayout IsVisible="{Binding IsntWorker}">
 
                 <Label Text=""></Label>
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
                     <StackLayout >
-                        <SearchBar Placeholder="search services" Text="{Binding Services}"/>
+                        <SearchBar Placeholder="search services" Text="{Binding Services}" Style="{StaticResource CityStreet}"/>
                         <CollectionView EmptyView=""  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
                                     SelectionChangedCommand="{Binding SelectServicesCommand}" SelectionChangedCommandParameter="{Binding SelectedService}">
                             <!--IsVisible="{Binding ShowServicesError}"-->
                         </CollectionView>
 
 
-                        <Button Command="{Binding Path=SearchCommand}"></Button>
+                        <Button Command="{Binding Path=SearchCommand}" Style="{StaticResource Button}" Text="search available workers"></Button>
                     </StackLayout>
 
                 </Frame>
 
                 <StackLayout >
-                    <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
+                    <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="150">
                         <StackLayout >
                             <StackLayout >
 
@@ -56,7 +56,7 @@
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate x:DataType="models:Worker">
 
-                                            <Label VerticalTextAlignment="Center" VerticalOptions="Center">
+                                            <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                                 <Label.FormattedText>
                                                     <FormattedString>
                                                         <Span Text="{Binding FirstName} " />
@@ -77,12 +77,12 @@
 
                     </Frame>
                 </StackLayout>
-                <Button Text="see this workers profile" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3"  Command="{Binding Path=WorkerPCommand}"></Button>
+                <Button Text="see this workers profile" Style="{StaticResource Button}"  Command="{Binding Path=WorkerPCommand}"></Button>
 
             </StackLayout>
 
 
-            <Button Text="availbilty update" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
+            <Button Text="availbilty update" Style="{StaticResource Button}" CornerRadius="200" HeightRequest="400" WidthRequest="400"  Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
 
         </StackLayout>
 

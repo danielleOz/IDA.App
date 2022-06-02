@@ -12,7 +12,7 @@
 
         <StackLayout VerticalOptions="Fill" Padding="10">
             <Label></Label>
-            <Label Text="login" FontSize="Large" HorizontalOptions="Center" FontAttributes="Italic,Bold" TextColor="#B08968" ></Label>
+            <Label Text="Login" FontSize="Large" HorizontalOptions="Center" FontAttributes="Italic,Bold" TextColor="#B08968" ></Label>
 
             <Label Text=""></Label>
 

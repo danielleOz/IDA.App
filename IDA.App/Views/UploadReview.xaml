@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IDA.App.ViewModels"
              xmlns:fRating="clr-namespace:Rating;assembly=Rating"
+             BackgroundImageSource="background14.jpg"
              x:Class="IDA.App.Views.UploadReview">
     
     <ContentPage.BindingContext>
@@ -11,26 +12,26 @@
     
     <ContentPage.Content>
         
-        <StackLayout>
+        <StackLayout Padding="10">
+            <Label></Label>
+            <Label Text="Upload review"></Label>
+            <Label Text="{Binding WorkerName, StringFormat='worker name- {0:F0}' }"  Style="{StaticResource label}" ></Label>
+            <Label Text="{Binding UserName, StringFormat='user name- {0:F0}' }"  Style="{StaticResource label}" ></Label>
+            <Label Text="{Binding ServiceType, StringFormat='service- {0:F0}' }"   Style="{StaticResource label}" ></Label>
 
-            <Label Text="write your review"></Label>
-            <Label Text="{Binding WorkerName, StringFormat='worker name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
-            <Label Text="{Binding UserName, StringFormat='user name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
-            <Label Text="{Binding ServiceType, StringFormat='service- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+            <StackLayout >
 
-            <StackLayout Padding="20">
-               
-                <Editor Placeholder="description" Text="{Binding Descriptoin}" ></Editor>
+                <Editor Placeholder="description" Text="{Binding Descriptoin}"  Style="{StaticResource editor }" ></Editor>
 
             </StackLayout>
             
             <Label Text=""></Label>
 
-            <fRating:RatingBar x:Name="ratingBar"  HorizontalOptions="Center" ImageWidth="70" ImageHeight="70" FlowDirection="LeftToRight" EmptyStarImage="emptyStar.png" FillStarImage="fullStar.png"  SelectedStarValue="{Binding WorkerRating}" ></fRating:RatingBar>
+            <fRating:RatingBar x:Name="ratingBar"  HorizontalOptions="Center" ImageWidth="70" ImageHeight="70" FlowDirection="LeftToRight" EmptyStarImage="star (5).png" FillStarImage="star (4).png"  SelectedStarValue="{Binding WorkerRating}" ></fRating:RatingBar>
 
             <Label Text=""></Label>
 
-            <Button Text="submit" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding OnSubmitCommand}" ></Button>
+            <Button Text="submit"  Style="{StaticResource Button }" Command="{Binding OnSubmitCommand}" ></Button>
 
         </StackLayout>
        

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
+             BackgroundImageSource="backgroung2.png"
              x:Class="IDA.App.Views.Profile">
     <ContentPage.BindingContext>
         <local:ProfileViewModels></local:ProfileViewModels>
@@ -10,34 +11,34 @@
 
         <ScrollView>
             
-            <StackLayout BackgroundColor="#fff7f7">
+            <StackLayout Padding="10">
                 <Label Text=" "></Label>
-                <Label Text="profile page" TextColor="#aaaaaa" FontSize="Medium" HorizontalTextAlignment="Center"></Label>
+                <Label Text="Profile page" Style="{StaticResource title}"></Label>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="500">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="500">
 
                     <StackLayout>
 
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryFname, StringFormat='first name- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryFname, StringFormat='first name- {0:F0}' }"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryLname , StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryLname , StringFormat='last name- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryEmail,  StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryEmail,  StringFormat='email- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryPass,  StringFormat='password- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryPass,  StringFormat='password- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryCity, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryCity, StringFormat='city- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryStreet, StringFormat='street- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryStreet, StringFormat='street- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryAp , StringFormat='aprtmant- {0:F0}' }"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryAp , StringFormat='aprtmant- {0:F0}' }"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryHN, StringFormat='house number- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryHN, StringFormat='house number- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryBirthDate, StringFormat='birth date- {0:dd/MM/yyyy}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding EntryBirthDate, StringFormat='birth date- {0:dd/MM/yyyy}'}"  Style="{StaticResource label}" ></Label>
                         <Label Text=" "></Label>
-                        <Label Text="{Binding EntryRadius, StringFormat='radius- {0:F0}'}"  TextColor="#aaaaaa" IsVisible="{Binding IsWorker}"></Label>
+                        <Label Text="{Binding EntryRadius, StringFormat='radius- {0:F0}'}"  Style="{StaticResource label}" IsVisible="{Binding IsWorker}"></Label>
                         <Label Text=" "></Label>
 
                     </StackLayout>
@@ -45,19 +46,19 @@
 
                 <Label Text=" "></Label>
 
-                <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6" HorizontalOptions="Center" WidthRequest="350" HeightRequest="279">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="279">
 
                     <StackLayout >
 
-                        <Button Text="update your personal details" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding UpdateCommand}"></Button>
+                        <Button Text="update" Style="{StaticResource Button}" Command="{Binding UpdateCommand}"></Button>
                         <Label Text=" "></Label>
-                        <Button Text="my reviews" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoToReviewCommand }"></Button>
-                        <Label Text=" "></Label>
-
-                        <Button Text="my jobs" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding GoJOHistoryCommand }"></Button>
+                        <Button Text="my reviews" Style="{StaticResource Button}" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>
 
-                        <Button Text="log out" Command="{Binding LogOutCommand}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" ></Button>
+                        <Button Text="my jobss" Style="{StaticResource Button}" Command="{Binding GoJOHistoryCommand }"></Button>
+                        <Label Text=" "></Label>
+
+                        <Button Text="log out" Command="{Binding LogOutCommand}" Style="{StaticResource Button}" ></Button>
 
                     </StackLayout>
 

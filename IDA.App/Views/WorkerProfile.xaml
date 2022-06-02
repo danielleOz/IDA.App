@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IDA.App.ViewModels"
              xmlns:DataType="clr-namespace:IDA.App.Models"
+             BackgroundImageSource="background12.jpg"
              x:Class="IDA.App.Views.WorkerProfile">
     <ContentPage.BindingContext>
         <local:WorkerProfileViewModels></local:WorkerProfileViewModels>
@@ -10,34 +11,36 @@
     
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout BackgroundColor="#fff7f7">
+        <StackLayout Padding="10">
+            
+            
             <Label Text=" "></Label>
-            <Label Text="worker detailes " FontSize="Medium" HorizontalOptions="Center"
+            <Label Text="Worker detailes" Style="{StaticResource title}" HorizontalOptions="Center"
                    ></Label>
             <Label Text=" "> </Label>
-            <Frame BorderColor="#aaaaaa" BackgroundColor="#fff7f7" CornerRadius="6"  WidthRequest="350" HeightRequest="300"  HorizontalOptions="Center">
+                <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="300"  HorizontalOptions="Center">
                 <StackLayout>
                     
                     <Label Text=" "></Label>
-                    <Label Text="{Binding Fname, StringFormat='first name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding Fname, StringFormat='first name- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding Lname, StringFormat='last name- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding Lname, StringFormat='last name- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding Email, StringFormat='email- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding Email, StringFormat='email- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding City, StringFormat='city- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding City, StringFormat='city- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                     <Label Text=" "></Label>
-                    <Label Text="{Binding Age,StringFormat='age- {0:F0}'}"  TextColor="#aaaaaa" ></Label>
+                        <Label Text="{Binding Age,StringFormat='age- {0:F0}'}" Style="{StaticResource label}" ></Label>
                     <Label Text=" "></Label>
                    
                 </StackLayout>
             </Frame>
 
-                <Label Text="Reviews" FontSize="Medium"></Label>
+                <Label Text="Workers reviews" Style="{StaticResource title}"></Label>
                 <CollectionView SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="DataType:JobOffer">
-                            <Label  VerticalTextAlignment="Center" VerticalOptions="Center">
+                            <Label  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text=" " />
@@ -62,7 +65,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-            <Button Text="contact the worker" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" Command="{Binding SendEmailCommand}"  ></Button>
+                <Button Text="contact the worker" Style="{StaticResource label}" Command="{Binding SendEmailCommand}"  ></Button>
 
 
         </StackLayout>
