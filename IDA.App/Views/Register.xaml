@@ -67,7 +67,7 @@
                     </StackLayout>
                 </Frame>
 
-
+ 
 
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
