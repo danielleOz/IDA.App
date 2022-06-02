@@ -2,23 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                xmlns:local ="clr-namespace:IDA.App.ViewModels" x:DataType="local:AvailbiltyViewModels"
-             x:Class="IDA.App.Views.Availbilty" BackgroundImageSource="backgroung3.jpg">
+             x:Class="IDA.App.Views.Availbilty" BackgroundImageSource="backgroung12.jpg">
 
    
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="10" VerticalOptions="Center">
             <StackLayout>
                 <Label></Label>
                 <Label Text="Avilabilty update" Style="{StaticResource title}"></Label>
-                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="300">
+                <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="250">
 
                     <StackLayout >
-                        <Label Text="your status is:" Style="{StaticResource label}" ></Label> <Label Text="{Binding IsAvailable, Mode=TwoWay}" TextColor="#aaaaaa"></Label>
+                        <Label FontSize="Medium" Text="{Binding IsAvailable, Mode=TwoWay, StringFormat='your status is: {0:F0}'}"  Style="{StaticResource label}" ></Label>
 
                         <StackLayout  IsVisible="{Binding IsntAvailableBool}">
 
-                            <Label Text="avilable until" Style="{StaticResource label}"></Label>
-                            <TimePicker Style="{StaticResource timePicker }" Time="{Binding Time, Mode=TwoWay}"></TimePicker>
+                            <Label Text="avilable until" Style="{StaticResource label}" FontSize="Medium"></Label>
+                            <TimePicker Style="{StaticResource timePicker }" Time="{Binding Time, Mode=TwoWay}" FontSize="Medium"></TimePicker>
                         <Button Text="Set as Available" Command="{Binding AvailbleWorkerCommand}" Style="{StaticResource Button}"></Button>
                        
                         </StackLayout>

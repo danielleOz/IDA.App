@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
              xmlns:models="clr-namespace:IDA.App.Models"
              x:DataType="viewmodels:JobOfferPageViewModels"
-             BackgroundImageSource="Backgroung1.jpg"
+             BackgroundImageSource="Backgroung17.jpg"
              x:Class="IDA.App.Views.JobOfferPage">
     <ContentPage.Resources>
         <Style TargetType="CollectionView">
@@ -29,7 +29,9 @@
 
         <StackLayout Padding="10">
 
-            <Label></Label>
+            <Label Text=" "></Label>
+            <Label Text="Search job" Style="{StaticResource title}" HorizontalOptions="Center" IsVisible="{Binding IsntWorker}"></Label>
+                   
             <StackLayout IsVisible="{Binding IsntWorker}">
 
                 <Label Text=""></Label>
@@ -82,7 +84,7 @@
             </StackLayout>
 
 
-            <Button Text="availbilty update" Style="{StaticResource Button}" CornerRadius="200" HeightRequest="400" WidthRequest="400"  Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
+            <Button Text="availbilty update" Style="{StaticResource Button}" CornerRadius="200" HeightRequest="400" WidthRequest="400" FontSize="Large" Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
 
         </StackLayout>
 

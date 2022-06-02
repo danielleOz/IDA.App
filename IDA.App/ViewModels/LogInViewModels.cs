@@ -81,7 +81,7 @@ namespace IDA.App.ViewModels
 
                 App.Current.MainPage = new NavigationPage(theMainTabbedPage)
                 {
-                    BarBackgroundColor = Color.FromHex("#f0d9d7")
+                    BarBackgroundColor = Color.FromHex("#B08968")
 
                 };
             ;
@@ -106,8 +106,10 @@ namespace IDA.App.ViewModels
         public ICommand RegisterCommand => new Command(GoToRegister);
         private  void GoToRegister()
         {
-           
-            Application.Current.MainPage = new Register();
+
+            Page NewPage = new Views.Register();
+            App.Current.MainPage.Navigation.PushAsync(NewPage);
+
         }
         #endregion
     }

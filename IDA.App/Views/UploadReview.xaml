@@ -27,7 +27,7 @@
             
             <Label Text=""></Label>
 
-            <fRating:RatingBar x:Name="ratingBar"  HorizontalOptions="Center" ImageWidth="70" ImageHeight="70" FlowDirection="LeftToRight" EmptyStarImage="star (5).png" FillStarImage="star (4).png"  SelectedStarValue="{Binding WorkerRating}" ></fRating:RatingBar>
+            <fRating:RatingBar x:Name="ratingBar"  HorizontalOptions="Center" ImageWidth="70" ImageHeight="70" FlowDirection="LeftToRight" EmptyStarImage="starE.png" FillStarImage="starF.png"  SelectedStarValue="{Binding WorkerRating}" ></fRating:RatingBar>
 
             <Label Text=""></Label>
 

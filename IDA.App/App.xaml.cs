@@ -73,17 +73,15 @@ namespace IDA.App
             this.services = await proxy.GetServices();
 
             Page p = new Views.LogIn();
-            MainPage = p;
-
-
+  
             //TheMainTabbedPageViewModels vm = new TheMainTabbedPageViewModels();
             //TheMainTabbedPage tabbedPage = new TheMainTabbedPage();
             //TheMainTabbedPage = tabbedPage;
             //tabbedPage.BindingContext = vm;
-            //MainPage = new NavigationPage(tabbedPage)
-            //{
-            //    BarBackgroundColor = Color.FromHex("#f0d9d7")
-            //};
+            MainPage = new NavigationPage(p)
+            {
+                BarBackgroundColor = Color.FromHex("#B08968")
+            };
 
 
         }

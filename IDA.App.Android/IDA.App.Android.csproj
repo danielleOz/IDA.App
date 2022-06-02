@@ -165,10 +165,10 @@
     <AndroidResource Include="Resources\drawable\background18.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\star %284%29.png" />
+    <AndroidResource Include="Resources\drawable\starF.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\star %285%29.png" />
+    <AndroidResource Include="Resources\drawable\starE.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
-             BackgroundImageSource="Backgroung4.jpg"
+             BackgroundImageSource="background15.jpg"
              x:Class="IDA.App.Views.Update">
+
 
    
     <ContentPage.Content>
@@ -11,7 +12,7 @@
             <StackLayout Padding="10">
 
                 <Label></Label>
-                <Label Text="Update" Style="{StaticResource title}" HorizontalOptions="Center"></Label>
+                <Label Text="Update" Style="{StaticResource title}"  HorizontalOptions="Center"></Label>
 
                 <Label Text=" "></Label>
 
@@ -126,7 +127,7 @@
                                         <ColumnDefinition Width="*" ></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}" BackgroundColor="#f0d9d7" TextColor="White" CornerRadius="3" BorderWidth="0" HorizontalOptions="Start" >
+                                    <Button x:Name="servicersButton" Grid.Row="0"  Grid.Column="0" Text="choose the services you are able to provide:" Command="{Binding GetServices}" Style="{StaticResource Button}" HorizontalOptions="Start" >
                                     </Button>
 
                                     <CollectionView  Grid.Row="1" SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}"   ItemsSource="{Binding Services}"  >
