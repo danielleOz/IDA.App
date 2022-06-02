@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace IDA.App.ViewModels
 {
-    class UploadReviewViewModels : ViewModelBase
+    class UploadReviewViewModels:ViewModelBase
     {
 
         #region on submit
@@ -34,7 +34,7 @@ namespace IDA.App.ViewModels
             JobOffer j = this.current.JobOffer;
             j.User = null;
             j.ChosenWorker = null;
-
+   
             j = await IDAproxy.JobOffer(j);
 
             if (j != null)
@@ -57,9 +57,7 @@ namespace IDA.App.ViewModels
 
         #endregion
 
-        #region rating
-
-        private int workerRating = 5;
+        private int workerRating= 5;
         public int WorkerRating
         {
             get => this.workerRating;
@@ -72,30 +70,22 @@ namespace IDA.App.ViewModels
                 }
             }
         }
-        #endregion
-
-        #region workers name
+         
         public string WorkerName
         {
             get => this.current.JobOffer.ChosenWorker.FirstName;
         }
-        #endregion
 
-        #region users name
         public string UserName
         {
             get => this.current.JobOffer.User.FirstName;
         }
-        #endregion
 
-        #region service type
         public string ServiceType
         {
             get => this.current.JobOffer.Service.Name;
         }
-        #endregion
 
-        #region description
         private string descriptoin;
         public string Descriptoin
         {
@@ -109,6 +99,5 @@ namespace IDA.App.ViewModels
                 }
             }
         }
-        #endregion
     }
 }
