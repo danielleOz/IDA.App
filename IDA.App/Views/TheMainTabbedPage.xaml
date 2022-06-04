@@ -22,7 +22,7 @@
         </Size>
     </windows:TabbedPage.HeaderIconsSize>
 
-    <local:JobOfferPage Title="Joboffer">
+    <local:JobOfferPage Title="Job offer">
       
     </local:JobOfferPage>
 

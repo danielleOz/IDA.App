@@ -27,6 +27,7 @@
 
             <Style x:Key="label" TargetType="Label">
                 <Setter Property="TextColor" Value="#6c584c"></Setter>
+                <Setter Property="FontSize" Value="Body" ></Setter>
             </Style>
 
             <Style x:Key="frame" TargetType="Frame">

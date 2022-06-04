@@ -7,35 +7,25 @@
              BackgroundImageSource="background10.jpg"
              NavigationPage.HasNavigationBar="True" x:DataType="viewmodels:ReviewsViewModels"
              >
-
-
   
     <ContentPage.Content>
+      
         <StackLayout Padding="10" >
+            
             <Label></Label>
             <Label Text="Rviews history" Style="{StaticResource title}" ></Label>
 
-            <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="300"  HorizontalOptions="Center">
-               
+            <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="300"  HorizontalOptions="CenterAndExpand" >
+                <ScrollView>
                     <StackLayout>
-                
-                <!--show reviews customer wrote or was written on worker-->
+                           <!--show reviews customer wrote or was written on worker-->
                 <StackLayout IsVisible="{Binding IsntWorker}">
-                    <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="2*" ></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="500" ></ColumnDefinition>
-                        <ColumnDefinition Width="*" ></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-
-                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
+                       
+                            <Label></Label>
+                            <CollectionView   SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:JobOffer">
-                                    <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
+                                    <Label   VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
@@ -61,27 +51,19 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+                            
+                          
 
-                </Grid>
-               </StackLayout>
+                    </StackLayout>
                     
                     
                 <StackLayout IsVisible="{Binding IsWorker}">
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"></RowDefinition>
-                        <RowDefinition Height="2*" ></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="500" ></ColumnDefinition>
-                        <ColumnDefinition Width="*" ></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
+                
 
-                    <CollectionView  Grid.Row="1" SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
+                    <CollectionView  SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:JobOffer">
-                                    <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
+                                    <Label   VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text=" " />
@@ -108,16 +90,17 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
 
-                </Grid>
+         
 
                 </StackLayout>
             </StackLayout>
-
+                </ScrollView>
             </Frame>
 
+
+
           
-
-
         </StackLayout>
+       
     </ContentPage.Content>
 </ContentPage>

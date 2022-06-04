@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:IDA.App.ViewModels"
              xmlns:models="clr-namespace:IDA.App.Models"
              x:DataType="viewmodels:JobOfferPageViewModels"
-             BackgroundImageSource="Backgroung17.jpg"
+             BackgroundImageSource="background17.jpg"
              x:Class="IDA.App.Views.JobOfferPage">
     <ContentPage.Resources>
         <Style TargetType="CollectionView">
@@ -26,7 +26,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
 
-
+        
         <StackLayout Padding="10">
 
             <Label Text=" "></Label>
@@ -40,7 +40,6 @@
                         <SearchBar Placeholder="search services" Text="{Binding Services}" Style="{StaticResource CityStreet}"/>
                         <CollectionView EmptyView=""  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
                                     SelectionChangedCommand="{Binding SelectServicesCommand}" SelectionChangedCommandParameter="{Binding SelectedService}">
-                            <!--IsVisible="{Binding ShowServicesError}"-->
                         </CollectionView>
 
 
@@ -48,7 +47,7 @@
                     </StackLayout>
 
                 </Frame>
-
+                <Label></Label>
                 <StackLayout >
                     <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="150">
                         <StackLayout >

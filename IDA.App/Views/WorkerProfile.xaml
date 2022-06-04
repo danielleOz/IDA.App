@@ -15,13 +15,12 @@
             
             
             <Label Text=" "></Label>
-            <Label Text="Worker detailes" Style="{StaticResource title}" HorizontalOptions="Center"
-                   ></Label>
+
             <Label Text=" "> </Label>
                 <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="300"  HorizontalOptions="Center">
                 <StackLayout>
-                    
-                    <Label Text=" "></Label>
+                        <Label Text="Worker detailes" Style="{StaticResource title}" HorizontalOptions="Center"  ></Label>
+                        <Label Text=" "></Label>
                         <Label Text="{Binding Fname, StringFormat='first name- {0:F0}'}"  Style="{StaticResource label}" ></Label>
                     <Label Text=" "></Label>
                         <Label Text="{Binding Lname, StringFormat='last name- {0:F0}'}"  Style="{StaticResource label}" ></Label>

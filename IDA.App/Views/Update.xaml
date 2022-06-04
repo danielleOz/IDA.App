@@ -16,33 +16,33 @@
 
                 <Label Text=" "></Label>
 
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="80">
                     <StackLayout>
-                        <Label Text="first name" TextColor="#bdbdbd"></Label>
-                        <Entry Text="{Binding EntryFname}"  Placeholder="first Name" PlaceholderColor="#bdbdbd" TextColor="#aaaaaa"></Entry>
+                        <Label Text="first name" Style="{StaticResource label}"></Label>
+                        <Entry Text="{Binding EntryFname}"  Placeholder="first Name" Style="{StaticResource entry}" ></Entry>
 
-                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError} " TextColor="#aaaaaa"/>
+                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
                 <Label Text=" "></Label>
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="80">
                     <StackLayout>
                         <Label Text="last name" Style="{StaticResource label}"></Label>
                         <Entry Text="{Binding EntryLname}" Placeholder="last Name" Style="{StaticResource entry}"></Entry>
-                        <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" TextColor="#aaaaaa"/>
+                        <Label Text="{Binding LastNameError}" IsVisible="{Binding ShowLastNameError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
 
                 <Label Text=" "></Label>
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="80">
                     <StackLayout>
                         <Label Text="password" Style="{StaticResource label}"></Label>
                         <Entry Text="{Binding EntryPass}" IsPassword="True" Placeholder="password" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
-
+                <Label Text=" "></Label>
                 <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
                         <Label Text="city"  Style="{StaticResource label}"></Label>
@@ -53,7 +53,7 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=" "></Label>
                 <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
                         <Label Text="street"  Style="{StaticResource label}"></Label>
@@ -66,7 +66,7 @@
 
 
                 <Label Text=" "></Label>
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="80">
                     <StackLayout>
                         <Label Text="house number" Style="{StaticResource label}"></Label>
                         <Entry Text="{Binding EntryHN}" Placeholder="house number" Style="{StaticResource entry}"></Entry>
@@ -76,7 +76,7 @@
                 </Frame>
 
                 <Label Text=" "></Label>
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="80">
                     <StackLayout>
                         <Label Text="aprtment" Style="{StaticResource label}"></Label>
                         <Entry Text="{Binding EntryAp, Mode=OneWay}" Placeholder="aprtment" Style="{StaticResource entry}"></Entry>
@@ -87,7 +87,7 @@
 
 
                 <Label Text=" "></Label>
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="50">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="80">
                     <StackLayout>
                         <Label Text="birth date" Style="{StaticResource label}"></Label>
                         <DatePicker  Style="{StaticResource DateTime}" Date="{Binding EntryBirthDate}" HorizontalOptions="Start"></DatePicker>
@@ -95,7 +95,7 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=" "></Label>
                 <!--WORKER DETAILS PART-->
                 <StackLayout IsVisible="{Binding IsWorker}">
                
@@ -103,7 +103,7 @@
 
                         <Label Text=""></Label>
 
-                        <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50"  HorizontalOptions="Center">
+                        <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="80"  HorizontalOptions="Center">
                                 <StackLayout>
                                 <Label Text="radius" Style="{StaticResource label}"></Label>
                                 <Entry Text="{Binding EntryRadius}" Placeholder="radius" Style="{StaticResource entry}"></Entry>

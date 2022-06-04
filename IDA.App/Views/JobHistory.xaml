@@ -3,13 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.JobHistory"
-             BackgroundImageSource="Backgroung5.jpg"
+             BackgroundImageSource="background10.jpg"
              xmlns:models="clr-namespace:IDA.App.Models" x:DataType="local:JobHistoryViewModels">
 
     <ContentPage.Content>
+       
         <StackLayout Padding="10">
             <Label></Label>
-            <Label Text="Jobs history" Style="{StaticResource title}"></Label>
+            <Label Text="Jobs history" Style="{StaticResource title}" ></Label>
+            <Frame Style="{StaticResource frame}" HeightRequest="300"  >
+                <StackLayout>
         <StackLayout IsVisible="{Binding IsntWorker}">
             <ScrollView>
                 <CollectionView SelectionMode="Single" SelectedItem="{Binding Chosen}" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
@@ -41,7 +44,6 @@
                 </CollectionView>
             </ScrollView>
 
-            <Button Text="upload new review" Style="{StaticResource Button}"  Command="{Binding UploadCommand}"></Button>
 
         </StackLayout>
 
@@ -77,8 +79,14 @@
             </ScrollView>
 
         </StackLayout>
+           
+            </StackLayout>
+                </Frame>
+            <Label></Label>
+            <Button Text="upload new review" Style="{StaticResource Button}"  Command="{Binding UploadCommand}" IsVisible="{Binding IsntWorker}"></Button>
 
         </StackLayout>
+      
 
     </ContentPage.Content>
 </ContentPage>
