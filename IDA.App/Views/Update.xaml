@@ -79,7 +79,7 @@
                 <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="80">
                     <StackLayout>
                         <Label Text="aprtment" Style="{StaticResource label}"></Label>
-                        <Entry Text="{Binding EntryAp, Mode=OneWay}" Placeholder="aprtment" Style="{StaticResource entry}"></Entry>
+                        <Entry Text="{Binding EntryAp}" Placeholder="aprtment" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding ApError}" IsVisible="{Binding ShowApError}" Style="{StaticResource ErrorLabel}"/>
 
                     </StackLayout>

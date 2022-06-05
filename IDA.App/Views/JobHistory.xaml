@@ -31,10 +31,6 @@
                                         <Span Text="date- " />
                                         <Span Text="{Binding PublishDateString}" />
                                         <Span Text="&#10; " />
-                                        <Span Text="rate- " />
-                                        <Span Text="{Binding WorkerReviewRate, Mode=TwoWay}" />
-                                        <Span Text="&#10; " />
-                                        <Span Text=" " />
 
                                     </FormattedString>
                                 </Label.FormattedText>

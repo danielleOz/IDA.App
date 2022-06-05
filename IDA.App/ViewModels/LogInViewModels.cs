@@ -13,12 +13,14 @@ namespace IDA.App.ViewModels
 {
     class LogInViewModels : ViewModelBase
     {
+        // פעולה בונה
         public LogInViewModels()
         {
             EntryEmail = "danielle.oz.do@gmail.com";
             EntryPass = "123456";
         }
 
+        // שדה של הכנסת אימייל
         private string entryEmail;
         public string EntryEmail
         {
@@ -33,6 +35,7 @@ namespace IDA.App.ViewModels
             }
         }
 
+        // שדה של הכנסת סיסמא
         private string entryPass;
         public string EntryPass
         {
@@ -47,10 +50,9 @@ namespace IDA.App.ViewModels
             }
         }
 
-      
-
+ 
         #region log in
-
+        // פעולת התחברות - בודקת בנוסף עם המשתמש הוא עובד או לקוח
         public ICommand LogInCommand => new Command(LogIn);
         private async void LogIn()
         {
@@ -70,12 +72,6 @@ namespace IDA.App.ViewModels
                 TheMainTabbedPageViewModels mainPageVM = new TheMainTabbedPageViewModels();
                 theMainTabbedPage.BindingContext = mainPageVM;
 
-                
-                //TO DO: Assign worker and customer as needed
-                
-
-
-                //mainPageVM.LoginUser = user;
                 await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
                 ((App)Application.Current).services = await IDAAPIProxy.GetServices();
 
@@ -90,7 +86,6 @@ namespace IDA.App.ViewModels
 
                 //JobOfferPageViewModels JobOfferViewModels = (JobOfferPageViewModels)(theMainTabbedPage.home.BindingContext);
 
-
             }
             else
             {
@@ -101,8 +96,8 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-
         #region go to register
+        // פעולת מעבר לעמוד של הרשמה
         public ICommand RegisterCommand => new Command(GoToRegister);
         private  void GoToRegister()
         {

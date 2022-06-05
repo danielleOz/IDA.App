@@ -152,6 +152,8 @@ namespace IDA.App.ViewModels
                     await App.Current.MainPage.DisplayAlert(" ", "your now set as Unavailable", "ok", FlowDirection.RightToLeft);
                     OnPropertyChanged("IsAvailable");
                     OnPropertyChanged("Time");
+                    OnPropertyChanged("IsAvailableBool");
+                    OnPropertyChanged("IsntAvailableBool");
 
                 }
 

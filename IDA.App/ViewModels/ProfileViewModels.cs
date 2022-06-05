@@ -235,54 +235,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        //#region available until
-        //private DateTime d;
-        //public DateTime D
-        //{
-        //    get
-        //    {
-        //        return this.current.Worker.AvailbleUntil;
-        //    }
-        //}
-        //#endregion
-
-
-
-        //#region UnAvailble Worker Command
-        //public ICommand UnAvailbleWorkerCommand => new Command(UnAvailbleWorker);
-
-        //private async void UnAvailbleWorker()
-        //{
-        //    if (current.User.IsWorker)
-        //    {
-        //        if (!IsAvailble)
-        //            current.Worker.AvailbleUntil = time;
-        //        else
-        //        {
-        //            current.Worker.AvailbleUntil = DateTime.Today;
-        //        }
-
-        //        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-        //        bool success = await IDAAPIProxy.UpdateWorkerAvailbilty(current.Worker);
-        //        if (!success)
-        //        {
-        //            await App.Current.MainPage.DisplayAlert(" ", "something went wrong, please try again", "ok", FlowDirection.RightToLeft);
-        //            current.Worker.AvailbleUntil = time;
-        //        }
-
-        //        else
-        //        {
-        //            await App.Current.MainPage.DisplayAlert(" ", "your now set as available", "ok", FlowDirection.RightToLeft);
-        //            time = current.Worker.AvailbleUntil;
-        //            OnPropertyChanged("Time");
-        //            OnPropertyChanged("IsAvailable");
-
-        //        }
-
-        //    }
-
-        //}
-        //#endregion
+        
 
         #region go to reviews
         public ICommand GoToReviewCommand => new Command(GoToReview);
@@ -326,26 +279,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        //#region go to job offer
-        //public ICommand GoToJobCommand => new Command(JobOffer);
-        //private void JobOffer()
-        //{
-        //    List<JobOffer> jobOffers;
-        //    if (IsWorker)
-        //    {
-        //        jobOffers = this.current.Worker.WorkerJobOffers;
-        //    }
-        //    else
-        //    {
-        //        jobOffers = this.current.User.JobOffers;
-        //    }
-
-        //    JobOfferPageViewModels vm = new JobOfferPageViewModels(jobOffers);
-        //    Page NewPage = new Views.JobOfferPage();
-        //    NewPage.BindingContext = vm;
-        //    App.Current.MainPage.Navigation.PushAsync(NewPage);
-        //}
-        //#endregion
+       
 
         #region go to update page
         public ICommand UpdateCommand => new Command(OnUpdate);
