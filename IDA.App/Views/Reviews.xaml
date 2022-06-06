@@ -7,100 +7,100 @@
              BackgroundImageSource="background10.jpg"
              NavigationPage.HasNavigationBar="True" x:DataType="viewmodels:ReviewsViewModels"
              >
-  
+
     <ContentPage.Content>
-      
+
         <StackLayout Padding="10" >
-            
+
             <Label></Label>
             <Label Text="Rviews history" Style="{StaticResource title}" ></Label>
 
             <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="300"  HorizontalOptions="CenterAndExpand" >
                 <ScrollView>
                     <StackLayout>
-                           <!--show reviews customer wrote or was written on worker-->
-                <StackLayout IsVisible="{Binding IsntWorker}">
-                       
+                        <!--show reviews customer wrote or was written on worker-->
+                        <StackLayout IsVisible="{Binding IsntWorker}">
+
                             <Label></Label>
+
                             <CollectionView   SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:JobOffer">
-                                    <Label   VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text=" " />
-                                            <Span Text="worker name- " />
-                                            <Span Text="{Binding ChosenWorker.FirstName} " />
-                                            <Span Text="&#10; " />
-                                            <Span Text="review description- " />
-                                            <Span Text="{Binding WorkerReviewDescriptipon}" />
-                                            <Span Text="&#10; " />
-                                            <Span Text="review date- " />
-                                            <Span Text="{Binding ReviewDateString}" />
-                                            <Span Text="&#10; " />
-                                            <Span Text=" " />
-                                            <Span Text="rate- " />
-                                            <Span Text="{Binding WorkerReviewRate}" />
-                                            <Span Text="&#10; " />
-                                            <Span Text=" " />
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:JobOffer">
+                                       
+                                            <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text=" " />
+                                                        <Span Text="worker name- " />
+                                                        <Span Text="{Binding ChosenWorker.FirstName} " />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text="review description- " />
+                                                        <Span Text="{Binding WorkerReviewDescriptipon}" />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text="review date- " />
+                                                        <Span Text="{Binding ReviewDateString}" />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text=" " />
+                                                        <Span Text="rate- " />
+                                                        <Span Text="{Binding WorkerReviewRate}" />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text=" " />
 
 
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                            
-                          
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
 
-                    </StackLayout>
-                    
-                    
-                <StackLayout IsVisible="{Binding IsWorker}">
-                
-
-                    <CollectionView  SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:JobOffer">
-                                    <Label   VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text=" " />
-                                            <Span Text="user name- " />
-                                            <Span Text="{Binding User.FirstName} " />
-                                            <Span Text="&#10; " />
-                                            <Span Text="review description- " />
-                                            <Span Text="{Binding WorkerReviewDescriptipon}" />
-                                            <Span Text="&#10; " />
-                                            <Span Text="review date- " />
-                                            <Span Text="{Binding ReviewDateString}" />
-                                            <Span Text="&#10; " />
-                                            <Span Text=" " />
-                                            <Span Text="rate- " />
-                                            <Span Text="{Binding WorkerReviewRate}" />
-                                            <Span Text="&#10; " />
-                                            <Span Text=" " />
+                        </StackLayout>
+                        <StackLayout IsVisible="{Binding IsWorker}">
 
 
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                                <CollectionView  SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="there are no reviews right now"  >
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="models:JobOffer">
+                                            <Label   VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text=" " />
+                                                        <Span Text="user name- " />
+                                                        <Span Text="{Binding User.FirstName} " />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text="review description- " />
+                                                        <Span Text="{Binding WorkerReviewDescriptipon}" />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text="review date- " />
+                                                        <Span Text="{Binding ReviewDateString}" />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text=" " />
+                                                        <Span Text="rate- " />
+                                                        <Span Text="{Binding WorkerReviewRate}" />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text=" " />
 
-         
 
-                </StackLayout>
-            </StackLayout>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+
+
+
+                            </StackLayout>
+
+                        </StackLayout>
                 </ScrollView>
             </Frame>
 
 
 
-          
+
         </StackLayout>
-       
+
     </ContentPage.Content>
 </ContentPage>

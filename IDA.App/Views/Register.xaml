@@ -41,7 +41,7 @@
                         <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource ErrorLabel}" />
                     </StackLayout>
                 </Frame>
-
+                <Label Text=""></Label>
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryLname}" Placeholder="last Name" Style="{StaticResource entry}"></Entry>
@@ -49,13 +49,14 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=""></Label>
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryEmail}" Placeholder="email" Style="{StaticResource entry}"></Entry>
                         <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
+                <Label Text=""></Label>
 
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
@@ -63,8 +64,7 @@
                         <Label Text="{Binding PassError}" IsVisible="{Binding ShowPassErorr}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
-
-
+                <Label Text=""></Label>
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
                         <Label Text="city"  Style="{StaticResource ErrorLabel}"></Label>
@@ -74,7 +74,7 @@
                         <Label Text="{Binding CityError}" IsVisible="{Binding ShowCityError}" Style="{StaticResource ErrorLabel}"/>
                     </StackLayout>
                 </Frame>
-
+                <Label Text=""></Label>
 
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="150">
                     <StackLayout>
@@ -86,7 +86,7 @@
                     </StackLayout>
                 </Frame>
 
- 
+                <Label Text=""></Label>
 
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
@@ -96,7 +96,7 @@
                     </StackLayout>
                 </Frame>
 
-
+                <Label Text=""></Label>
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <Entry Text="{Binding EntryAp}" Placeholder="aprtment" Style="{StaticResource entry}"></Entry>
@@ -108,14 +108,14 @@
 
 
 
-
+                <Label Text=""></Label>
                 <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="50">
                     <StackLayout>
                         <DatePicker Date="{Binding EntryBirthDate}" Style="{StaticResource DateTime}" ></DatePicker>
                         <Label Text="{Binding BirthDateError }" IsVisible="{Binding ShowBirthDateError}" Style="{StaticResource ErrorLabel}" />
                     </StackLayout>
                 </Frame>
-                
+                <Label Text=""></Label>
 
                 <!--WORKER DETAILS PART-->
 
@@ -128,7 +128,7 @@
 
                         <Label Text="Register as a worker" Style="{StaticResource label}"></Label>
 
-                        <Switch OnColor="#CBAB8D" ThumbColor="#deeded"  IsToggled="{Binding IsWorker}" />
+                        <Switch OnColor="#CBAB8D" ThumbColor="#deeded"  IsToggled="{Binding IsWorker}"  />
 
                         <StackLayout IsVisible="{Binding IsWorker}"  >
 
@@ -185,6 +185,7 @@
 
                 </StackLayout>
                     </Frame>
+                <Label Text=""></Label>
                 <Button Text="Register" Style="{StaticResource Button}"  Command="{Binding Path=RegisterCommand}"></Button>
 
             </StackLayout>

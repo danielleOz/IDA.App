@@ -7,82 +7,93 @@
              xmlns:models="clr-namespace:IDA.App.Models" x:DataType="local:JobHistoryViewModels">
 
     <ContentPage.Content>
-       
+
         <StackLayout Padding="10">
             <Label></Label>
             <Label Text="Jobs history" Style="{StaticResource title}" ></Label>
             <Frame Style="{StaticResource frame}" HeightRequest="300"  >
                 <StackLayout>
-        <StackLayout IsVisible="{Binding IsntWorker}">
-            <ScrollView>
-                <CollectionView SelectionMode="Single" SelectedItem="{Binding Chosen}" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:JobOffer">
-                            <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text=" " />
-                                        <Span Text="worker name- " />
-                                        <Span Text="{Binding ChosenWorker.FirstName} " />
-                                        <Span Text="&#10; " />
-                                        <Span Text="service type- " />
-                                        <Span Text="{Binding Service.Name}" />
-                                        <Span Text="&#10; " />
-                                        <Span Text="date- " />
-                                        <Span Text="{Binding PublishDateString}" />
-                                        <Span Text="&#10; " />
+                    <StackLayout IsVisible="{Binding IsntWorker}">
+                        <ScrollView>
+                            <CollectionView SelectionMode="Single" SelectedItem="{Binding Chosen}" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:JobOffer">
+                                        <StackLayout>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="White" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text=" " />
+                                                        <Span Text="worker name- " />
+                                                        <Span Text="{Binding ChosenWorker.FirstName} " />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text="service type- " />
+                                                        <Span Text="{Binding Service.Name}" />
+                                                        <Span Text="&#10; " />
+                                                        <Span Text="date- " />
+                                                        <Span Text="{Binding PublishDateString}" />
+                                                        <Span Text="&#10; " />
 
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
 
 
-        </StackLayout>
+                    </StackLayout>
 
-            <StackLayout IsVisible="{Binding IsWorker}">
-                <ScrollView>
-                <CollectionView SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:JobOffer">
-                                <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text=" " />
-                                        <Span Text="user name- " />
-                                        <Span Text="{Binding User.FirstName} " />
-                                        <Span Text="&#10; " />
-                                        <Span Text="service type- " />
-                                        <Span Text="{Binding Service.Name}" />
-                                        <Span Text="&#10; " />
-                                        <Span Text="date- " />
-                                        <Span Text="{Binding PublishDateString}" />
-                                        <Span Text="&#10; " />
-                                        <Span Text="rate- " />
-                                        <Span Text="{Binding WorkerReviewRate, Mode=TwoWay}" />
-                                        <Span Text="&#10; " />
-                                        <Span Text=" " />
+                    <StackLayout IsVisible="{Binding IsWorker}">
+                        <ScrollView>
+                            <CollectionView SelectionMode="None" ItemsSource="{Binding JobOffers}" EmptyView="you dont have any job offer"  >
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:JobOffer">
+                                        <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text=" " />
+                                                    <Span Text="user name- " />
+                                                    <Span Text="{Binding User.FirstName} " />
+                                                    <Span Text="&#10; " />
+                                                    <Span Text="service type- " />
+                                                    <Span Text="{Binding Service.Name}" />
+                                                    <Span Text="&#10; " />
+                                                    <Span Text="date- " />
+                                                    <Span Text="{Binding PublishDateString}" />
+                                                    <Span Text="&#10; " />
+                                                    <Span Text="rate- " />
+                                                    <Span Text="{Binding WorkerReviewRate, Mode=TwoWay}" />
+                                                    <Span Text="&#10; " />
+                                                    <Span Text=" " />
 
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
 
-        </StackLayout>
-           
-            </StackLayout>
-                </Frame>
+                    </StackLayout>
+
+                </StackLayout>
+            </Frame>
             <Label></Label>
             <Button Text="upload new review" Style="{StaticResource Button}"  Command="{Binding UploadCommand}" IsVisible="{Binding IsntWorker}"></Button>
 
         </StackLayout>
-      
+
 
     </ContentPage.Content>
 </ContentPage>
