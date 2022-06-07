@@ -96,6 +96,7 @@ namespace IDA.App.ViewModels
 
             this.allStreets = current.StreetList;
             this.FilteredStreets = new ObservableCollection<string>();
+            ShowGetServices();
 
         }
 

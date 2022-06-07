@@ -17,7 +17,7 @@ namespace IDA.App.Models
         public DateTime AvailbleUntil { get; set; }
 
 
-      //  public virtual User IdNavigation { get; set; }
+     
         public virtual List<JobOffer> WorkerJobOffers { get; set; }
         public virtual List<WorkerService> WorkerServices { get; set; }
     }

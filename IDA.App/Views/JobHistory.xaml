@@ -23,7 +23,12 @@
                                                 <VisualStateGroup Name="CommonStates">
                                                     <VisualState Name="Selected">
                                                         <VisualState.Setters>
-                                                            <Setter Property="BackgroundColor" Value="White" />
+                                                            <Setter Property="BackgroundColor" Value="#A47C5D" />
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                    <VisualState Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value=" transparent" />
                                                         </VisualState.Setters>
                                                     </VisualState>
                                                 </VisualStateGroup>

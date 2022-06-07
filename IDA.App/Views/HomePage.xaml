@@ -4,7 +4,6 @@
              xmlns:local ="clr-namespace:IDA.App.ViewModels"
              x:Class="IDA.App.Views.HomePage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#fae0c5"
              BackgroundImageSource="backgroung6.jpg">
     <ContentPage.BindingContext>
         <local:HomePageViewModels></local:HomePageViewModels>

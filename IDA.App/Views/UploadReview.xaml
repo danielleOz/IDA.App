@@ -23,7 +23,6 @@
                     <Label></Label>
                     <Label Text="Upload review" Style="{StaticResource title}"></Label>
                     <Label Text="{Binding WorkerName, StringFormat='worker name- {0:F0}' }"  Style="{StaticResource label}" ></Label>
-                    <Label Text="{Binding UserName, StringFormat='user name- {0:F0}' }"  Style="{StaticResource label}" ></Label>
                     <Label Text="{Binding ServiceType, StringFormat='service- {0:F0}' }"   Style="{StaticResource label}" ></Label>
 
                     <StackLayout >

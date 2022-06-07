@@ -16,5 +16,15 @@ namespace IDA.App.Views
         {
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            if (this.BindingContext != null)
+            {
+                ProfileViewModels vm = new ProfileViewModels();
+                this.BindingContext = vm;
+            }
+            base.OnAppearing();
+        }
     }
 }

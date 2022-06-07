@@ -5,25 +5,9 @@
              xmlns:models="clr-namespace:IDA.App.Models"
              x:DataType="viewmodels:JobOfferPageViewModels"
              BackgroundImageSource="background17.jpg"
+             x:Name="ThePage"
              x:Class="IDA.App.Views.JobOfferPage">
-    <ContentPage.Resources>
-        <Style TargetType="CollectionView">
-            <Setter Property="VisualStateManager.VisualStateGroups">
-                <VisualStateGroupList>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal" />
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="LightSkyBlue" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateGroupList>
-            </Setter>
-        </Style>
 
-    </ContentPage.Resources>
     <ContentPage.Content>
 
         
@@ -35,11 +19,12 @@
             <StackLayout IsVisible="{Binding IsntWorker}">
 
                 <Label Text=""></Label>
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="350">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="250">
                     <StackLayout >
                         <SearchBar Placeholder="search services" Text="{Binding Services}" Style="{StaticResource CityStreet}"/>
                         <CollectionView EmptyView=""  x:Name="services" ItemsSource="{Binding FilteredServices}" SelectedItem="{Binding SelectedService}" SelectionMode="Single"
                                     SelectionChangedCommand="{Binding SelectServicesCommand}" SelectionChangedCommandParameter="{Binding SelectedService}">
+
                         </CollectionView>
 
 
@@ -52,38 +37,70 @@
                     <Frame Style="{StaticResource frame}"  WidthRequest="350" HeightRequest="150">
                         <StackLayout >
                             <StackLayout >
-
-                                <CollectionView  Grid.Row="1" SelectionMode="Single" SelectedItem="{Binding WorkerId, Mode=TwoWay}"  ItemsSource="{Binding Workers}" EmptyView="">
+                                <CollectionView  SelectionMode="Single" SelectedItem="{Binding WorkerId, Mode=TwoWay}"  ItemsSource="{Binding Workers}" EmptyView="">
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate x:DataType="models:Worker">
+                                            <StackLayout>
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup Name="CommonStates">
+                                                        <VisualState Name="Selected">
+                                                            <VisualState.Setters>
+                                                                <Setter Property="BackgroundColor" Value="#A47C5D" />
+                                                            </VisualState.Setters>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
 
-                                            <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="{Binding FirstName} " />
-                                                        <Span Text=" "></Span>
-                                                        <Span Text="{Binding LastName} " />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
+                                                <SwipeView>
+                                                    <SwipeView.RightItems>
+                                                        <SwipeItems>
+                                                            <SwipeItem Text="Profile"
+                                                                   IconImageSource="user.png"
+                                                                   BackgroundColor="Transparent"
+                                                                   Command="{Binding Source={x:Reference ThePage}, Path=BindingContext.WorkerPCommand}"
+                                                                   CommandParameter="{Binding}" />
 
+                                                        </SwipeItems>
+                                                    </SwipeView.RightItems>
+                                                    <Grid HorizontalOptions="Center" Margin="7" RowSpacing="-20" WidthRequest="350">
+
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*" />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="30"/>
+                                                        </Grid.RowDefinitions>
+
+                                                        <Label VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}" Grid.Row="0" Grid.Column="0">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="{Binding FirstName} " />
+                                                                    <Span Text=" "></Span>
+                                                                    <Span Text="{Binding LastName} " />
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                    </Grid>
+
+                                                </SwipeView>
+                                            </StackLayout>
                                         </DataTemplate>
+                                        
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
                                 <Label Text=""></Label>
                             </StackLayout>
-
-
                         </StackLayout>
 
                     </Frame>
                 </StackLayout>
-                <Button Text="see this workers profile" Style="{StaticResource Button}"  Command="{Binding Path=WorkerPCommand}"></Button>
+
+                <!--<Button Text="see this workers profile" Style="{StaticResource Button}"  Command="{Binding Path=WorkerPCommand}"></Button>-->
 
             </StackLayout>
 
 
-            <Button Text="availbilty update" Style="{StaticResource Button}" CornerRadius="200" HeightRequest="400" WidthRequest="400" FontSize="Large" Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
+            <Button Text="availbilty update" Style="{StaticResource Button}" CornerRadius="10" HeightRequest="70" WidthRequest="400" FontSize="Large" Command="{Binding UpdateAvailbiltyCommand } " IsVisible="{Binding IsWorker}" ></Button>
 
         </StackLayout>
 

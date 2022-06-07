@@ -235,7 +235,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        
 
         #region go to reviews
         public ICommand GoToReviewCommand => new Command(GoToReview);
@@ -258,6 +257,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
         #region go to Job offer history page
         public ICommand GoJOHistoryCommand => new Command(JOHistory);
         private void JOHistory()
@@ -279,7 +279,6 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-       
 
         #region go to update page
         public ICommand UpdateCommand => new Command(OnUpdate);
@@ -293,6 +292,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
+
         #region go to updateAvailbilty page
 
         public ICommand UpdateAvailbiltyCommand => new Command(UpdateAvailbilty);
@@ -302,6 +302,7 @@ namespace IDA.App.ViewModels
             App.Current.MainPage.Navigation.PushAsync(NewPage);
         }
         #endregion
+
 
         #region LogOut
         private Command logOutCommand;
@@ -327,7 +328,11 @@ namespace IDA.App.ViewModels
                 current.User = null;
                 current.Worker = null;
                 Page p = new Views.LogIn();
-                App.Current.MainPage = p;
+                App.Current.MainPage = new NavigationPage(p)
+                {
+                    BarBackgroundColor = Color.FromHex("#B08968")
+                };
+
             }
         }
         #endregion

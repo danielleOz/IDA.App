@@ -74,7 +74,7 @@ namespace IDA.App.ViewModels
                 //SelectedServices = new ObservableCollection<object>(WorkerS);
             }
 
-
+            ShowGetServices();
 
         }
 
@@ -913,7 +913,10 @@ namespace IDA.App.ViewModels
                     }
                     bool success = await IDAproxy.WorkerUpdate(w);
                     if (success)
+                    {
+                        this.current.Worker = w;
                         isUpdated = true;
+                    }
 
 
                 }
@@ -931,7 +934,10 @@ namespace IDA.App.ViewModels
 
                     user = await IDAproxy.UserUpdate(user);
                     if (user != null)
+                    {
+                        this.current.User = user;
                         isUpdated = true;
+                    }
 
                 }
 
