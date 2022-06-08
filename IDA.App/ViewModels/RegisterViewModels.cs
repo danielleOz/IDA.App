@@ -960,11 +960,20 @@ namespace IDA.App.ViewModels
 
                     if (isRegister)
                     {
-                        App app = (App)App.Current;
-                        TheMainTabbedPage theMainTabbedPage = app.TheMainTabbedPage;
-                        TheMainTabbedPageViewModels vm = (TheMainTabbedPageViewModels)theMainTabbedPage.BindingContext;
-                        //vm.LoginUser = user;
+                        IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
+                        TheMainTabbedPage theMainTabbedPage = new Views.TheMainTabbedPage(); ;
+
+                        TheMainTabbedPageViewModels mainPageVM = new TheMainTabbedPageViewModels();
+                        theMainTabbedPage.BindingContext = mainPageVM;
+
                         await App.Current.MainPage.DisplayAlert("", "You are logged in now!", "Ok");
+                        ((App)Application.Current).services = await IDAAPIProxy.GetServices();
+
+                        App.Current.MainPage = new NavigationPage(theMainTabbedPage)
+                        {
+                            BarBackgroundColor = Color.FromHex("#B08968")
+
+                        };
                     }
 
                     else 
