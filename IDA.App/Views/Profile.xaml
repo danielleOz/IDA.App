@@ -10,12 +10,12 @@
     <ContentPage.Content>
 
         <ScrollView>
-            
+             
             <StackLayout Padding="10">
                 <Label Text=" "></Label>
                 <Label Text="Profile page" Style="{StaticResource title}"></Label>
 
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="500">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="550">
 
                     <StackLayout>
 
@@ -46,7 +46,7 @@
 
                 <Label Text=" "></Label>
 
-                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="279">
+                <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="299">
 
                     <StackLayout >
 
@@ -54,10 +54,8 @@
                         <Label Text=" "></Label>
                         <Button Text="my reviews" Style="{StaticResource Button}" Command="{Binding GoToReviewCommand }"></Button>
                         <Label Text=" "></Label>
-
                         <Button Text="my jobs" Style="{StaticResource Button}" Command="{Binding GoJOHistoryCommand }"></Button>
                         <Label Text=" "></Label>
-
                         <Button Text="log out" Command="{Binding LogOutCommand}" Style="{StaticResource Button}" ></Button>
 
                     </StackLayout>
