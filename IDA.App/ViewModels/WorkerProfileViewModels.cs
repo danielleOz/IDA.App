@@ -37,7 +37,7 @@ namespace IDA.App.ViewModels
          
             Service s = w.WorkerServices.Where(b => b.Service.Id== SId).FirstOrDefault().Service;
             
-            List<JobOffer> jobOffers = w.JobOffers.Where(d => d.Service.Id == s.Id).ToList();
+            List<JobOffer> jobOffers = w.JobOffers.Where(d => d.Service.Id == s.Id).Where(r=> r.WorkerReviewDate != null).ToList();
             ThisWorker = w;
             if (w != null)
             {
