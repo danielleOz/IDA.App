@@ -39,9 +39,8 @@
                                                         <Span Text="&#10; " />
                                                         <Span Text="review date- " />
                                                         <Span Text="{Binding ReviewDateString}" />
-                                                        <Span Text="&#10; " />
-                                                        <Span Text=" " />
-                                                        <Span Text="rate- " />
+                                                    <Span Text="&#10; " />
+                                                    <Span Text="rate- " />
                                                         <Span Text="{Binding WorkerReviewRate}" />
                                                         <Span Text="&#10; " />
                                                         <Span Text=" " />

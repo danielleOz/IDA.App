@@ -80,10 +80,10 @@ namespace IDA.App.ViewModels
             get => this.current.JobOffer.User.FirstName;
         }
 
-        //public string ServiceType
-        //{
-        //    get => this.current.JobOffer.Service.Name;
-        //}
+        public string ServiceType
+        {
+            get => this.current.JobOffer.Service.Name;
+        }
 
         private string descriptoin;
         public string Descriptoin

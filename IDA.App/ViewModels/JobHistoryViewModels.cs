@@ -82,6 +82,13 @@ namespace IDA.App.ViewModels
         public void upload()
         {
             this.current.JobOffer = Chosen;
+            if (this.current.JobOffer == null)
+            {
+                App.Current.MainPage.DisplayAlert("", "you have to choose a job to review! ", "Ok");
+                return;
+            }
+                 
+
             UploadReviewViewModels vm = new UploadReviewViewModels();
             Page NewPage = new Views.UploadReview();
             NewPage.BindingContext = vm;

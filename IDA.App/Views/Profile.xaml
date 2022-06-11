@@ -40,7 +40,8 @@
                         <Label Text=" "></Label>
                         <Label Text="{Binding EntryRadius, StringFormat='radius- {0:F0}'}"  Style="{StaticResource label}" IsVisible="{Binding IsWorker}"></Label>
                         <Label Text=" "></Label>
-
+                        <Label Text="{Binding se , StringFormat='radius- {0:F0}'}"  Style="{StaticResource label}" IsVisible="{Binding IsWorker}"></Label>
+                        <Label Text=" "></Label>
                     </StackLayout>
                 </Frame>
 

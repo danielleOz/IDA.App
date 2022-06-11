@@ -30,6 +30,7 @@ namespace IDA.App.ViewModels
                 Worker currentWorker = this.current.Worker;
                 double d = currentWorker.RadiusKm;
                 entryRadius = d.ToString();
+                
             }
         }
 
