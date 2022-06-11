@@ -31,11 +31,20 @@ namespace IDA.App.ViewModels
             bool isOK = false;
 
             JobOffer j = this.current.JobOffer;
+            Worker cs = j.ChosenWorker;
             j.User = null;
             j.ChosenWorker = null;
+
+            j.Service = null;
+            //foreach(JobOffer o in s.JobOffers)
+            //{
+            //    o.ChosenWorker = null;
+            //    o.User = null;
+            //}
    
             j = await IDAproxy.JobOffer(j);
-
+            j.ChosenWorker = cs;
+            this.current.JobOffer = j;
             if (j != null)
             {
                 isOK = true;

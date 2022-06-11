@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Net;
-using System.Net.Mail;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -38,7 +37,7 @@ namespace IDA.App.ViewModels
          
             Service s = w.WorkerServices.Where(b => b.Service.Id== SId).FirstOrDefault().Service;
             
-            List<JobOffer> jobOffers = w.JobOffers.Where(d => d.Service.Id == s.Id).ToList();
+            List<JobOffer> jobOffers = w.JobOffers.Where(d => d.Service.Id == s.Id).Where(r=> r.WorkerReviewDate != null).ToList();
             ThisWorker = w;
             if (w != null)
             {
@@ -295,8 +294,12 @@ namespace IDA.App.ViewModels
             if (isOK)
             {
                 try
-                { /*await SendEmail();*/
-                    await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+                {
+                     bool s = await SendEmail();
+                    if(s)
+                        await App.Current.MainPage.DisplayAlert("", "your request has been submitted", "Ok");
+                    else
+                        await App.Current.MainPage.DisplayAlert("", "your request could not be Sent", "Ok");
                 }
                 catch
                 {
@@ -312,32 +315,19 @@ namespace IDA.App.ViewModels
 
 
         }
-        public async Task SendEmail()
+        public async Task<bool> SendEmail()
         {
             try
             {
-                string subject = "New Job Offer";
-                string body = "hi i would like to schedule the job offer with you ";
-                var from = new MailAddress(current.User.Email);
-                MailAddressCollection recipients = new MailAddressCollection();
-                recipients.Add(new MailAddress(ThisWorker.Email));
-                var message = new System.Net.Mail.MailMessage(from, recipients.First())
-                {
-                    Subject = subject,
-                    Body = body,
-
-
-                };
-                await EmailSender.SendEmail(message);
-                return;
+                IDAAPIProxy IDAproxy = IDAAPIProxy.CreateProxy();
+               bool sucsess = await IDAproxy.SendMail(thisWorker);
+                return sucsess;
             }
-            catch (FeatureNotSupportedException fbsEx)
-            {
-                // Email is not supported on this device
-            }
+
             catch (Exception ex)
             {
                 throw new Exception("error sending email");
+                return false;
             }
         }
 

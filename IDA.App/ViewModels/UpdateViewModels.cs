@@ -70,11 +70,12 @@ namespace IDA.App.ViewModels
             {
                 
                 entryRadius = CurruntWorker.RadiusKm.ToString();
+                ShowGetServices();
                 //List<WorkerService> WorkerS = CurruntWorker.WorkerServices;
                 //SelectedServices = new ObservableCollection<object>(WorkerS);
             }
 
-            ShowGetServices();
+            
 
         }
 

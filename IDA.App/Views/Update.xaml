@@ -113,11 +113,10 @@
                         </Frame>
 
                             <Label Text=" "></Label>
-                        <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="140">
+                        <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="240">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="please select the services you are able to provide" Style="{StaticResource label}"></Label>
                                 <Frame Style="{StaticResource frame}">
-
                                     <CollectionView SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}"   ItemsSource="{Binding Services}"  >
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
@@ -131,7 +130,7 @@
                                                             </VisualState>
                                                         </VisualStateGroup>
                                                     </VisualStateManager.VisualStateGroups>
-                                                    <Label  Grid.Row="2"  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
+                                                    <Label    VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                                         <Label.FormattedText>
                                                             <FormattedString>
                                                                 <Span Text=" " />
