@@ -26,6 +26,8 @@ namespace IDA.App.Services
         private const string DEV_ANDROID_EMULATOR_PHOTOS_URL = "http://10.0.2.2:39578/Images/"; //API url when using emulator on android
         private const string DEV_ANDROID_PHYSICAL_PHOTOS_URL = "http://192.168.1.14:39578/Images/"; //API url when using physucal device on android
         private const string DEV_WINDOWS_PHOTOS_URL = "http://localhost:39578/Images/"; //API url when using windoes on development
+
+
         private const string DEV_ANDROID_EMULATOR_DATA_URL = "http://10.0.2.2:39578/data/"; //API url when using emulator on android
         private const string DEV_ANDROID_PHYSICAL_DATA_URL = "http://192.168.1.14:39578/data/"; //API url when using physucal device on android
         private const string DEV_WINDOWS_DATA_URL = "https://localhost:39578/data/"; //API url when using windoes on development  // אולי לא יעבוד!
@@ -804,6 +806,40 @@ namespace IDA.App.Services
 
         #endregion
 
+        #region get user job offer
+        public async Task<List<JobOffer>> GetUserJobOffer(int id)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+
+              
+
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetUserJobOffer?id={id}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    var ret = JsonSerializer.Deserialize<List<JobOffer>>(jsonContent, options);
+
+                    return ret;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+        #endregion
     }
 
 

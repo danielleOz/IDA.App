@@ -66,7 +66,7 @@ namespace IDA.App.ViewModels
         private void SelectService(string selected)
         {
             if (this.SelectedService != null)
-                this.selected = this.allServices.Where(sw => sw.Name == this.SelectedService).FirstOrDefault();
+                this.selected = this.allServices.Where(sw => sw.Name.ToLower() == this.SelectedService.ToLower()).FirstOrDefault();
             else
                 this.selected = null;
 
@@ -134,9 +134,9 @@ namespace IDA.App.ViewModels
                 {
                     string ServiceName = s.Name;
 
-                    if (!this.FilteredServices.Contains(ServiceName) && ServiceName.Contains(search))
+                    if (!this.FilteredServices.Contains(ServiceName) && ServiceName.ToLower().Contains(search.ToLower()))
                         this.FilteredServices.Add(ServiceName);
-                    else if (this.FilteredServices.Contains(ServiceName) && (!ServiceName.Contains(search)))
+                    else if (this.FilteredServices.Contains(ServiceName) && (!ServiceName.ToLower().Contains(search.ToLower())))
                         this.FilteredServices.Remove(ServiceName);
                 }
             }
@@ -196,21 +196,7 @@ namespace IDA.App.ViewModels
         }
         #endregion
 
-        //#region is not worker
-        //public bool IsntWorker
-        //{
-        //    get
-        //    {
-        //        if (this.current != null && this.current.User != null)
-        //        {
-        //            return !this.current.User.IsWorker;
-
-        //        }
-        //        return false;
-
-        //    }
-        //}
-        //#endregion
+       
 
         #region go to update Availbilty page
 

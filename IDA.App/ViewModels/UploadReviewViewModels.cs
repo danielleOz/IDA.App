@@ -45,21 +45,24 @@ namespace IDA.App.ViewModels
             j = await IDAproxy.JobOffer(j);
             j.ChosenWorker = cs;
             this.current.JobOffer = j;
-            if (j != null)
-            {
-                isOK = true;
-            }
+            
+                if (j != null)
+                {
+                    isOK = true;
+                this.current.User.JobOffers[this.current.User.JobOffers.FindIndex(0, jo => jo.Id == j.Id)] = j;
+                
+                    
 
-            if (isOK)
-            {
 
-                await App.Current.MainPage.DisplayAlert("", "your review has been submitted", "Ok");
-            }
+                    await App.Current.MainPage.DisplayAlert("", "your review has been submitted", "Ok");
 
-            else
-            {
-                await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
-            }
+                }
+                else
+                {
+                    await App.Current.MainPage.DisplayAlert("", "failed please try again", "Ok");
+                }
+            
+
 
         }
 

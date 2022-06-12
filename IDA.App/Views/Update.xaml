@@ -116,11 +116,11 @@
                         <Frame Style="{StaticResource frame}" HorizontalOptions="Center" WidthRequest="350" HeightRequest="240">
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="please select the services you are able to provide" Style="{StaticResource label}"></Label>
-                                <Frame Style="{StaticResource frame}">
+                                <Frame Style="{StaticResource frame}" >
                                     <CollectionView SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}"   ItemsSource="{Binding Services}"  >
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackLayout>
+                                                <!--<StackLayout>
                                                     <VisualStateManager.VisualStateGroups>
                                                         <VisualStateGroup Name="CommonStates">
                                                             <VisualState Name="Selected">
@@ -129,7 +129,7 @@
                                                                 </VisualState.Setters>
                                                             </VisualState>
                                                         </VisualStateGroup>
-                                                    </VisualStateManager.VisualStateGroups>
+                                                    </VisualStateManager.VisualStateGroups>-->
                                                     <Label    VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label}">
                                                         <Label.FormattedText>
                                                             <FormattedString>
@@ -138,7 +138,7 @@
                                                             </FormattedString>
                                                         </Label.FormattedText>
                                                     </Label>
-                                                </StackLayout>
+                                                <!--</StackLayout>-->
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>

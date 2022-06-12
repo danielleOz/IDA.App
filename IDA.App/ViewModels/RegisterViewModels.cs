@@ -960,8 +960,9 @@ namespace IDA.App.ViewModels
 
                     if (isRegister)
                     {
+
                         IDAAPIProxy IDAAPIProxy = IDAAPIProxy.CreateProxy();
-                        TheMainTabbedPage theMainTabbedPage = new Views.TheMainTabbedPage(); ;
+                        TheMainTabbedPage theMainTabbedPage = new Views.TheMainTabbedPage(); 
 
                         TheMainTabbedPageViewModels mainPageVM = new TheMainTabbedPageViewModels();
                         theMainTabbedPage.BindingContext = mainPageVM;

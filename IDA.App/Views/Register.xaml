@@ -132,7 +132,7 @@
 
                         <StackLayout IsVisible="{Binding IsWorker}"  >
 
-                            <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="650" >
+                            <Frame Style="{StaticResource frame}" WidthRequest="350" HeightRequest="670" >
                                 <StackLayout>
                                     <Entry Text="{Binding EntryRadius}" Placeholder="radius" Style="{StaticResource entry}"></Entry>
                                     <Label Text="{Binding RadiusError}" IsVisible="{Binding ShowRadiusError}" Style="{StaticResource ErrorLabel}"/>
@@ -148,14 +148,25 @@
                                     <CollectionView  SelectionMode="Multiple" SelectedItems="{Binding SelectedServices}" SelectionChangedCommand="{Binding SelectServicesCommand}"   ItemsSource="{Binding Services}"  >
                                         <CollectionView.ItemTemplate>
                                             <DataTemplate>
-                                                <Label  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label }" >
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text=" " />
-                                                            <Span Text="{Binding Name} " />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
+                                                <StackLayout>
+                                                    <!--<VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup Name="CommonStates">
+                                                            <VisualState Name="Selected">
+                                                                <VisualState.Setters>
+                                                                    <Setter Property="BackgroundColor" Value="#EDE0D4" />
+                                                                </VisualState.Setters>
+                                                            </VisualState>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>-->
+                                                    <Label  VerticalTextAlignment="Center" VerticalOptions="Center" Style="{StaticResource label }" >
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text=" " />
+                                                                <Span Text="{Binding Name} " />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
